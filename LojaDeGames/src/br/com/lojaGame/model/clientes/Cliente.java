@@ -10,5 +10,5 @@ package br.com.lojaGame.model.clientes;
  * @author Luana
  */
 public class Cliente {
-    int num ;
+    int num =0;
 }
