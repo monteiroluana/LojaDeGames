@@ -11,4 +11,5 @@ package br.com.lojaGame.model.clientes;
  */
 public class Cliente {
     int num =0;
+    Integer n = 1;
 }
