@@ -8,20 +8,20 @@ package br.com.lojaGame.model.clientes;
 import java.util.Date;
 
     public class Produto {
-    private Integer IdCliente;
+    private Integer idCliente;
     private String nome;
     private String produto;
     private String quantidade;
     private Integer desconto;
-    private Date   dataInício;
+    private Date   dataInicio;
     private Date   dataFinal;
     
     public Integer getIdCliente() {
-        return IdCliente;
+        return idCliente;
     }
 
-    public void setIdCliente(Integer IdCliente) {
-        this.IdCliente = IdCliente;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
     public String getNome() {
         return nome;
@@ -52,11 +52,11 @@ import java.util.Date;
         this.desconto = desconto;
     }
     public Date getDataInício() {
-        return dataInício;
+        return dataInicio;
     }
 
-    public void setDataInicio(Date dataInício) {
-        this.dataInício = dataInício;
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
     }
     
     public Date getDataFinal() {

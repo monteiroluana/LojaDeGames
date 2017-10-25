@@ -12,10 +12,10 @@ public class Vendas {
     private String plataforma;
     private String fabricante;
     private Integer preço;
-    private String faixaEtária;
+    private String faixaEtaria;
     private String jogadores;
-    private Integer quantidadeEmEstoque;
-    private Integer ID;
+    private Integer qntdEstoque;
+    private Integer idProduto;
     
     public String getNome() {
         return nome;
@@ -56,32 +56,32 @@ public class Vendas {
         this.preço = preço;
     }
     public String getFaixaEtária() {
-        return faixaEtária;
+        return faixaEtaria;
     }
 
-    public void setFaixaEtaria(String faixaEtária) {
-        this.faixaEtária = faixaEtária;
+    public void setFaixaEtaria(String faixaEtaria) {
+        this.faixaEtaria = faixaEtaria;
     }
     public String getJogadores() {
         return jogadores;
     }
 
-    public void setJogadores(String Jogadores) {
+    public void setJogadores(String jogadores) {
         this.jogadores = jogadores;
     }
     public Integer getQuantidadeEmEstoque() {
-        return quantidadeEmEstoque;
+        return qntdEstoque;
     }
 
-    public void setQuantidadeEmEstoque(Integer QuantidadeEmestoque) {
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
+    public void setQuantidadeEmEstoque(Integer qntdEstoque) {
+        this.qntdEstoque = qntdEstoque;
     }
-    public Integer getID() {
-        return preço;
+    public Integer getIdProduto() {
+        return idProduto;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setID(Integer idProduto) {
+        this.idProduto = idProduto;
     }
 }
 
