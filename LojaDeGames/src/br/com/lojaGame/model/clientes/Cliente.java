@@ -11,7 +11,7 @@ public class Cliente {
     private Date dataNasc;
     private String estadoCivil;
     private Integer cep;
-    private String logadouro;
+    private String logradouro;
     private Integer numero;
     private String complemento;
     private String bairro;
@@ -78,12 +78,12 @@ public class Cliente {
         this.cep = cep;
     }
 
-    public String getLogadouro() {
-        return logadouro;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setLogadouro(String logadouro) {
-        this.logadouro = logadouro;
+    public void setLogadouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public Integer getNumero() {
