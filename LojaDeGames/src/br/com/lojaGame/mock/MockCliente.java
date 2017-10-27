@@ -2,7 +2,7 @@ package br.com.lojaGame.mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import br.com.lojaGame.model.clientes.Cliente;
+import br.com.lojaGame.model.cliente.Cliente;
 import com.sun.jmx.snmp.BerDecoder;
 
 public class MockCliente {

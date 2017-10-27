@@ -1,7 +1,7 @@
 package br.com.lojaGame.model.validador.cliente;
 
 import br.com.lojaGame.exceptions.ClientesException;
-import br.com.lojaGame.model.clientes.Cliente;
+import br.com.lojaGame.model.cliente.Cliente;
 
 public class ValidadorCliente {
 

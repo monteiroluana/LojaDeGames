@@ -7,10 +7,10 @@
 //cria JInternalFrame pra poder aparecer a "janela" dentro
 package br.com.lojaGame.ui.principal;
 
-import br.com.lojaGame.ui.clientes.FormCadastrarCliente;
-import br.com.lojaGame.ui.clientes.FormConsultarClientes;
-import br.com.lojaGame.ui.produtos.FormCadastrarJogo;
-import br.com.lojaGame.ui.produtos.FormConsultarJogo;
+import br.com.lojaGame.ui.cliente.FormCadastrarCliente;
+import br.com.lojaGame.ui.cliente.FormConsultarClientes;
+import br.com.lojaGame.ui.produto.FormCadastrarJogo;
+import br.com.lojaGame.ui.produto.FormConsultarJogo;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
