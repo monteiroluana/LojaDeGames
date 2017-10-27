@@ -1,9 +1,10 @@
-/*package br.com.lojaGame.model.clientes;*/
+package br.com.lojaGame.model.clientes;
 
 import java.util.Date;
 
 public class Cliente {
 
+    private Integer idCliente;
     private String nome;
     private Integer cpf;
     private Integer rg;
@@ -19,7 +20,6 @@ public class Cliente {
     private String uf;
     private Integer telefone;
     private String email;
-    private Integer idCliente;
 
     public String getNome() {
         return nome;
@@ -42,7 +42,7 @@ public class Cliente {
     }
 
     public void setRG(Integer rg) {
-        this.RG = rg;
+        this.rg = rg;
     }
 
     public String getSexo() {
@@ -134,7 +134,7 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public String getemail() {
+    public String getEmail() {
         return email;
     }
 
@@ -142,11 +142,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public Integer getId() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setId(Integer idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 

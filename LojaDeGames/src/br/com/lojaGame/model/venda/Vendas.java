@@ -1,4 +1,4 @@
-package br.com.lojaGame.model.clientes;
+package br.com.lojaGame.model.venda;
 
 
 /**
