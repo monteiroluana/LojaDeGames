@@ -27,16 +27,16 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        grbTipoDado = new javax.swing.ButtonGroup();
+        lblDado = new javax.swing.JLabel();
+        txtDado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tableConsultaCliente = new javax.swing.JTable();
+        radNome = new javax.swing.JRadioButton();
+        radCPF = new javax.swing.JRadioButton();
+        buttonRetornarTodos = new javax.swing.JButton();
+        buttonBuscar = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -45,9 +45,9 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Consulta de Clientes");
 
-        jLabel1.setText("Inserir dado:");
+        lblDado.setText("Inserir dado:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableConsultaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -73,19 +73,19 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableConsultaCliente);
 
-        jRadioButton1.setText("Nome");
+        radNome.setText("Nome");
 
-        jRadioButton2.setText("CPF");
+        radCPF.setText("CPF");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Retornar todos");
+        buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonRetornarTodos.setText("Retornar todos");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("Buscar");
+        buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonBuscar.setText("Buscar");
 
-        jButton3.setText("Cancelar");
+        buttonCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,21 +98,21 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(lblDado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDado, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(74, 74, 74)
-                                .addComponent(jRadioButton1)
+                                .addComponent(radNome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2)
+                                .addComponent(radCPF)
                                 .addGap(59, 59, 59)
-                                .addComponent(jButton2)
+                                .addComponent(buttonBuscar)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(buttonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(buttonRetornarTodos)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -120,17 +120,17 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jButton2))
+                    .addComponent(lblDado)
+                    .addComponent(txtDado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radNome)
+                    .addComponent(radCPF)
+                    .addComponent(buttonBuscar))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(buttonRetornarTodos)
+                    .addComponent(buttonCancelar))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -173,15 +173,15 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JButton buttonBuscar;
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonRetornarTodos;
+    private javax.swing.ButtonGroup grbTipoDado;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblDado;
+    private javax.swing.JRadioButton radCPF;
+    private javax.swing.JRadioButton radNome;
+    private javax.swing.JTable tableConsultaCliente;
+    private javax.swing.JTextField txtDado;
     // End of variables declaration//GEN-END:variables
 }
