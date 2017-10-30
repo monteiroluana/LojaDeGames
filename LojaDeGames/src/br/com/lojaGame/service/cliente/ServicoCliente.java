@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ServicoCliente {
 
-    public static void cadastrarCliente(Cliente cliente) {
+    public static void cadastrarCliente(Cliente cliente) 
         throws ClientesException, DataSourceException
         {
 
@@ -31,8 +31,8 @@ public class ServicoCliente {
 
     
 
-    public static void atualizarCliente(Cliente cliente) {
-        throwsClientesException, DataSourceException
+    public static void atualizarCliente(Cliente cliente) 
+        throws ClientesException, DataSourceException
         {
 
             ValidadorCliente.validar(cliente);
@@ -49,11 +49,11 @@ public class ServicoCliente {
 
             }
         }
-    }
+    
 
-    //
-    public static List<Cliente> procurarCliente(String nome) {
-        throwsClientesException, DataSourceException
+    
+    public static List<Cliente> procurarCliente(String nome) 
+        throws ClientesException, DataSourceException
         {
 
             try {
@@ -64,17 +64,18 @@ public class ServicoCliente {
 
                     return MockCliente.procurar(nome);
                 }
+            }
                 catch(Exception e){
                     
-                    e.printStacTrace();
+                    e.printStackTrace();
                     throw new DataSourceException("Erro na fonte de dados", e);
                     }
             }
         
         
 
-    public static Cliente obterCliente(int id) {
-        throwsClientesException, DataSourceException
+    public static Cliente obterCliente(int id) 
+        throws ClientesException, DataSourceException
         {
 
             try {
@@ -87,10 +88,10 @@ public class ServicoCliente {
             }
         }
 //teste
-    }
+    
 
-    public static void excluirCliente(int id) {
-        throwsClientesException, DataSourceExcepetion
+    public static void excluirCliente(int id) 
+        throws ClientesException, DataSourceException
         {
 
             try {
@@ -101,15 +102,11 @@ public class ServicoCliente {
                 throw new DataSourceException("Erro nda fonte de dados", e);
             }
 
-        }
-
-    }
-
-        
+        }      
         
                 
     
-    }
+}
     
  
     
