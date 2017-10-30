@@ -7,7 +7,7 @@ import br.com.lojaGame.model.produto.Produto;
 public class MockProduto {
 
 //Mock de Produto. Realiza operações de mock com o produto
-    private static int totalQuartos = 0;
+    private static int totalProdutos = 0;
     /**
      * Armazena a lista de produtos inseridos para manipulação. #MOCK *
      */
@@ -16,7 +16,7 @@ public class MockProduto {
     //Insere um produto no mock "produto"
     public static void inserir(Produto produto)
             throws Exception {
-        produto.setIdProd(totalQuartos++);
+        produto.setIdProd(totalProdutos++);
         listaProdutos.add(produto);
     }
 
