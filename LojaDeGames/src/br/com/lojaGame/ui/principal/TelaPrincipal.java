@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //cria JInternalFrame pra poder aparecer a "janela" dentro
 package br.com.lojaGame.ui.principal;
 
@@ -11,6 +10,8 @@ import br.com.lojaGame.ui.cliente.FormCadastrarCliente;
 import br.com.lojaGame.ui.cliente.FormConsultarClientes;
 import br.com.lojaGame.ui.produto.FormCadastrarJogo;
 import br.com.lojaGame.ui.produto.FormConsultarJogo;
+import br.com.lojaGame.ui.venda.FormRelatorioVendas;
+import br.com.lojaGame.ui.venda.FormVenda;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -23,11 +24,14 @@ import javax.swing.JInternalFrame;
  * @author ffreire
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+
     FormCadastrarCliente cadastrarCliente = null;
     FormConsultarClientes consultarClientes = null;
     FormCadastrarJogo cadastrarQuarto = null;
     FormConsultarJogo consultarQuartos = null;
-    
+    FormRelatorioVendas relatorioVendas = null;
+    FormVenda carrinhoVenda = null;
+
     /**
      * Creates new form TelaPrincipal
      */
@@ -61,14 +65,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             }
         };
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuCliente = new javax.swing.JMenu();
+        itemCadastrarCliente = new javax.swing.JMenuItem();
+        itemConsultarCliente = new javax.swing.JMenuItem();
+        menuProduto = new javax.swing.JMenu();
+        itemCadastrarProduto = new javax.swing.JMenuItem();
+        itemConsultarProduto = new javax.swing.JMenuItem();
+        menuVenda = new javax.swing.JMenu();
+        menuCarrinho = new javax.swing.JMenuItem();
+        menuRelatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lojinha de vijo Gueime");
@@ -86,50 +92,67 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 527, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Cliente");
+        menuCliente.setText("Cliente");
 
-        jMenuItem1.setText("Cadastrar Cliente");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemCadastrarCliente.setText("Cadastrar Cliente");
+        itemCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemCadastrarClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menuCliente.add(itemCadastrarCliente);
 
-        jMenuItem2.setText("Consultar Clientes");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        itemConsultarCliente.setText("Consultar Clientes");
+        itemConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                itemConsultarClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        menuCliente.add(itemConsultarCliente);
 
-        jMenuBar1.add(jMenu1);
+        menuBarPrincipal.add(menuCliente);
 
-        jMenu2.setText("Produto");
+        menuProduto.setText("Produto");
 
-        jMenuItem3.setText("Cadastrar Quarto");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        itemCadastrarProduto.setText("Cadastrar Produto");
+        itemCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                itemCadastrarProdutoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        menuProduto.add(itemCadastrarProduto);
 
-        jMenuItem4.setText("Consultar Quartos");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        itemConsultarProduto.setText("Consultar Produtos");
+        itemConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                itemConsultarProdutoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        menuProduto.add(itemConsultarProduto);
 
-        jMenuBar1.add(jMenu2);
+        menuBarPrincipal.add(menuProduto);
 
-        jMenu3.setText("Venda");
-        jMenuBar1.add(jMenu3);
+        menuVenda.setText("Venda");
 
-        setJMenuBar(jMenuBar1);
+        menuCarrinho.setText("Carrinho");
+        menuCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCarrinhoActionPerformed(evt);
+            }
+        });
+        menuVenda.add(menuCarrinho);
+
+        menuRelatorio.setText("Relatório de Vendas");
+        menuRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelatorioActionPerformed(evt);
+            }
+        });
+        menuVenda.add(menuRelatorio);
+
+        menuBarPrincipal.add(menuVenda);
+
+        setJMenuBar(menuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,7 +168,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void itemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarClienteActionPerformed
         if (cadastrarCliente == null || !cadastrarCliente.isDisplayable()) {
             cadastrarCliente = new FormCadastrarCliente();
             desktop.add(cadastrarCliente);
@@ -153,34 +176,52 @@ public class TelaPrincipal extends javax.swing.JFrame {
             this.openFrameInCenter(cadastrarCliente);
         }
         cadastrarCliente.toFront();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_itemCadastrarClienteActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void itemConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarClienteActionPerformed
         if (consultarClientes == null || !consultarClientes.isDisplayable()) {
             consultarClientes = new FormConsultarClientes();
             desktop.add(consultarClientes);
             this.openFrameInCenter(consultarClientes);
         }
         consultarClientes.toFront();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_itemConsultarClienteActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void itemCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarProdutoActionPerformed
         if (cadastrarQuarto == null || !cadastrarQuarto.isDisplayable()) {
             cadastrarQuarto = new FormCadastrarJogo();
             desktop.add(cadastrarQuarto);
             this.openFrameInCenter(cadastrarQuarto);
         }
         cadastrarQuarto.toFront();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_itemCadastrarProdutoActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void itemConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarProdutoActionPerformed
         if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
             consultarQuartos = new FormConsultarJogo();
             desktop.add(consultarQuartos);
             this.openFrameInCenter(consultarQuartos);
         }
         consultarQuartos.toFront();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_itemConsultarProdutoActionPerformed
+
+    private void menuCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCarrinhoActionPerformed
+        if (carrinhoVenda == null || !carrinhoVenda.isDisplayable()) {
+            carrinhoVenda = new FormVenda();
+            desktop.add(carrinhoVenda);
+            this.openFrameInCenter(carrinhoVenda);
+        }
+        carrinhoVenda.toFront();
+    }//GEN-LAST:event_menuCarrinhoActionPerformed
+
+    private void menuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioActionPerformed
+        if (relatorioVendas == null || !relatorioVendas.isDisplayable()) {
+            relatorioVendas = new FormRelatorioVendas();
+            desktop.add(relatorioVendas);
+            this.openFrameInCenter(relatorioVendas);
+        }
+        carrinhoVenda.toFront();
+    }//GEN-LAST:event_menuRelatorioActionPerformed
 
     //Abre um internal frame centralizado na tela
     public void openFrameInCenter(JInternalFrame jif) {
@@ -191,7 +232,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jif.setLocation(width, height);
         jif.setVisible(true);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -229,13 +270,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem itemCadastrarCliente;
+    private javax.swing.JMenuItem itemCadastrarProduto;
+    private javax.swing.JMenuItem itemConsultarCliente;
+    private javax.swing.JMenuItem itemConsultarProduto;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuCarrinho;
+    private javax.swing.JMenu menuCliente;
+    private javax.swing.JMenu menuProduto;
+    private javax.swing.JMenuItem menuRelatorio;
+    private javax.swing.JMenu menuVenda;
     // End of variables declaration//GEN-END:variables
 }
