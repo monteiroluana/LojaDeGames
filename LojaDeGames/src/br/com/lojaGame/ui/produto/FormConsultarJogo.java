@@ -28,7 +28,7 @@ public class FormConsultarJogo
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        groupConstJogo = new javax.swing.ButtonGroup();
+        grbDadoJogo = new javax.swing.ButtonGroup();
         lblPesquisa = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -80,10 +80,10 @@ public class FormConsultarJogo
         buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonBuscar.setText("Buscar");
 
-        groupConstJogo.add(radID);
+        grbDadoJogo.add(radID);
         radID.setText("ID");
 
-        groupConstJogo.add(radNome);
+        grbDadoJogo.add(radNome);
         radNome.setText("Nome");
 
         buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -186,7 +186,7 @@ public class FormConsultarJogo
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonRetornarTodos;
-    private javax.swing.ButtonGroup groupConstJogo;
+    private javax.swing.ButtonGroup grbDadoJogo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPesquisa;
     private javax.swing.JRadioButton radID;
