@@ -29,16 +29,16 @@ public class FormConsultarJogo
     private void initComponents() {
 
         groupConstJogo = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblPesquisa = new javax.swing.JLabel();
+        txtPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        cancelar = new javax.swing.JButton();
+        buttonBuscar = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        buttonRetornarTodos = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
+        buttonExcluir = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -47,7 +47,7 @@ public class FormConsultarJogo
         setResizable(true);
         setTitle("Consulta de Jogos");
 
-        jLabel1.setText("Pesquisar");
+        lblPesquisa.setText("Pesquisar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,8 +77,8 @@ public class FormConsultarJogo
         });
         jScrollPane1.setViewportView(jTable1);
 
-        cancelar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cancelar.setText("Buscar");
+        buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonBuscar.setText("Buscar");
 
         groupConstJogo.add(jRadioButton1);
         jRadioButton1.setText("ID");
@@ -86,13 +86,13 @@ public class FormConsultarJogo
         groupConstJogo.add(jRadioButton2);
         jRadioButton2.setText("Nome");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Retornar todos");
+        buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonRetornarTodos.setText("Retornar todos");
 
-        jButton2.setText("Cancelar");
+        buttonCancelar.setText("Cancelar");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("Excluir");
+        buttonExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonExcluir.setText("Excluir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,23 +102,23 @@ public class FormConsultarJogo
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
                         .addComponent(jRadioButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(cancelar)
+                        .addComponent(buttonBuscar)
                         .addGap(0, 345, Short.MAX_VALUE))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(buttonExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(buttonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(buttonRetornarTodos)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,18 +128,18 @@ public class FormConsultarJogo
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPesquisa)
+                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton1))
                         .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(cancelar))
+                    .addComponent(buttonBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(buttonRetornarTodos)
+                    .addComponent(buttonCancelar)
+                    .addComponent(buttonExcluir))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -182,16 +182,16 @@ public class FormConsultarJogo
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelar;
+    private javax.swing.JButton buttonBuscar;
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonExcluir;
+    private javax.swing.JButton buttonRetornarTodos;
     private javax.swing.ButtonGroup groupConstJogo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblPesquisa;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }
