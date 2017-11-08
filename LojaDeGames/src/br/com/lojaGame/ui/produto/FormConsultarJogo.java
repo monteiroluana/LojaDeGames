@@ -32,10 +32,10 @@ public class FormConsultarJogo
         lblPesquisa = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableConsultaJogo = new javax.swing.JTable();
         buttonBuscar = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radID = new javax.swing.JRadioButton();
+        radNome = new javax.swing.JRadioButton();
         buttonRetornarTodos = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
@@ -49,7 +49,7 @@ public class FormConsultarJogo
 
         lblPesquisa.setText("Pesquisar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableConsultaJogo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -75,16 +75,16 @@ public class FormConsultarJogo
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableConsultaJogo);
 
         buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonBuscar.setText("Buscar");
 
-        groupConstJogo.add(jRadioButton1);
-        jRadioButton1.setText("ID");
+        groupConstJogo.add(radID);
+        radID.setText("ID");
 
-        groupConstJogo.add(jRadioButton2);
-        jRadioButton2.setText("Nome");
+        groupConstJogo.add(radNome);
+        radNome.setText("Nome");
 
         buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonRetornarTodos.setText("Retornar todos");
@@ -106,9 +106,9 @@ public class FormConsultarJogo
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(jRadioButton1)
+                        .addComponent(radID)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
+                        .addComponent(radNome)
                         .addGap(18, 18, 18)
                         .addComponent(buttonBuscar)
                         .addGap(0, 345, Short.MAX_VALUE))
@@ -130,8 +130,8 @@ public class FormConsultarJogo
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPesquisa)
                             .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton1))
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(radID))
+                        .addComponent(radNome, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(buttonBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,11 +187,11 @@ public class FormConsultarJogo
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonRetornarTodos;
     private javax.swing.ButtonGroup groupConstJogo;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblPesquisa;
+    private javax.swing.JRadioButton radID;
+    private javax.swing.JRadioButton radNome;
+    private javax.swing.JTable tableConsultaJogo;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }
