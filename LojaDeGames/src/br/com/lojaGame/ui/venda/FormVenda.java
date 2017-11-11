@@ -40,9 +40,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
         panelCarrinho = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCarrinho = new javax.swing.JTable();
-        lblSubTotal = new javax.swing.JLabel();
-        lblDesconto = new javax.swing.JLabel();
-        txtDesconto = new javax.swing.JTextField();
         buttonFinalizar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
@@ -52,13 +49,15 @@ public class FormVenda extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Tela de Venda");
 
-        lblID.setText("ID Cliente");
+        lblID.setText("CPF");
 
         lblNome.setText("Nome");
 
+        txtNome.setEnabled(false);
+
         panelAdicionar.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar"));
 
-        lblProduto.setText("Produto:");
+        lblProduto.setText("Produto");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -133,40 +132,21 @@ public class FormVenda extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tableCarrinho);
 
-        lblSubTotal.setText("Sub-total: R$");
-
-        lblDesconto.setText("Desconto %");
-
         javax.swing.GroupLayout panelCarrinhoLayout = new javax.swing.GroupLayout(panelCarrinho);
         panelCarrinho.setLayout(panelCarrinhoLayout);
         panelCarrinhoLayout.setHorizontalGroup(
             panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCarrinhoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCarrinhoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblDesconto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblSubTotal)
-                        .addGap(124, 124, 124))
-                    .addGroup(panelCarrinhoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCarrinhoLayout.setVerticalGroup(
             panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCarrinhoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSubTotal)
-                    .addComponent(lblDesconto)
-                    .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         buttonFinalizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -222,9 +202,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addComponent(panelAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblTotal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonFinalizar)
                     .addComponent(buttonCancelar))
@@ -242,17 +222,14 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboQntd;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblDesconto;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblProduto;
     private javax.swing.JLabel lblQntd;
-    private javax.swing.JLabel lblSubTotal;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel panelAdicionar;
     private javax.swing.JPanel panelCarrinho;
     private javax.swing.JTable tableCarrinho;
-    private javax.swing.JTextField txtDesconto;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables

@@ -80,7 +80,7 @@ public class FormConsultarJogo
         buttonBuscar.setText("Buscar");
 
         grbDadoJogo.add(radID);
-        radID.setText("ID");
+        radID.setText("Categoria");
 
         grbDadoJogo.add(radNome);
         radNome.setText("Nome");
@@ -110,7 +110,7 @@ public class FormConsultarJogo
                         .addComponent(radNome)
                         .addGap(18, 18, 18)
                         .addComponent(buttonBuscar)
-                        .addGap(0, 345, Short.MAX_VALUE))
+                        .addGap(0, 309, Short.MAX_VALUE))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buttonExcluir)
