@@ -54,7 +54,6 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Editar Jogo");
 
         panelEditar.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Jogo"));
@@ -168,7 +167,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        panelBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Jogo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        panelBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Jogo", 0, 0, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         lblID.setText("ID jogo");
 

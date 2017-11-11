@@ -43,7 +43,6 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Consulta de Clientes");
 
         lblDado.setText("Inserir dado:");
@@ -76,6 +75,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tableConsultaCliente);
 
+        grbTipoDado.add(radNome);
         radNome.setText("Nome");
 
         radCPF.setText("CPF");

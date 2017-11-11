@@ -63,6 +63,9 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         buttonCadastrar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setTitle("Cadastro de Cliente");
 
         panelInfPessoais.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações Pessoais"));

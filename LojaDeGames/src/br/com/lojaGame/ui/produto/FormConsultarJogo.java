@@ -44,7 +44,6 @@ public class FormConsultarJogo
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Consulta de Jogos");
 
         lblPesquisa.setText("Pesquisar");

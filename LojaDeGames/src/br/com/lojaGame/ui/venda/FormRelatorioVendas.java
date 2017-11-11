@@ -37,6 +37,9 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
         lblTotal = new javax.swing.JLabel();
         buttonCancelar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setTitle("Relatório de Vendas");
 
         lblDataInicial.setText("Data Inicial");

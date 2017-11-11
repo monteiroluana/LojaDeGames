@@ -50,7 +50,6 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Cadastro de Jogo");
 
         lblNome.setText("Nome");
