@@ -18,7 +18,7 @@ public class Cliente {
     private String bairro;
     private String cidade;
     private String uf;
-    private Integer telefone;
+    private String telefone;
     private String email;
 
     public String getNome() {
@@ -126,11 +126,11 @@ public class Cliente {
         this.uf = uf;
     }
 
-    public Integer getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
