@@ -7,23 +7,23 @@ public class ValidadorProduto {
     
     public static void validar(Produto produto) throws ProdutosException {
         if (produto == null) {
-            throw new ProdutosException("Nao foi informado um produto");
+            throw new ProdutosException("Não foi informado um produto");
         }
         if (produto.getNome() == null || "".equals(produto.getNome())) {
-            throw new ProdutosException("E necessario informar o nome do jogo");
+            throw new ProdutosException("É necessário informar o nome do jogo");
         }
         if (produto.getCategoria() == null || "".equals(produto.getCategoria())) {
-            throw new ProdutosException("E necessario informar a categoria do jogo");
+            throw new ProdutosException("É necessário informar a categoria do jogo");
         }
         if (produto.getPlataforma() == null || "".equals(produto.getPlataforma())) {
-            throw new ProdutosException("E necessario informar a plataforma do jogo");
+            throw new ProdutosException("É necessário informar a plataforma do jogo");
         }
         
         if (produto.getPreco() == null) {
-            throw new ProdutosException("E necessario informar o preco do jogo");
+            throw new ProdutosException("É necessário informar o preço do jogo");
         }
         if (produto.getFaixaEtaria() == null) {
-            throw new ProdutosException("E necessario informar a faixa etaria do jogo");
+            throw new ProdutosException("É necessário informar a faixa etária do jogo");
         }
     }
 }
