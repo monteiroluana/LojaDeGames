@@ -48,7 +48,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             private Image image;
             {
                 try {
-                    image = ImageIO.read(new File("src/resources/ornitorrinco-00b.jpg"));
+                    image = ImageIO.read(new File("src/resources/fundo.jpg"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
