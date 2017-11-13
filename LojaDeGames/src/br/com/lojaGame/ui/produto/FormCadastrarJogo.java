@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojaGame.ui.produto;
 
 /**
@@ -61,6 +56,11 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Ação", "Aventura", "Corrida", "Em Grupo/Familia", "Esporte", "Estratégia", "Infantil", "Luta", "Música", "RPG", "Simulação", "Terror", "Tiro", "Suspense/Terror" }));
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
 
         buttonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonCadastrar.setText("Cadastrar");
@@ -68,11 +68,6 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         lblPlat.setText("Plataforma");
 
         comboPlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Playstation 4", "Xbox One", "Playstation 3", "Xbox 360", "Nintendo Wii U", "Nintendo 3DS", "PC" }));
-        comboPlat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboPlatActionPerformed(evt);
-            }
-        });
 
         lblPreco.setText("Preço");
 
@@ -85,12 +80,6 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         comboFaixaEt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos" }));
 
         lblEstoque.setText("Qntd. Estoque");
-
-        txtEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEstoqueActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,13 +167,9 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPlatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboPlatActionPerformed
-
-    private void txtEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstoqueActionPerformed
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     /**
      * @param args the command line arguments

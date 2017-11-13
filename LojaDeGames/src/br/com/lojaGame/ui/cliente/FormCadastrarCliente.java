@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojaGame.ui.cliente;
 
-/**
- *
- * @author Bruna
- */
 public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FormCadastrarCliente2
+     * Creates new form FormCadastrarCliente
      */
     public FormCadastrarCliente() {
         initComponents();
@@ -277,6 +268,11 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         buttonCadastrar.setText("Cadastrar");
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,6 +310,10 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

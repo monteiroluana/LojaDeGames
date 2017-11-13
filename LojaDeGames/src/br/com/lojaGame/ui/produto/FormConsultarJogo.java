@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojaGame.ui.produto;
 
 /**
@@ -89,6 +84,11 @@ public class FormConsultarJogo
         buttonRetornarTodos.setText("Retornar todos");
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
 
         buttonExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonExcluir.setText("Excluir");
@@ -144,6 +144,10 @@ public class FormConsultarJogo
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
