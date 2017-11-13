@@ -42,7 +42,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Consulta de Clientes");
 
-        lblDado.setText("Inserir dado:");
+        lblDado.setText("Pesquisar");
 
         tableConsultaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -1,7 +1,16 @@
 package br.com.lojaGame.ui.produto;
 
+import br.com.lojaGame.exceptions.ProdutosException;
+import br.com.lojaGame.model.produto.Produto;
+import br.com.lojaGame.service.produto.ServicoProduto;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class FormConsultarJogo
         extends javax.swing.JInternalFrame {
+    
+    String ultimaPesquisa = null;
 
     /**
      * Creates new form FormConsultarQuartos
@@ -19,14 +28,11 @@ public class FormConsultarJogo
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grbDadoJogo = new javax.swing.ButtonGroup();
         lblPesquisa = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableConsultaJogo = new javax.swing.JTable();
         buttonBuscar = new javax.swing.JButton();
-        radID = new javax.swing.JRadioButton();
-        radNome = new javax.swing.JRadioButton();
         buttonRetornarTodos = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
@@ -69,12 +75,11 @@ public class FormConsultarJogo
 
         buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonBuscar.setText("Buscar");
-
-        grbDadoJogo.add(radID);
-        radID.setText("Categoria");
-
-        grbDadoJogo.add(radNome);
-        radNome.setText("Nome");
+        buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscarActionPerformed(evt);
+            }
+        });
 
         buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonRetornarTodos.setText("Retornar todos");
@@ -88,6 +93,12 @@ public class FormConsultarJogo
 
         buttonExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonExcluir.setText("Excluir");
+        buttonExcluir.setToolTipText("");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,14 +111,10 @@ public class FormConsultarJogo
                         .addComponent(lblPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(radID)
-                        .addGap(18, 18, 18)
-                        .addComponent(radNome)
                         .addGap(18, 18, 18)
                         .addComponent(buttonBuscar)
-                        .addGap(0, 309, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buttonExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -120,22 +127,18 @@ public class FormConsultarJogo
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPesquisa)
-                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radID))
-                        .addComponent(radNome, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPesquisa)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonBuscar))
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonRetornarTodos)
                     .addComponent(buttonCancelar)
                     .addComponent(buttonExcluir))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,6 +148,116 @@ public class FormConsultarJogo
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+       //Inicializa o sucesso da pesquisa com valor negativo, indicando que
+        //a pesquisa de jogos não obteve resultados (situação padrão)
+        boolean resultSearch = false;
+        
+        //Grava o campo de pesquisa como a última pesquisa válida. O valor
+        //de última pesquisa válida é utilizado na atualização da lista
+        ultimaPesquisa = txtPesquisa.getText();
+
+        try {
+            //Solicita a atualização da lista com o novo critério
+            //de pesquisa (ultimaPesquisa)
+            resultSearch = refreshList();
+        } catch (Exception e) {
+            //Exibe mensagens de erro na fonte de dados e para o listener
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //Exibe mensagem de erro caso a pesquisa não tenha resultados
+        if (!resultSearch) {
+            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
+                    "Sem resultados", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tableConsultaJogo.getColumnModel().getColumn(0).setMinWidth(0);
+        tableConsultaJogo.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableConsultaJogo.getColumnModel().getColumn(0).setWidth(0);
+    }//GEN-LAST:event_buttonBuscarActionPerformed
+
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        //Verifica se há itens selecionados para exclusão.
+        //Caso negativo, ignora o comando
+        if (tableConsultaJogo.getSelectedRow() >= 0) {
+            
+            //Obtém a linha do item selecionado
+            final int row = tableConsultaJogo.getSelectedRow();
+            //Obtém o nome do jogo da linha indicada para exibição
+            //de mensagem de confirmação de exclusão utilizando seu número
+            String jogo = (String) tableConsultaJogo.getValueAt(row, 1);
+            //Mostra o diálogo de confirmação de exclusão
+            int resposta = JOptionPane.showConfirmDialog(rootPane,
+                "Excluir o jogo \"" + jogo + "\"?",
+                "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+            //Se o valor de resposta for "Sim" para a exclusão
+            if (resposta == JOptionPane.YES_OPTION) {
+                try {
+                    //Obtém o ID do jogo
+                    Integer id = (Integer) tableConsultaJogo.getValueAt(row, 0);
+                    //Solicita ao serviço a inativação do jogo com o ID
+                    ServicoProduto.excluirProduto(id);
+                    //Atualiza a lista após a "exclusão"
+                    this.refreshList();
+                } catch (Exception e) {
+                    //Se ocorrer algum erro técnico, mostra-o no console,
+                    //mas esconde-o do usuário
+                    e.printStackTrace();
+                    //Exibe uma mensagem de erro genérica ao usuário
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                            "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    //Atualiza a lista de jogos. Pode ser chamado por outras telas
+    public boolean refreshList() throws ProdutosException, Exception {
+        //Realiza a pesquisa de jogos com o último valor de pesquisa
+        //para atualizar a lista
+        List<Produto> resultado = ServicoProduto.procurarProduto(ultimaPesquisa);
+
+        //Obtém o elemento representante do conteúdo da tabela na tela
+        DefaultTableModel model = (DefaultTableModel) tableConsultaJogo.getModel();
+        //Indica que a tabela deve excluir todos seus elementos
+        //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
+        model.setRowCount(0);
+
+        //Verifica se não existiram resultados. Caso afirmativo, encerra a
+        //atualização e indica ao elemento acionador o não sucesso da pesquisa
+        if (resultado == null || resultado.size() <= 0) {
+            return false;
+        }
+
+        //Percorre a lista de resultados e os adiciona na tabela
+        for (int i = 0; i < resultado.size(); i++) {
+            Produto jogo = resultado.get(i);
+            if (jogo != null) {
+                Object[] row = new Object[5];
+                row[0] = jogo.getIdProd();
+                row[1] = jogo.getNome();
+                row[2] = jogo.getCategoria();
+                row[3] = jogo.getPlataforma();
+                row[4] = jogo.getQtdJogadores();
+                row[5] = jogo.getPreco();
+                row[6] = jogo.getQtdEstoque();
+                row[7] = jogo.getFaixaEtaria();
+                row[8] = jogo.getFabricante();
+                
+                model.addRow(row);
+            }
+        }
+
+        //Se chegamos até aqui, a pesquisa teve sucesso, então
+        //retornamos "true" para o elemento acionante, indicando
+        //que não devem ser exibidas mensagens de erro
+        return true;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -185,11 +298,8 @@ public class FormConsultarJogo
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonRetornarTodos;
-    private javax.swing.ButtonGroup grbDadoJogo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPesquisa;
-    private javax.swing.JRadioButton radID;
-    private javax.swing.JRadioButton radNome;
     private javax.swing.JTable tableConsultaJogo;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
