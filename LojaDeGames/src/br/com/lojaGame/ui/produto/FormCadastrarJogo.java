@@ -188,7 +188,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         jogo.setPreco(Float.parseFloat(txtPreco.getText()));
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
         jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
-        jogo.setQtdEstoque(txtEstoque.getText());
+        jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));
         
         try {
             //Chama o serviço para cadastro do jogo

@@ -13,7 +13,7 @@ public class Produto {
     private String fabricante;
     private String faixaEtaria;
     private String qtdJogadores;
-    private String qtdEstoque;
+    private Integer qtdEstoque;
     private Float preco;
 
     public Integer getIdProd() {
@@ -80,11 +80,11 @@ public class Produto {
         this.qtdJogadores = qtdJogadores;
     }
 
-    public String getQtdEstoque() {
+    public Integer getQtdEstoque() {
         return qtdEstoque;
     }
 
-    public void setQtdEstoque(String qtdEstoque) {
+    public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
 

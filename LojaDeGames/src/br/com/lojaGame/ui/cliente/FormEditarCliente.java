@@ -279,7 +279,7 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         buttonSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonSalvar.setText("Salvar");
 
-        panelBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Cliente", 0, 0, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        panelBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         lblID.setText("ID");
 
