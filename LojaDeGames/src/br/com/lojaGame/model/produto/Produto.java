@@ -11,8 +11,8 @@ public class Produto {
     private String categoria;
     private String plataforma;
     private String fabricante;
-    private Integer faixaEtaria;
-    private Integer qtdJogadores;
+    private String faixaEtaria;
+    private String qtdJogadores;
     private String qtdEstoque;
     private Float preco;
 
@@ -64,19 +64,19 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Integer getFaixaEtaria() {
+    public String getFaixaEtaria() {
         return faixaEtaria;
     }
 
-    public void setFaixaEtaria(int faixaEtaria) {
+    public void setFaixaEtaria(String faixaEtaria) {
         this.faixaEtaria = faixaEtaria;
     }
 
-    public Integer getQtdJogadores() {
+    public String getQtdJogadores() {
         return qtdJogadores;
     }
 
-    public void setQtdJogadores(int qtdJogadores) {
+    public void setQtdJogadores(String qtdJogadores) {
         this.qtdJogadores = qtdJogadores;
     }
 

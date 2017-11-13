@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ffreire
+
  */
 public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
@@ -189,9 +189,9 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         jogo.setCategoria((String) comboCategoria.getSelectedItem());
         jogo.setPlataforma((String) comboPlat.getSelectedItem());
         jogo.setFabricante(txtFab.getText());
-        //jogo.setPreco(txtPreco.getText());
-        //jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
-        //jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
+        jogo.setPreco(Float.parseFloat(txtPreco.getText()));
+        jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
+        jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
         jogo.setQtdEstoque(txtEstoque.getText());
         
         try {
