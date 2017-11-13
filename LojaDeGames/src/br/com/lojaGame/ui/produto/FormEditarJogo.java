@@ -1,9 +1,5 @@
 package br.com.lojaGame.ui.produto;
 
-/**
- *
- * @author ffreire
- */
 public class FormEditarJogo extends javax.swing.JInternalFrame {
 
     /**

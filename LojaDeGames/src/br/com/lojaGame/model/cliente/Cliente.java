@@ -57,7 +57,7 @@ public class Cliente {
         return dataNasc;
     }
 
-    public void setDataNascimento(Date dataNasc) {
+    public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
 
     }

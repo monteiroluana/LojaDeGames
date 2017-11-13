@@ -338,6 +338,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         Date data = null;
         try {
             data = (Date) fTxtDataNasc.getValue();
+            cliente.setDataNasc(data);
         } catch (Exception e) {
 
         }
