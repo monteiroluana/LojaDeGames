@@ -1,5 +1,10 @@
 package br.com.lojaGame.ui.cliente;
 
+import br.com.lojaGame.model.cliente.Cliente;
+import br.com.lojaGame.service.cliente.ServicoCliente;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
     /**
@@ -50,7 +55,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         txtEmail = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         lblTel = new javax.swing.JLabel();
-        fTxtTel = new javax.swing.JFormattedTextField();
+        txtTel = new javax.swing.JTextField();
         buttonCadastrar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
 
@@ -233,8 +238,6 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         lblTel.setText("Telefone");
 
-        fTxtTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("(##)####-####"))));
-
         javax.swing.GroupLayout panelContatoLayout = new javax.swing.GroupLayout(panelContato);
         panelContato.setLayout(panelContatoLayout);
         panelContatoLayout.setHorizontalGroup(
@@ -247,7 +250,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fTxtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelContatoLayout.setVerticalGroup(
@@ -256,7 +259,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(panelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTel)
-                    .addComponent(fTxtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,6 +269,11 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         buttonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonCadastrar.setText("Cadastrar");
+        buttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCadastrarActionPerformed(evt);
+            }
+        });
 
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -315,6 +323,74 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
+        //instancia o cliente
+        Cliente cliente = new Cliente();
+
+        //obtem as informações dos campos
+        //Informações Pessoais
+        cliente.setNome(txtNomeCliente.getText());
+        cliente.setCPF(txtCPF.getText());
+        cliente.setRG(txtRG.getText());
+        cliente.setSexo((String) comboSexo.getSelectedItem());
+
+        //pra data de nascimento, seguindo o modelo do prof
+        Date data = null;
+        try {
+            data = (Date) fTxtDataNasc.getValue();
+        } catch (Exception e) {
+
+        }
+
+        cliente.setEstadoCivil((String) comboEstCivil.getSelectedItem());
+
+        //Endereço
+        cliente.setCep(fTxtCEP.getText());
+        cliente.setLogadouro(txtLog.getText());
+        cliente.setNumero(Integer.parseInt(txtNum.getText()));
+        cliente.setComplemento(txtComp.getText());
+        cliente.setBairro(txtBairro.getText());
+        cliente.setCidade(txtCidade.getText());
+        cliente.setUF(txtUF.getText());
+
+        //Contato
+        cliente.setTelefone(txtTel.getText());
+        cliente.setEmail(txtEmail.getText());
+
+        try {
+            //Chama o serviço para cadastro do cliente
+            ServicoCliente.cadastrarCliente(cliente);
+        } catch (Exception e) {
+            //Exibe mensagens de erro para o usuário
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //se tudo tiver certo, exibe mensagem
+        JOptionPane.showMessageDialog(rootPane, "Cliente inserido com sucesso.",
+                "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
+
+        //Limpa os campos da tela após realizar a inserção
+        txtNomeCliente.setText("");
+        txtCPF.setText("");
+        txtRG.setText("");
+        comboSexo.setSelectedIndex(0);
+        fTxtDataNasc.setValue(null);
+        comboEstCivil.setSelectedIndex(0);
+
+        fTxtCEP.setValue(null);
+        txtLog.setText("");
+        txtNum.setText("");
+        txtComp.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        txtUF.setText("");
+
+        txtTel.setText("");
+        txtEmail.setText("");
+    }//GEN-LAST:event_buttonCadastrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCadastrar;
@@ -323,7 +399,6 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JFormattedTextField fTxtCEP;
     private javax.swing.JFormattedTextField fTxtDataNasc;
-    private javax.swing.JFormattedTextField fTxtTel;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCEP;
     private javax.swing.JLabel lblCPF;
@@ -351,6 +426,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNum;
     private javax.swing.JTextField txtRG;
+    private javax.swing.JTextField txtTel;
     private javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
 }
