@@ -31,7 +31,7 @@ public class MockCliente {
                     clienteLi.setCPF(clienteProcura.getCPF());
                     clienteLi.setRG(clienteProcura.getRG());
                     clienteLi.setSexo(clienteProcura.getSexo());
-                    clienteLi.setDataNascimento(clienteProcura.getDataNasc());
+                    clienteLi.setDataNasc(clienteProcura.getDataNasc());
                     clienteLi.setEstadoCivil(clienteProcura.getEstadoCivil());
                     clienteLi.setCep(clienteProcura.getCep());
                     clienteLi.setLogadouro(clienteProcura.getLogradouro());
