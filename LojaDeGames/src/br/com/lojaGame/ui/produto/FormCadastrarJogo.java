@@ -1,5 +1,9 @@
 package br.com.lojaGame.ui.produto;
 
+import br.com.lojaGame.model.produto.Produto;
+import br.com.lojaGame.service.produto.ServicoProduto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ffreire
@@ -64,6 +68,11 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
         buttonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonCadastrar.setText("Cadastrar");
+        buttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCadastrarActionPerformed(evt);
+            }
+        });
 
         lblPlat.setText("Plataforma");
 
@@ -170,6 +179,45 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
+       //instancia o jogo
+         Produto jogo = new Produto();
+        
+        //obtem as informações do campos
+        jogo.setNome(txtNome.getText());
+        jogo.setCategoria((String) comboCategoria.getSelectedItem());
+        jogo.setPlataforma((String) comboPlat.getSelectedItem());
+        jogo.setFabricante(txtFab.getText());
+        //jogo.setPreco(txtPreco.getText());
+        //jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
+        //jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
+        jogo.setQtdEstoque(txtEstoque.getText());
+        
+        try {
+            //Chama o serviço para cadastro do jogo
+            ServicoProduto.cadastrarProduto(jogo);
+        } catch (Exception e) {
+            //Exibe mensagens de erro para o usuário
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //se tudo tiver certo, exibe mensagem
+        JOptionPane.showMessageDialog(rootPane, "Jogo inserido com sucesso.",
+                "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
+
+        //Limpa os campos da tela após realizar a inserção
+        txtNome.setText("");
+        comboCategoria.setSelectedIndex(0);
+        comboPlat.setSelectedIndex(0);
+        txtFab.setText("");
+        txtPreco.setText("");
+        comboFaixaEt.setSelectedIndex(0);
+        comboJogadores.setSelectedIndex(0);
+        txtEstoque.setText("");
+    }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
