@@ -6,12 +6,12 @@ public class Cliente {
 
     private Integer idCliente;
     private String nome;
-    private Integer cpf;
-    private Integer rg;
+    private String cpf;
+    private String rg;
     private String sexo;
     private Date dataNasc;
     private String estadoCivil;
-    private Integer cep;
+    private String cep;
     private String logradouro;
     private Integer numero;
     private String complemento;
@@ -29,19 +29,19 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Integer getCPF() {
+    public String getCPF() {
         return cpf;
     }
 
-    public void setCPF(Integer cpf) {
+    public void setCPF(String cpf) {
         this.cpf = cpf;
     }
 
-    public Integer getRG() {
+    public String getRG() {
         return rg;
     }
 
-    public void setRG(Integer rg) {
+    public void setRG(String rg) {
         this.rg = rg;
     }
 
@@ -70,11 +70,11 @@ public class Cliente {
         this.estadoCivil = estadoCivil;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
