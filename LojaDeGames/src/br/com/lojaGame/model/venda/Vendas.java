@@ -1,21 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.lojaGame.model.venda;
 
 import br.com.lojaGame.model.cliente.Cliente;
 
-/**
- *
- * @author luana.mpereira5
- */
 public class Vendas {
 
-    /**
-     * @return the Cart
-     */
     private Integer idVenda;
     private Cart cart;
     private Cliente cliente;
