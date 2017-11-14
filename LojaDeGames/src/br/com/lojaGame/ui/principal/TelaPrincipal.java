@@ -21,8 +21,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     FormCadastrarCliente cadastrarCliente = null;
     FormConsultarClientes consultarClientes = null;
     FormEditarCliente editarCliente = null;
-    FormCadastrarJogo cadastrarQuarto = null;
-    FormConsultarJogo consultarQuartos = null;
+    FormCadastrarJogo cadastrarJogo = null;
+    FormConsultarJogo consultarJogos = null;
     FormEditarJogo editarJogo = null;
     FormRelatorioVendas relatorioVendas = null;
     FormVenda carrinhoVenda = null;
@@ -33,6 +33,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    //Métodos de acesso para os formulários abertos pela tela principal
+    public FormCadastrarCliente getCadastrarCliente() {
+        return cadastrarCliente;
+    }
+
+    public void setCadastrarCliente(FormCadastrarCliente cadastrarCliente) {
+        this.cadastrarCliente = cadastrarCliente;
+    }
+
+    public FormConsultarClientes getConsultarClientes() {
+        return consultarClientes;
+    }
+
+    public void setConsultarClientes(FormConsultarClientes consultarClientes) {
+        this.consultarClientes = consultarClientes;
+    }
+
+    public FormCadastrarJogo getCadastrarJogo() {
+        return cadastrarJogo;
+    }
+
+    public void setCadastrarJogo(FormCadastrarJogo cadastrarJogo) {
+        this.cadastrarJogo = cadastrarJogo;
+    }
+
+    public FormConsultarJogo getConsultarJogos() {
+        return consultarJogos;
+    }
+
+    public void setConsultarJogos(FormConsultarJogo consultarJogos) {
+        this.consultarJogos = consultarJogos;
     }
 
     /**
@@ -202,21 +235,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemConsultarClienteActionPerformed
 
     private void itemCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarProdutoActionPerformed
-        if (cadastrarQuarto == null || !cadastrarQuarto.isDisplayable()) {
-            cadastrarQuarto = new FormCadastrarJogo();
-            desktop.add(cadastrarQuarto);
-            this.openFrameInCenter(cadastrarQuarto);
+        if (cadastrarJogo == null || !cadastrarJogo.isDisplayable()) {
+            cadastrarJogo = new FormCadastrarJogo();
+            desktop.add(cadastrarJogo);
+            this.openFrameInCenter(cadastrarJogo);
         }
-        cadastrarQuarto.toFront();
+        cadastrarJogo.toFront();
     }//GEN-LAST:event_itemCadastrarProdutoActionPerformed
 
     private void itemConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarProdutoActionPerformed
-        if (consultarQuartos == null || !consultarQuartos.isDisplayable()) {
-            consultarQuartos = new FormConsultarJogo();
-            desktop.add(consultarQuartos);
-            this.openFrameInCenter(consultarQuartos);
+        if (consultarJogos == null || !consultarJogos.isDisplayable()) {
+            consultarJogos = new FormConsultarJogo();
+            desktop.add(consultarJogos);
+            this.openFrameInCenter(consultarJogos);
         }
-        consultarQuartos.toFront();
+        consultarJogos.toFront();
     }//GEN-LAST:event_itemConsultarProdutoActionPerformed
 
     private void menuCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCarrinhoActionPerformed
