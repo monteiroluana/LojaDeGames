@@ -1,12 +1,27 @@
 package br.com.lojaGame.ui.cliente;
 
+import br.com.lojaGame.model.cliente.Cliente;
+import br.com.lojaGame.service.cliente.ServicoCliente;
+import br.com.lojaGame.ui.principal.TelaPrincipal;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 public class FormEditarCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FormEditarCliente
-     */
+    //Armazena o cliente em edição
+    Cliente cliente = new Cliente();
+
+    //Construtor e inicialização de componentes
     public FormEditarCliente() {
         initComponents();
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     /**
@@ -23,14 +38,14 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         lblCPF = new javax.swing.JLabel();
         lblDataNasc = new javax.swing.JLabel();
         fTxtDataNasc = new javax.swing.JFormattedTextField();
-        txtCPF = new javax.swing.JTextField();
         txtNomeCliente = new javax.swing.JTextField();
         lblRG = new javax.swing.JLabel();
-        txtRG = new javax.swing.JTextField();
         comboSexo = new javax.swing.JComboBox<>();
         lblSexo = new javax.swing.JLabel();
         lblEstCivil = new javax.swing.JLabel();
         comboEstCivil = new javax.swing.JComboBox<>();
+        fTxtCPF = new javax.swing.JFormattedTextField();
+        fTxtRG = new javax.swing.JFormattedTextField();
         panelEndereco = new javax.swing.JPanel();
         fTxtCEP = new javax.swing.JFormattedTextField();
         lblCEP = new javax.swing.JLabel();
@@ -50,7 +65,7 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         txtEmail = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         lblTel = new javax.swing.JLabel();
-        fTxtTel = new javax.swing.JFormattedTextField();
+        txtTel = new javax.swing.JTextField();
         buttonCancelar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
 
@@ -58,6 +73,23 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Editar Cadastro de Cliente");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         panelInfPessoais.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Informações Pessoais"));
 
@@ -69,8 +101,6 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
 
         fTxtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
 
-        txtCPF.setEditable(false);
-
         lblRG.setText("RG");
 
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Feminino", "Masculino", "Outros" }));
@@ -80,6 +110,19 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         lblEstCivil.setText("Estado Civil");
 
         comboEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viuvo(a)" }));
+
+        fTxtCPF.setEditable(false);
+        try {
+            fTxtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            fTxtRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-A")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout panelInfPessoaisLayout = new javax.swing.GroupLayout(panelInfPessoais);
         panelInfPessoais.setLayout(panelInfPessoaisLayout);
@@ -103,11 +146,11 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fTxtDataNasc, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                             .addGroup(panelInfPessoaisLayout.createSequentialGroup()
-                                .addComponent(txtCPF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblRG)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(fTxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblRG, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fTxtRG))
                             .addComponent(txtNomeCliente)))
                     .addGroup(panelInfPessoaisLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -125,10 +168,10 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
                     .addComponent(lblNome))
                 .addGap(6, 6, 6)
                 .addGroup(panelInfPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCPF)
-                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRG))
+                    .addComponent(lblRG)
+                    .addComponent(fTxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fTxtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInfPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,8 +279,6 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
 
         lblTel.setText("Telefone");
 
-        fTxtTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("(##)####-####"))));
-
         javax.swing.GroupLayout panelContatoLayout = new javax.swing.GroupLayout(panelContato);
         panelContato.setLayout(panelContatoLayout);
         panelContatoLayout.setHorizontalGroup(
@@ -250,7 +291,7 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fTxtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelContatoLayout.setVerticalGroup(
@@ -259,7 +300,7 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(panelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTel)
-                    .addComponent(fTxtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,6 +317,11 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
 
         buttonSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonSalvar.setText("Salvar");
+        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -320,6 +366,108 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+        //Configura os novos valores dos campos de edição da tela
+        //para o objeto de cliente, a fim de passá-lo para o serviço
+        //e realizar as atualizações no mock
+        //obtem as informações dos campos
+        //Informações Pessoais
+        cliente.setNome(txtNomeCliente.getText());
+        cliente.setCPF(fTxtCPF.getText());
+        cliente.setRG(fTxtRG.getText());
+        cliente.setSexo((String) comboSexo.getSelectedItem());
+
+        //pra data de nascimento, seguindo o modelo do prof
+        Date data = null;
+        try {
+            data = (Date) fTxtDataNasc.getValue();
+            cliente.setDataNasc(data);
+        } catch (Exception e) {
+
+        }
+
+        cliente.setEstadoCivil((String) comboEstCivil.getSelectedItem());
+
+        //Endereço
+        cliente.setCep(fTxtCEP.getText());
+        cliente.setLogadouro(txtLog.getText());
+        cliente.setNumero(Integer.parseInt(txtNum.getText()));
+        cliente.setComplemento(txtComp.getText());
+        cliente.setBairro(txtBairro.getText());
+        cliente.setCidade(txtCidade.getText());
+        cliente.setUF(txtUF.getText());
+
+        //Contato
+        cliente.setTelefone(txtTel.getText());
+        cliente.setEmail(txtEmail.getText());
+
+        try {
+            //Chama o serviço para realizar as alterações necessárias
+            ServicoCliente.atualizarCliente(cliente);
+        } catch (Exception e) {
+            //Exibe alguma mensagem de erro que pode ter vindo do serviço
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //Atualiza a tela de consulta de clientes, caso possível. Para isso,
+        //obtém o "top level ancestor" (ou seja, o componente pai mais acima
+        //do formulário, no nosso caso, o desktop) para conseguir o frame
+        //de consulta e daí solicitar a atualização da lista através da
+        //chamada de seu método público de atualização
+        try {
+            if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
+                TelaPrincipal principal = (TelaPrincipal) this.
+                        getDesktopPane().getTopLevelAncestor();
+                if (principal != null) {
+                    principal.getConsultarClientes().refreshList();
+                }
+            }
+        } catch (Exception e) {
+            //Exibe erros de atualização da lista no
+            //console, mas esconde-os do usuário
+            e.printStackTrace();
+        }
+
+        JOptionPane.showMessageDialog(rootPane, "Cliente atualizado com sucesso",
+                "Cadastro atualizado", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    //Listener de abertura da janela. Aproveita o evento para obter os valores
+    //do cliente em edição e passa-os para os campos de edição da tela
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        txtNomeCliente.setText(cliente.getNome());
+        fTxtCPF.setText(cliente.getCPF());
+        fTxtRG.setText(cliente.getRG());
+        for (int i = 0; i < comboSexo.getItemCount(); i++) {
+            if (comboSexo.getItemAt(i).equals(cliente.getSexo())) {
+                comboSexo.setSelectedIndex(i);
+                break;
+            }
+        }
+        fTxtDataNasc.setValue(cliente.getDataNasc());
+        for (int i = 0; i < comboEstCivil.getItemCount(); i++) {
+            if (comboEstCivil.getItemAt(i).equals(cliente.getEstadoCivil())) {
+                comboEstCivil.setSelectedIndex(i);
+                break;
+            }
+        }
+        
+        fTxtCEP.setText(cliente.getCep());
+        txtLog.setText(cliente.getLogradouro());
+        txtNum.setText(cliente.getNumero().toString());
+        txtComp.setText(cliente.getComplemento());
+        txtBairro.setText(cliente.getBairro());
+        txtCidade.setText(cliente.getCidade());
+        txtUF.setText(cliente.getUF());
+        
+        txtTel.setText(cliente.getTelefone());
+        txtEmail.setText(cliente.getEmail());
+        
+    }//GEN-LAST:event_formInternalFrameOpened
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
@@ -327,8 +475,9 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboEstCivil;
     private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JFormattedTextField fTxtCEP;
+    private javax.swing.JFormattedTextField fTxtCPF;
     private javax.swing.JFormattedTextField fTxtDataNasc;
-    private javax.swing.JFormattedTextField fTxtTel;
+    private javax.swing.JFormattedTextField fTxtRG;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCEP;
     private javax.swing.JLabel lblCPF;
@@ -348,14 +497,13 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelEndereco;
     private javax.swing.JPanel panelInfPessoais;
     private javax.swing.JTextField txtBairro;
-    private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtComp;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLog;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNum;
-    private javax.swing.JTextField txtRG;
+    private javax.swing.JTextField txtTel;
     private javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
 }

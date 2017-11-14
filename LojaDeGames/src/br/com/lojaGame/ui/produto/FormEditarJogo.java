@@ -37,17 +37,11 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         comboCategoria = new javax.swing.JComboBox<>();
         lblEstoque = new javax.swing.JLabel();
         txtEstoque = new javax.swing.JTextField();
-        panelBuscar = new javax.swing.JPanel();
-        lblID = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        buttonBuscar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Editar Jogo");
-
-        panelEditar.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Jogo"));
 
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +55,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
         lblPlat.setText("Plataforma");
 
-        comboPlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Playstation 4", "Xbox One", "Playstation 3", "Xbox 360", "Nitendo Wii U", "Nitendo 3DS", "PC" }));
+        comboPlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Playstation 4", "Xbox One", "Playstation 3", "Xbox 360", "Nintendo Wii U", "Nintendo 3DS", "PC" }));
 
         lblPreco.setText("Preço");
 
@@ -163,57 +157,17 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        panelBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Jogo", 0, 0, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
-
-        lblID.setText("ID jogo");
-
-        buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonBuscar.setText("Buscar");
-
-        javax.swing.GroupLayout panelBuscarLayout = new javax.swing.GroupLayout(panelBuscar);
-        panelBuscar.setLayout(panelBuscarLayout);
-        panelBuscarLayout.setHorizontalGroup(
-            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBuscarLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonBuscar)
-                .addContainerGap(306, Short.MAX_VALUE))
-        );
-        panelBuscarLayout.setVerticalGroup(
-            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBuscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblID)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonBuscar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(panelEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(panelEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -261,7 +215,6 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBuscar;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JComboBox<String> comboCategoria;
@@ -272,16 +225,13 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblEstoque;
     private javax.swing.JLabel lblFab;
     private javax.swing.JLabel lblFaixaEt;
-    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblJogadores;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPlat;
     private javax.swing.JLabel lblPreco;
-    private javax.swing.JPanel panelBuscar;
     private javax.swing.JPanel panelEditar;
     private javax.swing.JTextField txtEstoque;
     private javax.swing.JTextField txtFab;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables

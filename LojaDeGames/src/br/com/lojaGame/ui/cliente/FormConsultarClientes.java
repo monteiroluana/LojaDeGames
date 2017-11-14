@@ -9,6 +9,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class FormConsultarClientes extends javax.swing.JInternalFrame {
     
+    //Instância do form de edição de clientes
+    FormEditarCliente formEditarCliente = new FormEditarCliente();
+    
     String ultimaPesquisa = null;
 
     /**
@@ -255,6 +258,19 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 //Com o ID da coluna, chama o serviço de cliente para
                 //obter o cliente com dados atualizados do mock
                 Cliente cliente = ServicoCliente.obterCliente(id);
+                
+                //Cria uma nova instância da tela de edição,
+                //configura o cliente selecionado como elemento a
+                //ser editado e mostra a tela de edição.
+                //Para exibir a tela, é necessário adicioná-la ao
+                //componente de desktop, o "pai" da janela corrente
+                formEditarCliente.dispose();
+                formEditarCliente = new FormEditarCliente();
+                formEditarCliente.setCliente(cliente);
+                formEditarCliente.setTitle(cliente.getNome());
+                this.getParent().add(formEditarCliente);
+                this.openFrameInCenter(formEditarCliente);                
+                formEditarCliente.toFront();
 
             } catch (Exception e) {
                 //Se ocorrer algum erro técnico, mostra-o no console,
@@ -356,4 +372,8 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTable tableConsultaCliente;
     private javax.swing.JTextField txtDado;
     // End of variables declaration//GEN-END:variables
+
+    private void openFrameInCenter(FormEditarCliente formEditarCliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

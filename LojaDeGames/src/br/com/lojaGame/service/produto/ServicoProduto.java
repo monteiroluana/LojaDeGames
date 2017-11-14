@@ -67,12 +67,12 @@ public class ServicoProduto {
 
     }
 
-    public static void obterProduto(int id)
+    public static Produto obterProduto(int id)
             throws DataSourceException, ProdutosException {
 
         try {
 
-            MockProduto.obter(id);
+            return MockProduto.obter(id);
 
         } catch (Exception e) {
 

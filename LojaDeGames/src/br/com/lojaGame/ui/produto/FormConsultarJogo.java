@@ -36,12 +36,14 @@ public class FormConsultarJogo
         buttonRetornarTodos = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
+        buttonEditar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Consulta de Jogos");
+        setToolTipText("Nome/Categoria/Plataforma");
 
         lblPesquisa.setText("Pesquisar");
 
@@ -100,6 +102,14 @@ public class FormConsultarJogo
             }
         });
 
+        buttonEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonEditar.setText("Editar");
+        buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,6 +127,8 @@ public class FormConsultarJogo
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buttonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -137,7 +149,8 @@ public class FormConsultarJogo
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonRetornarTodos)
                     .addComponent(buttonCancelar)
-                    .addComponent(buttonExcluir))
+                    .addComponent(buttonExcluir)
+                    .addComponent(buttonEditar))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -214,6 +227,30 @@ public class FormConsultarJogo
             }
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+        try {
+                //Obtém a linha selecionada da tabela de resultados
+                final int row = tableConsultaJogo.getSelectedRow();
+                //Obtém o valor do ID da coluna "ID" da tabela de resultados
+                Integer id = (Integer) tableConsultaJogo.getValueAt(row, 0);
+
+                //Com o ID da coluna, chama o serviço de cliente para
+                //obter o cliente com dados atualizados do mock
+                Produto jogo = ServicoProduto.obterProduto(id);
+                
+                
+
+            } catch (Exception e) {
+                //Se ocorrer algum erro técnico, mostra-o no console,
+                //mas esconde-o do usuário
+                e.printStackTrace();
+                //Exibe uma mensagem de erro genérica ao usuário
+                JOptionPane.showMessageDialog(rootPane, "Não é possível "
+                        + "exibir os detalhes deste cliente.",
+                        "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+            }
+    }//GEN-LAST:event_buttonEditarActionPerformed
 
     //Atualiza a lista de jogos. Pode ser chamado por outras telas
     public boolean refreshList() throws ProdutosException, Exception {
@@ -296,6 +333,7 @@ public class FormConsultarJogo
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscar;
     private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonRetornarTodos;
     private javax.swing.JScrollPane jScrollPane1;
