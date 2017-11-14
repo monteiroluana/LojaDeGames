@@ -360,7 +360,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         //Endereço
         cliente.setCep(fTxtCEP.getText());
         cliente.setLogradouro(txtLog.getText());
-        cliente.setNumero(Integer.parseInt(txtNum.getText()));
+        cliente.setNumero(txtNum.getText());
         cliente.setComplemento(txtComp.getText());
         cliente.setBairro(txtBairro.getText());
         cliente.setCidade(txtCidade.getText());
