@@ -14,28 +14,28 @@ public class ValidadorCliente {
             throw new ClientesException("É necessário informar o nome do cliente");
         }
         if (cliente.getCPF() == null|| "".equals(cliente.getCPF())) {
-            throw new ClientesException("E necessario informar o CPF");
+            throw new ClientesException("É necessário informar o CPF");
         }
         if (cliente.getRG() == null|| "".equals(cliente.getRG())) {
-            throw new ClientesException("E necessario informar o RG");
+            throw new ClientesException("É necessário informar o RG");
         }
         if (cliente.getDataNasc() == null) {
-            throw new ClientesException("E necessario informar data de nascimento");
+            throw new ClientesException("É necessário informar data de nascimento");
         }
         if (cliente.getCep() == null|| "".equals(cliente.getCep())) {
-            throw new ClientesException("E necessario informar o CPF");
+            throw new ClientesException("É necessário informar o CPF");
         }
         if (cliente.getLogradouro() == null || "".equals(cliente.getLogradouro())) {
-            throw new ClientesException("E necessario informar o nome da Rua");
+            throw new ClientesException("É necessário informar o nome da Rua");
         }
         if (cliente.getNumero() == null) {
-            throw new ClientesException("E necessario informar o numero do local");
+            throw new ClientesException("É necessário informar o número do local");
         }
         if (cliente.getTelefone() == null|| "".equals(cliente.getTelefone())) {
-            throw new ClientesException("E necessario informar um telefone para contato");
+            throw new ClientesException("É necessário informar um telefone para contato");
         }
         if (cliente.getEmail() == null || "".equals(cliente.getEmail())) {
-            throw new ClientesException("E necessario informar um email");
+            throw new ClientesException("É necessário informar um email");
         }
     }
 
