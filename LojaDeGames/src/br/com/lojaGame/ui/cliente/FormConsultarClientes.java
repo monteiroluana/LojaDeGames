@@ -35,6 +35,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         buttonBuscar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
+        buttonEditar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -70,11 +71,6 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableConsultaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableConsultaClienteMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tableConsultaCliente);
 
         buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -108,6 +104,14 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        buttonEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonEditar.setText("Editar");
+        buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,18 +121,19 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRetornarTodos))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDado, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(buttonBuscar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,10 +148,11 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonRetornarTodos)
                     .addComponent(buttonCancelar)
-                    .addComponent(buttonExcluir))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(buttonExcluir)
+                    .addComponent(buttonEditar)
+                    .addComponent(buttonRetornarTodos))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,10 +229,24 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
-    private void tableConsultaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaClienteMouseClicked
-        //Verifica se o clique é um clique duplo       
-        if (evt.getClickCount() == 2) {
-            try {
+    private void buttonRetornarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetornarTodosActionPerformed
+        boolean resultSearch = false;
+        
+        try {
+            //Solicita a atualização da lista com o novo critério
+            //de pesquisa (ultimaPesquisa)
+            resultSearch = refreshList();
+        } catch (Exception e) {
+            //Exibe mensagens de erro na fonte de dados e para o listener
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+    }//GEN-LAST:event_buttonRetornarTodosActionPerformed
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+        try {
                 //Obtém a linha selecionada da tabela de resultados
                 final int row = tableConsultaCliente.getSelectedRow();
                 //Obtém o valor do ID da coluna "ID" da tabela de resultados
@@ -245,24 +265,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                         + "exibir os detalhes deste cliente.",
                         "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
             }
-        }
-    }//GEN-LAST:event_tableConsultaClienteMouseClicked
-
-    private void buttonRetornarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetornarTodosActionPerformed
-        boolean resultSearch = false;
-        
-        try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
-            resultSearch = refreshList();
-        } catch (Exception e) {
-            //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-    }//GEN-LAST:event_buttonRetornarTodosActionPerformed
+    }//GEN-LAST:event_buttonEditarActionPerformed
 
     //Atualiza a lista de clientes. Pode ser chamado por outras telas
     public boolean refreshList() throws ClientesException, Exception {
@@ -345,6 +348,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscar;
     private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonRetornarTodos;
     private javax.swing.JScrollPane jScrollPane1;

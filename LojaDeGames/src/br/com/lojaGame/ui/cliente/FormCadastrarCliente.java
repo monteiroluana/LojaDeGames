@@ -28,14 +28,14 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         lblCPF = new javax.swing.JLabel();
         lblDataNasc = new javax.swing.JLabel();
         fTxtDataNasc = new javax.swing.JFormattedTextField();
-        txtCPF = new javax.swing.JTextField();
         txtNomeCliente = new javax.swing.JTextField();
         lblRG = new javax.swing.JLabel();
-        txtRG = new javax.swing.JTextField();
         comboSexo = new javax.swing.JComboBox<>();
         lblSexo = new javax.swing.JLabel();
         lblEstCivil = new javax.swing.JLabel();
         comboEstCivil = new javax.swing.JComboBox<>();
+        fTxtCPF = new javax.swing.JFormattedTextField();
+        fTxtRG = new javax.swing.JFormattedTextField();
         panelEndereco = new javax.swing.JPanel();
         fTxtCEP = new javax.swing.JFormattedTextField();
         lblCEP = new javax.swing.JLabel();
@@ -84,6 +84,18 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         comboEstCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viuvo(a)" }));
 
+        try {
+            fTxtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            fTxtRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-A")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout panelInfPessoaisLayout = new javax.swing.GroupLayout(panelInfPessoais);
         panelInfPessoais.setLayout(panelInfPessoaisLayout);
         panelInfPessoaisLayout.setHorizontalGroup(
@@ -106,11 +118,11 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fTxtDataNasc, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                             .addGroup(panelInfPessoaisLayout.createSequentialGroup()
-                                .addComponent(txtCPF)
+                                .addComponent(fTxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblRG)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(fTxtRG))
                             .addComponent(txtNomeCliente)))
                     .addGroup(panelInfPessoaisLayout.createSequentialGroup()
                         .addComponent(lblEstCivil)
@@ -127,10 +139,10 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                     .addComponent(lblNome))
                 .addGap(6, 6, 6)
                 .addGroup(panelInfPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCPF)
-                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRG))
+                    .addComponent(lblRG)
+                    .addComponent(fTxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fTxtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInfPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,7 +325,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCadastrar)
                     .addComponent(buttonCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -330,8 +342,8 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         //obtem as informações dos campos
         //Informações Pessoais
         cliente.setNome(txtNomeCliente.getText());
-        cliente.setCPF(txtCPF.getText());
-        cliente.setRG(txtRG.getText());
+        cliente.setCPF(fTxtCPF.getText());
+        cliente.setRG(fTxtRG.getText());
         cliente.setSexo((String) comboSexo.getSelectedItem());
 
         //pra data de nascimento, seguindo o modelo do prof
@@ -374,8 +386,8 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         //Limpa os campos da tela após realizar a inserção
         txtNomeCliente.setText("");
-        txtCPF.setText("");
-        txtRG.setText("");
+        fTxtCPF.setText("");
+        fTxtRG.setText("");
         comboSexo.setSelectedIndex(0);
         fTxtDataNasc.setValue(null);
         comboEstCivil.setSelectedIndex(0);
@@ -399,7 +411,9 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboEstCivil;
     private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JFormattedTextField fTxtCEP;
+    private javax.swing.JFormattedTextField fTxtCPF;
     private javax.swing.JFormattedTextField fTxtDataNasc;
+    private javax.swing.JFormattedTextField fTxtRG;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCEP;
     private javax.swing.JLabel lblCPF;
@@ -419,14 +433,12 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelEndereco;
     private javax.swing.JPanel panelInfPessoais;
     private javax.swing.JTextField txtBairro;
-    private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtComp;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLog;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNum;
-    private javax.swing.JTextField txtRG;
     private javax.swing.JTextField txtTel;
     private javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
