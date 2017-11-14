@@ -23,21 +23,21 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblID = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         panelAdicionar = new javax.swing.JPanel();
         lblProduto = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         lblQntd = new javax.swing.JLabel();
-        comboQntd = new javax.swing.JComboBox<>();
         buttonAdicionar = new javax.swing.JButton();
+        txtProduto = new javax.swing.JTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         panelCarrinho = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCarrinho = new javax.swing.JTable();
         buttonFinalizar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -54,14 +54,16 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         lblProduto.setText("Produto");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lblQntd.setText("Quantidade:");
-
-        comboQntd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05" }));
 
         buttonAdicionar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonAdicionar.setText("Adicionar ao Carrinho");
+
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout panelAdicionarLayout = new javax.swing.GroupLayout(panelAdicionar);
         panelAdicionar.setLayout(panelAdicionarLayout);
@@ -69,20 +71,18 @@ public class FormVenda extends javax.swing.JInternalFrame {
             panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(panelAdicionarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
-                        .addComponent(lblProduto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblQntd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonAdicionar)))
-                .addContainerGap())
+                .addComponent(lblProduto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(lblQntd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
+            .addGroup(panelAdicionarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonAdicionar)
+                .addGap(36, 36, 36))
         );
         panelAdicionarLayout.setVerticalGroup(
             panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,10 +90,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProduto)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblQntd)
-                    .addComponent(comboQntd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(buttonAdicionar)
                 .addContainerGap())
         );
@@ -102,19 +102,17 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         tableCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "ID Produto", "Nome", "Quantidade", "Valor"
+                "Nome", "Quantidade", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -133,8 +131,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
             panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCarrinhoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelCarrinhoLayout.setVerticalGroup(
             panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,37 +155,38 @@ public class FormVenda extends javax.swing.JInternalFrame {
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblTotal.setText("Total: R$");
 
+        try {
+            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblID)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblNome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome))
-                            .addComponent(panelCarrinho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblTotal)
-                                .addGap(139, 139, 139))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(buttonCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonFinalizar)
-                                .addContainerGap())))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(panelCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTotal)
+                            .addGap(139, 139, 139))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(buttonCancelar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonFinalizar))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblID)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblNome)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNome))))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +194,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(panelAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,8 +222,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonAdicionar;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonFinalizar;
-    private javax.swing.JComboBox<String> comboQntd;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblNome;
@@ -234,7 +233,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelAdicionar;
     private javax.swing.JPanel panelCarrinho;
     private javax.swing.JTable tableCarrinho;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtProduto;
     // End of variables declaration//GEN-END:variables
 }
