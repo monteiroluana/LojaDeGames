@@ -247,7 +247,11 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                     "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tableConsultaCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tableConsultaCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableConsultaCliente.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_buttonRetornarTodosActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed

@@ -3,12 +3,16 @@ package br.com.lojaGame.ui.produto;
 import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.model.produto.Produto;
 import br.com.lojaGame.service.produto.ServicoProduto;
+import java.awt.Dimension;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormConsultarJogo
         extends javax.swing.JInternalFrame {
+    
+    FormEditarJogo formEditarJogo = new FormEditarJogo();
     
     String ultimaPesquisa = null;
 
@@ -85,6 +89,11 @@ public class FormConsultarJogo
 
         buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonRetornarTodos.setText("Retornar todos");
+        buttonRetornarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRetornarTodosActionPerformed(evt);
+            }
+        });
 
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -239,7 +248,18 @@ public class FormConsultarJogo
                 //obter o cliente com dados atualizados do mock
                 Produto jogo = ServicoProduto.obterProduto(id);
                 
-                
+                //Cria uma nova instância da tela de edição,
+                //configura o cliente selecionado como elemento a
+                //ser editado e mostra a tela de edição.
+                //Para exibir a tela, é necessário adicioná-la ao
+                //componente de desktop, o "pai" da janela corrente
+                formEditarJogo.dispose();
+                formEditarJogo = new FormEditarJogo();
+                formEditarJogo.setProduto(jogo);
+                formEditarJogo.setTitle(jogo.getNome());
+                this.getParent().add(formEditarJogo);
+                this.openFrameInCenter(formEditarJogo);                
+                formEditarJogo.toFront();
 
             } catch (Exception e) {
                 //Se ocorrer algum erro técnico, mostra-o no console,
@@ -251,6 +271,26 @@ public class FormConsultarJogo
                         "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
             }
     }//GEN-LAST:event_buttonEditarActionPerformed
+
+    private void buttonRetornarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetornarTodosActionPerformed
+       boolean resultSearch = false;
+        
+        try {
+            //Solicita a atualização da lista com o novo critério
+            //de pesquisa (ultimaPesquisa)
+            resultSearch = refreshList();
+        } catch (Exception e) {
+            //Exibe mensagens de erro na fonte de dados e para o listener
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tableConsultaJogo.getColumnModel().getColumn(0).setMinWidth(0);
+        tableConsultaJogo.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableConsultaJogo.getColumnModel().getColumn(0).setWidth(0);
+    }//GEN-LAST:event_buttonRetornarTodosActionPerformed
 
     //Atualiza a lista de jogos. Pode ser chamado por outras telas
     public boolean refreshList() throws ProdutosException, Exception {
@@ -328,6 +368,16 @@ public class FormConsultarJogo
                 new FormConsultarJogo().setVisible(true);
             }
         });
+    }
+    
+    //Abre um internal frame centralizado na tela
+    public void openFrameInCenter(JInternalFrame jif) {
+        Dimension desktopSize = this.getParent().getSize();
+        Dimension jInternalFrameSize = jif.getSize();
+        int width = (desktopSize.width - jInternalFrameSize.width) / 2;
+        int height = (desktopSize.height - jInternalFrameSize.height) / 2;
+        jif.setLocation(width, height);
+        jif.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

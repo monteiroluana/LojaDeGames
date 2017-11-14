@@ -1,12 +1,26 @@
 package br.com.lojaGame.ui.produto;
 
-public class FormEditarJogo extends javax.swing.JInternalFrame {
+import br.com.lojaGame.model.produto.Produto;
+import br.com.lojaGame.service.produto.ServicoProduto;
+import br.com.lojaGame.ui.principal.TelaPrincipal;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form FormCadastrarQuartos
-     */
+public class FormEditarJogo extends javax.swing.JInternalFrame {
+    
+    //Armazena o cliente em edição
+    Produto jogo = new Produto();
+    
+    //Construtor e inicialização de componentes
     public FormEditarJogo() {
         initComponents();
+    }
+
+    public Produto getProduto() {
+        return jogo;
+    }
+
+    public void setProduto(Produto jogo) {
+        this.jogo = jogo;
     }
 
     /**
@@ -42,6 +56,23 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Editar Jogo");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -52,6 +83,11 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
         buttonSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonSalvar.setText("Salvar");
+        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarActionPerformed(evt);
+            }
+        });
 
         lblPlat.setText("Plataforma");
 
@@ -177,6 +213,95 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+         //Configura os novos valores dos campos de edição da tela
+        //para o objeto de cliente, a fim de passá-lo para o serviço
+        //e realizar as atualizações no mock
+        //obtem as informações dos campos
+
+        jogo.setNome(txtNome.getText());
+        jogo.setCategoria((String) comboCategoria.getSelectedItem());
+        jogo.setFabricante(txtFab.getText());
+        jogo.setPlataforma((String) comboPlat.getSelectedItem());
+        jogo.setPreco(Float.parseFloat(txtPreco.getText()));
+        jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
+        jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
+        jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));        
+
+        try {
+            //Chama o serviço para realizar as alterações necessárias
+            ServicoProduto.atualizarProduto(jogo);
+        } catch (Exception e) {
+            //Exibe alguma mensagem de erro que pode ter vindo do serviço
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //Atualiza a tela de consulta de clientes, caso possível. Para isso,
+        //obtém o "top level ancestor" (ou seja, o componente pai mais acima
+        //do formulário, no nosso caso, o desktop) para conseguir o frame
+        //de consulta e daí solicitar a atualização da lista através da
+        //chamada de seu método público de atualização
+        try {
+            if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
+                TelaPrincipal principal = (TelaPrincipal) this.
+                        getDesktopPane().getTopLevelAncestor();
+                if (principal != null) {
+                    principal.getConsultarClientes().refreshList();
+                }
+            }
+        } catch (Exception e) {
+            //Exibe erros de atualização da lista no
+            //console, mas esconde-os do usuário
+            e.printStackTrace();
+        }
+
+        JOptionPane.showMessageDialog(rootPane, "Jogo atualizado com sucesso",
+                "Cadastro atualizado", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    //Listener de abertura da janela. Aproveita o evento para obter os valores
+    //do cliente em edição e passa-os para os campos de edição da tela
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+       txtNome.setText(jogo.getNome());
+       
+       for (int i = 0; i < comboCategoria.getItemCount(); i++) {
+            if (comboCategoria.getItemAt(i).equals(jogo.getCategoria())) {
+                comboCategoria.setSelectedIndex(i);
+                break;
+            }
+        }
+       
+       txtFab.setText(jogo.getFabricante());
+       
+       for (int i = 0; i < comboPlat.getItemCount(); i++) {
+            if (comboPlat.getItemAt(i).equals(jogo.getPlataforma())) {
+                comboPlat.setSelectedIndex(i);
+                break;
+            }
+        }
+       
+       txtPreco.setText(jogo.getPreco().toString());
+       
+       for (int i = 0; i < comboFaixaEt.getItemCount(); i++) {
+            if (comboFaixaEt.getItemAt(i).equals(jogo.getFaixaEtaria())) {
+                comboFaixaEt.setSelectedIndex(i);
+                break;
+            }
+        }
+       
+       for (int i = 0; i < comboJogadores.getItemCount(); i++) {
+            if (comboJogadores.getItemAt(i).equals(jogo.getQtdJogadores())) {
+                comboJogadores.setSelectedIndex(i);
+                break;
+            }
+        }
+            
+       txtEstoque.setText(jogo.getQtdEstoque().toString());
+    }//GEN-LAST:event_formInternalFrameOpened
 
     /**
      * @param args the command line arguments
