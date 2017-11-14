@@ -24,9 +24,9 @@ public class MockProduto {
     //fornecidos como parâmetro através de um objeto da classe "Produto"
     public static void atualizar(Produto produtoProcura)
             throws Exception {
-        if (produtoProcura != null && produtoProcura.getIdProd()!= null && !listaProdutos.isEmpty()) {
+        if (produtoProcura != null && produtoProcura.getIdProd() != null && !listaProdutos.isEmpty()) {
             for (Produto produtoCli : listaProdutos) {
-                if (produtoCli != null && produtoCli.getIdProd()== produtoProcura.getIdProd()) {
+                if (produtoCli != null && produtoCli.getIdProd() == produtoProcura.getIdProd()) {
                     produtoCli.setNome(produtoProcura.getNome());
                     produtoCli.setCategoria(produtoProcura.getCategoria());
                     produtoCli.setFabricante(produtoProcura.getFabricante());
@@ -35,7 +35,7 @@ public class MockProduto {
                     produtoCli.setFaixaEtaria(produtoProcura.getFaixaEtaria());
                     produtoCli.setQtdJogadores(produtoProcura.getQtdJogadores());
                     produtoCli.setQtdEstoque(produtoProcura.getQtdEstoque());
-                    
+
                     break;
                 }
             }
@@ -48,7 +48,7 @@ public class MockProduto {
         if (id != null && !listaProdutos.isEmpty()) {
             for (int i = 0; i < listaProdutos.size(); i++) {
                 Produto produtoLi = listaProdutos.get(i);
-                if (produtoLi != null && produtoLi.getIdProd()== id) {
+                if (produtoLi != null && produtoLi.getIdProd() == id) {
                     listaProdutos.remove(i);
                     break;
                 }
@@ -63,7 +63,7 @@ public class MockProduto {
         return listaProdutos;
     }
 
-    //Procura um produto na lista, de acordo com o nome ou categoria
+    //Procura um produto na lista, de acordo com o nome ou categoria ou plataforma
     //do jogo passado como parâmetro
     public static List<Produto> procurar(String valor)
             throws Exception {
@@ -72,9 +72,10 @@ public class MockProduto {
         if (valor != null && !listaProdutos.isEmpty()) {
             for (Produto produtoLi : listaProdutos) {
                 if (produtoLi != null && produtoLi.getNome() != null
-                        && produtoLi.getCategoria() != null) {
+                        && produtoLi.getCategoria() != null && produtoLi.getPlataforma() != null) {
                     if (produtoLi.getNome().toUpperCase().contains(valor.toUpperCase())
-                            || produtoLi.getCategoria().toUpperCase().contains(valor.toUpperCase())) {
+                            || produtoLi.getCategoria().toUpperCase().contains(valor.toUpperCase())
+                            || produtoLi.getPlataforma().toUpperCase().contains(valor.toUpperCase())) {
                         listaResultado.add(produtoLi);
                     }
                 }
@@ -90,7 +91,7 @@ public class MockProduto {
             throws Exception {
         if (id != null && !listaProdutos.isEmpty()) {
             for (int i = 0; i < listaProdutos.size(); i++) {
-                if (listaProdutos.get(i) != null && listaProdutos.get(i).getIdProd()== id) {
+                if (listaProdutos.get(i) != null && listaProdutos.get(i).getIdProd() == id) {
                     return listaProdutos.get(i);
                 }
             }
