@@ -6,16 +6,16 @@
 package br.com.lojaGame.mock;
 
 
-import br.com.lojaGame.model.venda.Vendas;
+import br.com.lojaGame.model.venda.Venda;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MockVenda {
 
     private static int totalVendas = 0;
-    private static List<Vendas> listaVendas = new ArrayList<Vendas>();
+    private static List<Venda> listaVendas = new ArrayList<Venda>();
    
-    public static void inserir(Vendas venda)
+    public static void inserir(Venda venda)
             throws Exception {
         venda.setIdVenda(totalVendas++);
         listaVendas.add(venda);
