@@ -314,7 +314,7 @@ public class FormConsultarJogo
         for (int i = 0; i < resultado.size(); i++) {
             Produto jogo = resultado.get(i);
             if (jogo != null) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[9];
                 row[0] = jogo.getIdProd();
                 row[1] = jogo.getNome();
                 row[2] = jogo.getCategoria();

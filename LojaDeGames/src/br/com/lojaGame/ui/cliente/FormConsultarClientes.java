@@ -293,8 +293,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
     public boolean refreshList() throws ClientesException, Exception {
         //Realiza a pesquisa de clientes com o último valor de pesquisa
         //para atualizar a lista
-        List<Cliente> resultado = ServicoCliente.
-                procurarCliente(ultimaPesquisa);
+        List<Cliente> resultado = ServicoCliente.procurarCliente(ultimaPesquisa);
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tableConsultaCliente.getModel();
