@@ -3,7 +3,9 @@ package br.com.lojaGame.ui.cliente;
 import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.model.cliente.Cliente;
 import br.com.lojaGame.service.cliente.ServicoCliente;
+import java.awt.Dimension;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -360,6 +362,16 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
             }
         });
     }
+    
+    //Abre um internal frame centralizado na tela
+    public void openFrameInCenter(JInternalFrame jif) {
+        Dimension desktopSize = this.getParent().getSize();
+        Dimension jInternalFrameSize = jif.getSize();
+        int width = (desktopSize.width - jInternalFrameSize.width) / 2;
+        int height = (desktopSize.height - jInternalFrameSize.height) / 2;
+        jif.setLocation(width, height);
+        jif.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscar;
@@ -372,8 +384,4 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTable tableConsultaCliente;
     private javax.swing.JTextField txtDado;
     // End of variables declaration//GEN-END:variables
-
-    private void openFrameInCenter(FormEditarCliente formEditarCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
