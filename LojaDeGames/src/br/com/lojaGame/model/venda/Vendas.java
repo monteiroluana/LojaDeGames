@@ -1,88 +1,41 @@
+
 package br.com.lojaGame.model.venda;
 
+import br.com.lojaGame.model.cliente.Cliente;
 
-/**
- *
- * @author nicolas.cmelo
- */
 public class Vendas {
 
-    private String nome;
-    private String categoria;
-    private String plataforma;
-    private String fabricante;
-    private Integer preço;
-    private String faixaEtaria;
-    private String jogadores;
-    private Integer qntdEstoque;
-    private Integer idProduto;
-    
-    public String getNome() {
-        return nome;
+    private Integer idVenda;
+    private Cart cart;
+    private Cliente cliente;
+
+    public Vendas(Cart cart, Cliente cliente) {
+        this.cart = cart;
+        this.cliente = cliente;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    public String getCategoria() {
-        return categoria;
+    public void setIdVenda(int idVend) {
+        idVenda++;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-    public String getPlataforma() {
-        return plataforma;
+    public Integer getIdVenda() {
+        return idVenda;
     }
 
-    public void setPlataforma(String plataforma) {
-        this.plataforma = plataforma;
-    }
-    
-   public String getFabricante() {
-        return fabricante;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
-    }
-    
-    public Integer getPreço() {
-        return preço;
+    public void setCart(Cart Cart) {
+        this.cart = Cart;
     }
 
-    public void setPreço(Integer preço) {
-        this.preço = preço;
-    }
-    public String getFaixaEtária() {
-        return faixaEtaria;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setFaixaEtaria(String faixaEtaria) {
-        this.faixaEtaria = faixaEtaria;
-    }
-    public String getJogadores() {
-        return jogadores;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public void setJogadores(String jogadores) {
-        this.jogadores = jogadores;
-    }
-    public Integer getQuantidadeEmEstoque() {
-        return qntdEstoque;
-    }
-
-    public void setQuantidadeEmEstoque(Integer qntdEstoque) {
-        this.qntdEstoque = qntdEstoque;
-    }
-    public Integer getIdProduto() {
-        return idProduto;
-    }
-
-    public void setID(Integer idProduto) {
-        this.idProduto = idProduto;
-    }
 }
-
-
