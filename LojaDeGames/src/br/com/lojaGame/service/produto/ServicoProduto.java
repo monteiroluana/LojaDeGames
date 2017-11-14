@@ -9,12 +9,11 @@ import java.util.List;
 
 public class ServicoProduto {
 
-    public static void cadastrarProduto(Produto produto) 
-        throws DataSourceException, ProdutosException
-        {
+    public static void cadastrarProduto(Produto produto)
+            throws DataSourceException, ProdutosException {
 
-            ValidadorProduto.validar(produto);
-        
+        ValidadorProduto.validar(produto);
+
         try {
             MockProduto.inserir(produto);
         } catch (Exception e) {
@@ -23,20 +22,18 @@ public class ServicoProduto {
             throw new DataSourceException("Erro na fonte de dados", e);
 
         }
-    
-        }
-    public static void atualizarProduto(Produto produto) 
-        throws DataSourceException, ProdutosException
-        {
 
-            ValidadorProduto.validar(produto);
+    }
 
-        
+    public static void atualizarProduto(Produto produto)
+            throws DataSourceException, ProdutosException {
+
+        ValidadorProduto.validar(produto);
+
         try {
 
             MockProduto.atualizar(produto);
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
@@ -44,28 +41,31 @@ public class ServicoProduto {
         }
     }
 
-    public static List<Produto> procurarProduto(String nomeProduto) 
-        throws DataSourceException, ProdutosException
-        {
+    public static List<Produto> procurarProduto(String nomeProduto)
+            throws DataSourceException, ProdutosException {
 
-            try {
+        try {
 
-                if (nomeProduto == null || "".equals(nomeProduto)) {
+//                if (nomeProduto == null || "".equals(nomeProduto)) {
+//                    return MockProduto.listar();
+//                } else {
+//                    return MockProduto.procurar(nomeProduto);
+//                }
 
-                    return MockProduto.listar();
-
-                } else {
-                    return MockProduto.procurar(nomeProduto);
-                }
-            } catch (Exception e) {
-
-                e.printStackTrace();
-                throw new DataSourceException("Erro na fonte de dados", e);
+           //lógica invertida
+            if (nomeProduto != null || !"".equals(nomeProduto)) {
+                return MockProduto.procurar(nomeProduto);
+            } else {
+                return MockProduto.listar();                
             }
 
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
         }
 
-    
+    }
 
     public static void obterProduto(int id)
             throws DataSourceException, ProdutosException {
@@ -97,4 +97,3 @@ public class ServicoProduto {
 
     }
 }
-
