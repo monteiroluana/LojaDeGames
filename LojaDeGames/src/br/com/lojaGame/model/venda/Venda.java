@@ -1,17 +1,16 @@
-
 package br.com.lojaGame.model.venda;
 
 import br.com.lojaGame.model.cliente.Cliente;
 
-public class Vendas {
+public class Venda {
 
     private Integer idVenda;
     private Cart cart;
-    private Cliente cliente;
+//    private Cliente cpfCliente;
 
-    public Vendas(Cart cart, Cliente cliente) {
+    public Venda(Cart cart, Cliente cpfCliente) {
         this.cart = cart;
-        this.cliente = cliente;
+//        this.cpfCliente = cpfCliente;
     }
 
     public void setIdVenda(int idVend) {
@@ -29,13 +28,4 @@ public class Vendas {
     public void setCart(Cart Cart) {
         this.cart = Cart;
     }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
 }
