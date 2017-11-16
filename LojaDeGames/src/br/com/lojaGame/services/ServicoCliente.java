@@ -1,10 +1,10 @@
-package br.com.lojaGame.service.cliente;
+package br.com.lojaGame.services;
 
 import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.mock.MockCliente;
 import br.com.lojaGame.exceptions.DataSourceException;
-import br.com.lojaGame.model.cliente.Cliente;
-import br.com.lojaGame.model.validador.cliente.ValidadorCliente;
+import br.com.lojaGame.models.Cliente;
+import br.com.lojaGame.model.validadores.ValidadorCliente;
 import java.util.List;
 
 public class ServicoCliente {

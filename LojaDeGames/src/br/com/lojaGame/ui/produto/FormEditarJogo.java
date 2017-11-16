@@ -1,7 +1,7 @@
 package br.com.lojaGame.ui.produto;
 
-import br.com.lojaGame.model.produto.Produto;
-import br.com.lojaGame.service.produto.ServicoProduto;
+import br.com.lojaGame.models.Produto;
+import br.com.lojaGame.services.ServicoProduto;
 import br.com.lojaGame.ui.principal.TelaPrincipal;
 import javax.swing.JOptionPane;
 

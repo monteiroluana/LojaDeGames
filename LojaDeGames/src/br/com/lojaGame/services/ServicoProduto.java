@@ -1,10 +1,10 @@
-package br.com.lojaGame.service.produto;
+package br.com.lojaGame.services;
 
 import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.exceptions.DataSourceException;
 import br.com.lojaGame.mock.MockProduto;
-import br.com.lojaGame.model.validador.produto.ValidadorProduto;
-import br.com.lojaGame.model.produto.Produto;
+import br.com.lojaGame.model.validadores.ValidadorProduto;
+import br.com.lojaGame.models.Produto;
 import java.util.List;
 
 public class ServicoProduto {

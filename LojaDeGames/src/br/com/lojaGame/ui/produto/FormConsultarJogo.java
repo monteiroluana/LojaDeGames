@@ -1,8 +1,8 @@
 package br.com.lojaGame.ui.produto;
 
 import br.com.lojaGame.exceptions.ProdutosException;
-import br.com.lojaGame.model.produto.Produto;
-import br.com.lojaGame.service.produto.ServicoProduto;
+import br.com.lojaGame.models.Produto;
+import br.com.lojaGame.services.ServicoProduto;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JInternalFrame;

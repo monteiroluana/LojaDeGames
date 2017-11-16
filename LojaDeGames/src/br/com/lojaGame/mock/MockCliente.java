@@ -2,7 +2,7 @@ package br.com.lojaGame.mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import br.com.lojaGame.model.cliente.Cliente;
+import br.com.lojaGame.models.Cliente;
 import com.sun.jmx.snmp.BerDecoder;
 
 public class MockCliente {
@@ -27,6 +27,7 @@ public class MockCliente {
         if (clienteProcura != null && clienteProcura.getIdCliente() != null && !listaClientes.isEmpty()) {
             for (Cliente clienteLi : listaClientes) {
                 if (clienteLi != null && clienteLi.getIdCliente() == clienteProcura.getIdCliente()) {
+                    //clienteLi.setIdCliente(clienteProcura);
                     clienteLi.setNome(clienteProcura.getNome());
                     clienteLi.setCPF(clienteProcura.getCPF());
                     clienteLi.setRG(clienteProcura.getRG());

@@ -1,7 +1,7 @@
 
-package br.com.lojaGame.model.venda;
+package br.com.lojaGame.models;
 
-import br.com.lojaGame.model.produto.Produto;
+import br.com.lojaGame.models.Produto;
 
 public class ItemCart {
 

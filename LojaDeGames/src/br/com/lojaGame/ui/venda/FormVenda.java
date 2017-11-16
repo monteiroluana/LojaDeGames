@@ -2,12 +2,14 @@ package br.com.lojaGame.ui.venda;
 
 import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.exceptions.ProdutosException;
-import br.com.lojaGame.model.cliente.Cliente;
-import br.com.lojaGame.model.produto.Produto;
-import br.com.lojaGame.service.cliente.ServicoCliente;
-import br.com.lojaGame.service.produto.ServicoProduto;
+import br.com.lojaGame.models.Cliente;
+import br.com.lojaGame.models.Produto;
+import br.com.lojaGame.models.Cart;
+import br.com.lojaGame.services.ServicoCliente;
+import br.com.lojaGame.services.ServicoProduto;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class FormVenda extends javax.swing.JInternalFrame {
 
@@ -83,8 +85,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        comboProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout panelAdicionarLayout = new javax.swing.GroupLayout(panelAdicionar);
         panelAdicionar.setLayout(panelAdicionarLayout);
         panelAdicionarLayout.setHorizontalGroup(
@@ -134,14 +134,14 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Quantidade", "Valor"
+                "Nome", "Quantidade", "Preço Unit.", "Preço Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -173,6 +173,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         buttonFinalizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonFinalizar.setText("Finalizar Pedido");
+        buttonFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFinalizarActionPerformed(evt);
+            }
+        });
 
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -252,9 +257,26 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
+        Cart carrinho = new Cart();
 
+        try {
+            DefaultTableModel model = (DefaultTableModel) tableCarrinho.getModel();
+//            if (carrinho != null) {
+//                Object[] row = new Object[3];
+//                row[0] = carrinho.;
+//                row[1] = carrinho.getNome();
+//                row[2] = carrinho.getCPF();
+//                model.addRow(row);
+//            }
+        } catch (Exception e) {
+            //Exibe mensagens de erro na fonte de dados e para o listener
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_buttonAdicionarActionPerformed
 
+    //carrega a lista de produtos no comboBox assim que "perder" o foco do campo de texto txtProduto
     private void focusLostProduto(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLostProduto
         boolean resultSearch = false;
 
@@ -268,14 +290,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        //Exibe mensagem de erro caso a pesquisa não tenha resultados
-        if (!resultSearch) {
-            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
-                    "Sem resultados", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_focusLostProduto
 
+    //carrega o nome do cliente assim que "perde" o foco do campo de texto fTxtCPF
     private void focusLostCPF(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLostCPF
         boolean resultSearch = false;
 
@@ -289,17 +306,21 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        //Exibe mensagem de erro caso a pesquisa não tenha resultados
-        if (!resultSearch) {
-            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
-                    "Sem resultados", JOptionPane.ERROR_MESSAGE);
-        }
-
-        //txtNome.setText(resultado.);
-
     }//GEN-LAST:event_focusLostCPF
 
+    private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
+        if (txtNome==null) {
+            JOptionPane.showMessageDialog(rootPane, "Cliente não informado",
+                    "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
+        //se tudo tiver certo, exibe mensagem
+        JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
+                "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+        
+        this.dispose();
+    }//GEN-LAST:event_buttonFinalizarActionPerformed
+
+    //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
         List<Cliente> resultado = ServicoCliente.procurarCliente(fTxtCPF.getText());
 
@@ -317,7 +338,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         return true;
     }
-    
+
+    //realiza a busca para achar os produtos que correspondem ao texto informado
     public boolean buscaProduto() throws ProdutosException, Exception {
         List<Produto> resultado = ServicoProduto.procurarProduto(txtProduto.getText());
 
@@ -329,8 +351,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             Produto produto = resultado.get(i);
 
             if (produto != null) {
-                //txtNome.setText(produto.getNome());
-                //comboProduto.set();
+                comboProduto.addItem(produto.getNome());
             }
         }
 

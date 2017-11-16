@@ -6,7 +6,7 @@
 package br.com.lojaGame.mock;
 
 
-import br.com.lojaGame.model.venda.Venda;
+import br.com.lojaGame.models.Venda;
 import java.util.ArrayList;
 import java.util.List;
 

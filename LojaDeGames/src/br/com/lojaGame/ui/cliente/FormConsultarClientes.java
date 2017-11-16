@@ -1,8 +1,8 @@
 package br.com.lojaGame.ui.cliente;
 
 import br.com.lojaGame.exceptions.ClientesException;
-import br.com.lojaGame.model.cliente.Cliente;
-import br.com.lojaGame.service.cliente.ServicoCliente;
+import br.com.lojaGame.models.Cliente;
+import br.com.lojaGame.services.ServicoCliente;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JInternalFrame;

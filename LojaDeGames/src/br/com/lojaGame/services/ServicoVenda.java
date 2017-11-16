@@ -1,10 +1,10 @@
-package br.com.lojaGame.servise.venda;
+package br.com.lojaGame.services;
 
 import br.com.lojaGame.exceptions.DataSourceException;
 import br.com.lojaGame.exceptions.VendasException;
 import br.com.lojaGame.mock.MockVenda;
-import br.com.lojaGame.model.validador.venda.ValidadorVenda;
-import br.com.lojaGame.model.venda.Venda;
+import br.com.lojaGame.model.validadores.ValidadorVenda;
+import br.com.lojaGame.models.Venda;
 
 public class ServicoVenda {
 

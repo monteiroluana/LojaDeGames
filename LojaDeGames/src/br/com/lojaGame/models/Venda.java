@@ -1,16 +1,26 @@
+package br.com.lojaGame.models;
 
-package br.com.lojaGame.model.venda;
-
-import br.com.lojaGame.model.cliente.Cliente;
+import br.com.lojaGame.models.Cliente;
 import java.util.ArrayList;
 
-public class Cart {
+public class Venda {
 
+    private Integer idVenda;
     //ArrayList Cart vai receber Itens do Cart
     private ArrayList<ItemCart> Cart;
+//    private Cliente cpfCliente;
 
-    public Cart() {
+    public Venda(Cart cart, Cliente cpfCliente) {
         Cart = new ArrayList<ItemCart>();
+//        this.cpfCliente = cpfCliente;
+    }
+
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
+    }
+
+    public Integer getIdVenda() {
+        return idVenda;
     }
 
     public void adicionarItem(ItemCart item) {

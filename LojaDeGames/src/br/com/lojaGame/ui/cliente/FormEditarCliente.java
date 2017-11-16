@@ -1,7 +1,7 @@
 package br.com.lojaGame.ui.cliente;
 
-import br.com.lojaGame.model.cliente.Cliente;
-import br.com.lojaGame.service.cliente.ServicoCliente;
+import br.com.lojaGame.models.Cliente;
+import br.com.lojaGame.services.ServicoCliente;
 import br.com.lojaGame.ui.principal.TelaPrincipal;
 import java.util.Date;
 import javax.swing.JOptionPane;

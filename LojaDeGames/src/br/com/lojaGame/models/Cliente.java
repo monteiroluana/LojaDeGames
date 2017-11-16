@@ -1,4 +1,4 @@
-package br.com.lojaGame.model.cliente;
+package br.com.lojaGame.models;
 
 import java.util.Date;
 
