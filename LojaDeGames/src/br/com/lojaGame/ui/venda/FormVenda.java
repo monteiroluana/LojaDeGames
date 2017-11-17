@@ -5,14 +5,16 @@ import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.models.Cliente;
 import br.com.lojaGame.models.Produto;
 import br.com.lojaGame.models.Cart;
+import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoCliente;
 import br.com.lojaGame.services.ServicoProduto;
+import br.com.lojaGame.services.ServicoVenda;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormVenda extends javax.swing.JInternalFrame {
-
+        
     /**
      * Creates new form FormVenda
      */
@@ -309,10 +311,18 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_focusLostCPF
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
-        if (txtNome==null) {
-            JOptionPane.showMessageDialog(rootPane, "Cliente não informado",
-                    "Erro!", JOptionPane.ERROR_MESSAGE);
+       //Venda venda = new Venda ();
+        
+        try {
+            //Chama o serviço para cadastro do cliente
+            //ServicoVenda.cadastrarVenda(venda);
+        } catch (Exception e) {
+            //Exibe mensagens de erro para o usuário
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        
         //se tudo tiver certo, exibe mensagem
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
                 "Finalizado", JOptionPane.INFORMATION_MESSAGE);
@@ -323,7 +333,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
     //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
         List<Cliente> resultado = ServicoCliente.procurarCliente(fTxtCPF.getText());
-
+        
         if (resultado == null || resultado.size() <= 0) {
             return false;
         }
@@ -333,6 +343,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             if (cliente != null) {
                 txtNome.setText(cliente.getNome());
+                
+//                cli[0] = cliente.getIdCliente();
+//                cli[1] = cliente.getNome();
+//                cli[2] = cliente.getCPF();
             }
         }
 
