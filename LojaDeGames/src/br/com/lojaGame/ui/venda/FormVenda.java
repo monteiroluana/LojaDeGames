@@ -9,12 +9,13 @@ import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoCliente;
 import br.com.lojaGame.services.ServicoProduto;
 import br.com.lojaGame.services.ServicoVenda;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormVenda extends javax.swing.JInternalFrame {
-        
+
     /**
      * Creates new form FormVenda
      */
@@ -78,6 +79,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
         txtProduto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 focusLostProduto(evt);
+            }
+        });
+        txtProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                testeEnter(evt);
             }
         });
 
@@ -270,28 +276,33 @@ public class FormVenda extends javax.swing.JInternalFrame {
 //                row[2] = carrinho.getCPF();
 //                model.addRow(row);
 //            }
+            Object[] row = new Object[3];
+            row[0] = (String) comboProduto.getSelectedItem();
+            row[1] = "oeoeoeoe";
+            row[2] = "oeoeoeoe";
+            model.addRow(row);
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+                    "Falha ao adicionar", JOptionPane.ERROR_MESSAGE);
             return;
         }
     }//GEN-LAST:event_buttonAdicionarActionPerformed
 
     //carrega a lista de produtos no comboBox assim que "perder" o foco do campo de texto txtProduto
     private void focusLostProduto(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLostProduto
-        boolean resultSearch = false;
-
-        try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
-            resultSearch = buscaProduto();
-        } catch (Exception e) {
-            //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+//        boolean resultSearch = false;
+//
+//        try {
+//            //Solicita a atualização da lista com o novo critério
+//            //de pesquisa (ultimaPesquisa)
+//            resultSearch = buscaProduto();
+//        } catch (Exception e) {
+//            //Exibe mensagens de erro na fonte de dados e para o listener
+//            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+//                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
     }//GEN-LAST:event_focusLostProduto
 
     //carrega o nome do cliente assim que "perde" o foco do campo de texto fTxtCPF
@@ -311,8 +322,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_focusLostCPF
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
-       //Venda venda = new Venda ();
-        
+        //Venda venda = new Venda ();
+
         try {
             //Chama o serviço para cadastro do cliente
             //ServicoVenda.cadastrarVenda(venda);
@@ -322,18 +333,35 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         //se tudo tiver certo, exibe mensagem
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
                 "Finalizado", JOptionPane.INFORMATION_MESSAGE);
-        
+
         this.dispose();
     }//GEN-LAST:event_buttonFinalizarActionPerformed
+
+    private void testeEnter(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_testeEnter
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            boolean resultSearch = false;
+
+            try {
+                //Solicita a atualização da lista com o novo critério
+                //de pesquisa (ultimaPesquisa)
+                resultSearch = buscaProduto();
+            } catch (Exception e) {
+                //Exibe mensagens de erro na fonte de dados e para o listener
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                        "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+    }//GEN-LAST:event_testeEnter
 
     //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
         List<Cliente> resultado = ServicoCliente.procurarCliente(fTxtCPF.getText());
-        
+
         if (resultado == null || resultado.size() <= 0) {
             return false;
         }
@@ -343,7 +371,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             if (cliente != null) {
                 txtNome.setText(cliente.getNome());
-                
+
 //                cli[0] = cliente.getIdCliente();
 //                cli[1] = cliente.getNome();
 //                cli[2] = cliente.getCPF();
@@ -355,6 +383,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
     //realiza a busca para achar os produtos que correspondem ao texto informado
     public boolean buscaProduto() throws ProdutosException, Exception {
+        //limpa o combo
+        comboProduto.removeAllItems();
+
         List<Produto> resultado = ServicoProduto.procurarProduto(txtProduto.getText());
 
         if (resultado == null || resultado.size() <= 0) {

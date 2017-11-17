@@ -52,10 +52,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
 
         tableConsultaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "CPF", "RG", "Endereço", "Telefone", "E-mail", "Sexo", "Estado Civil", "Data de Nasc."

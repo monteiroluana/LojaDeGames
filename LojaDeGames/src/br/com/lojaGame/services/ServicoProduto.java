@@ -46,18 +46,18 @@ public class ServicoProduto {
 
         try {
 
-//                if (nomeProduto == null || "".equals(nomeProduto)) {
-//                    return MockProduto.listar();
-//                } else {
-//                    return MockProduto.procurar(nomeProduto);
-//                }
+                if (nomeProduto == null || "".equals(nomeProduto)) {
+                    return MockProduto.listar();
+                } else {
+                    return MockProduto.procurar(nomeProduto);
+                }
 
-           //lógica invertida
-            if (nomeProduto != null || !"".equals(nomeProduto)) {
-                return MockProduto.procurar(nomeProduto);
-            } else {
-                return MockProduto.listar();                
-            }
+//           //lógica invertida
+//            if (nomeProduto != null || !"".equals(nomeProduto)) {
+//                return MockProduto.procurar(nomeProduto);
+//            } else {
+//                return MockProduto.listar();                
+//            }
 
         } catch (Exception e) {
 

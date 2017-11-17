@@ -53,10 +53,7 @@ public class FormConsultarJogo
 
         tableConsultaJogo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Categoria", "Plataforma", "Jogadores", "Preço", "Qtd Estoque", "Faixa Etária", "Fabricante"

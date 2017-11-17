@@ -19,6 +19,9 @@ public class ValidadorCliente {
         if (cliente.getRG() == null|| "".equals(cliente.getRG())) {
             throw new ClientesException("É necessário informar o RG");
         }
+        if(cliente.getSexo() == null || "Selecione...".equals(cliente.getSexo())) {
+            throw new ClientesException("É necessário informar o sexo");
+        }
 //        if (cliente.getDataNasc() == null) {
 //            throw new ClientesException("É necessário informar data de nascimento");
 //        }

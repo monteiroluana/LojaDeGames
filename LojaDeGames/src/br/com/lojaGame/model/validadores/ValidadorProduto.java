@@ -4,7 +4,7 @@ import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.models.Produto;
 
 public class ValidadorProduto {
-    
+
     public static void validar(Produto produto) throws ProdutosException {
         if (produto == null) {
             throw new ProdutosException("Não foi informado um produto");
@@ -12,17 +12,17 @@ public class ValidadorProduto {
         if (produto.getNome() == null || "".equals(produto.getNome())) {
             throw new ProdutosException("É necessário informar o nome do jogo");
         }
-        if (produto.getCategoria() == null || "".equals(produto.getCategoria())) {
+        if (produto.getCategoria() == null || "Selecione...".equals(produto.getCategoria())) {
             throw new ProdutosException("É necessário informar a categoria do jogo");
         }
-        if (produto.getPlataforma() == null || "".equals(produto.getPlataforma())) {
+        if (produto.getPlataforma() == null || "Selecione".equals(produto.getPlataforma())) {
             throw new ProdutosException("É necessário informar a plataforma do jogo");
         }
-        
+
         if (produto.getPreco() == null) {
             throw new ProdutosException("É necessário informar o preço do jogo");
         }
-        if (produto.getFaixaEtaria() == null) {
+        if (produto.getFaixaEtaria() == null || "Selecione".equals(produto.getFaixaEtaria())) {
             throw new ProdutosException("É necessário informar a faixa etária do jogo");
         }
     }
