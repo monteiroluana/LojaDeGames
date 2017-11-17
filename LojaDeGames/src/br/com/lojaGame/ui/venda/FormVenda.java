@@ -76,14 +76,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        txtProduto.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                focusLostProduto(evt);
-            }
-        });
         txtProduto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                testeEnter(evt);
+                keyPressedEnterProduto(evt);
             }
         });
 
@@ -202,9 +197,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        fTxtCPF.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                focusLostCPF(evt);
+        fTxtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                keyPressedEnterCPF(evt);
             }
         });
 
@@ -276,10 +271,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
 //                row[2] = carrinho.getCPF();
 //                model.addRow(row);
 //            }
-            Object[] row = new Object[3];
-            row[0] = (String) comboProduto.getSelectedItem();
+            Object[] row = new Object[4];
+            row[0] = comboProduto.getSelectedItem();
             row[1] = "oeoeoeoe";
             row[2] = "oeoeoeoe";
+            row[3] = "oeoeoeoe";
             model.addRow(row);
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
@@ -288,38 +284,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
             return;
         }
     }//GEN-LAST:event_buttonAdicionarActionPerformed
-
-    //carrega a lista de produtos no comboBox assim que "perder" o foco do campo de texto txtProduto
-    private void focusLostProduto(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLostProduto
-//        boolean resultSearch = false;
-//
-//        try {
-//            //Solicita a atualização da lista com o novo critério
-//            //de pesquisa (ultimaPesquisa)
-//            resultSearch = buscaProduto();
-//        } catch (Exception e) {
-//            //Exibe mensagens de erro na fonte de dados e para o listener
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-//                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-    }//GEN-LAST:event_focusLostProduto
-
-    //carrega o nome do cliente assim que "perde" o foco do campo de texto fTxtCPF
-    private void focusLostCPF(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLostCPF
-        boolean resultSearch = false;
-
-        try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
-            resultSearch = buscaCliente();
-        } catch (Exception e) {
-            //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-    }//GEN-LAST:event_focusLostCPF
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
         //Venda venda = new Venda ();
@@ -341,7 +305,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_buttonFinalizarActionPerformed
 
-    private void testeEnter(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_testeEnter
+    //carrega a lista de produtos no comboBox assim que pressionar a tecla 'Enter'
+    private void keyPressedEnterProduto(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedEnterProduto
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             boolean resultSearch = false;
 
@@ -356,7 +321,23 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 return;
             }
         }
-    }//GEN-LAST:event_testeEnter
+    }//GEN-LAST:event_keyPressedEnterProduto
+
+    //carrega o nome do cliente assim que é pressionado a telca 'Enter'
+    private void keyPressedEnterCPF(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedEnterCPF
+        boolean resultSearch = false;
+
+        try {
+            //Solicita a atualização da lista com o novo critério
+            //de pesquisa (ultimaPesquisa)
+            resultSearch = buscaCliente();
+        } catch (Exception e) {
+            //Exibe mensagens de erro na fonte de dados e para o listener
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }//GEN-LAST:event_keyPressedEnterCPF
 
     //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
