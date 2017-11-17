@@ -47,11 +47,11 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Cadastro de Jogo");
 
-        lblNome.setText("Nome");
+        lblNome.setText("* Nome");
 
         lblFab.setText("Fabricante");
 
-        lblCategoria.setText("Categoria");
+        lblCategoria.setText("* Categoria");
 
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Ação", "Aventura", "Corrida", "Em Grupo/Familia", "Esporte", "Estratégia", "Infantil", "Luta", "Música", "RPG", "Simulação", "Terror", "Tiro", "Suspense/Terror" }));
 
@@ -70,17 +70,17 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
             }
         });
 
-        lblPlat.setText("Plataforma");
+        lblPlat.setText("* Plataforma");
 
         comboPlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Playstation 4", "Xbox One", "Playstation 3", "Xbox 360", "Nintendo Wii U", "Nintendo 3DS", "PC" }));
 
-        lblPreco.setText("Preço");
+        lblPreco.setText("* Preço R$");
 
         lblJogadores.setText("Jogadores");
 
-        lblFaixaEt.setText("Faixa Etária");
+        lblFaixaEt.setText("* Faixa Etária");
 
-        comboJogadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1 Player", "2 Players", "Multiplayers" }));
+        comboJogadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "SinglePlayer", "Multiplayer" }));
 
         comboFaixaEt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos" }));
 

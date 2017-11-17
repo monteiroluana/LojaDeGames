@@ -19,14 +19,14 @@ public class ValidadorCliente {
         if (cliente.getRG() == null|| "".equals(cliente.getRG())) {
             throw new ClientesException("É necessário informar o RG");
         }
-        if (cliente.getDataNasc() == null) {
-            throw new ClientesException("É necessário informar data de nascimento");
-        }
+//        if (cliente.getDataNasc() == null) {
+//            throw new ClientesException("É necessário informar data de nascimento");
+//        }
         if (cliente.getCep() == null|| "".equals(cliente.getCep())) {
-            throw new ClientesException("É necessário informar o CPF");
+            throw new ClientesException("É necessário informar o CEP");
         }
         if (cliente.getLogradouro() == null || "".equals(cliente.getLogradouro())) {
-            throw new ClientesException("É necessário informar o nome da Rua");
+            throw new ClientesException("É necessário informar o nome da rua");
         }
         if (cliente.getNumero() == null) {
             throw new ClientesException("É necessário informar o número do local");

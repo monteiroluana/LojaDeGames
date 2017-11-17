@@ -128,7 +128,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblNome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome"/>
+        <Property name="text" type="java.lang.String" value="* Nome"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNome">
@@ -142,7 +142,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblCategoria">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Categoria"/>
+        <Property name="text" type="java.lang.String" value="* Categoria"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboCategoria">
@@ -192,7 +192,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblPlat">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Plataforma"/>
+        <Property name="text" type="java.lang.String" value="* Plataforma"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboPlat">
@@ -216,7 +216,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblPreco">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pre&#xe7;o"/>
+        <Property name="text" type="java.lang.String" value="* Pre&#xe7;o R$"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblJogadores">
@@ -226,7 +226,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFaixaEt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Faixa Et&#xe1;ria"/>
+        <Property name="text" type="java.lang.String" value="* Faixa Et&#xe1;ria"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPreco">
@@ -234,11 +234,10 @@
     <Component class="javax.swing.JComboBox" name="comboJogadores">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="Selecione"/>
-            <StringItem index="1" value="1 Player"/>
-            <StringItem index="2" value="2 Players"/>
-            <StringItem index="3" value="Multiplayers"/>
+            <StringItem index="1" value="SinglePlayer"/>
+            <StringItem index="2" value="Multiplayer"/>
           </StringArray>
         </Property>
       </Properties>

@@ -66,19 +66,19 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         panelInfPessoais.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações Pessoais"));
 
-        lblNome.setText("Nome");
+        lblNome.setText("* Nome");
 
-        lblCPF.setText("CPF");
+        lblCPF.setText("* CPF");
 
         lblDataNasc.setText("Data de Nasc.");
 
         fTxtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
 
-        lblRG.setText("RG");
+        lblRG.setText("* RG");
 
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Feminino", "Masculino", "Outros" }));
 
-        lblSexo.setText("Sexo");
+        lblSexo.setText("* Sexo");
 
         lblEstCivil.setText("Estado Civil");
 
@@ -164,11 +164,11 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        lblCEP.setText("CEP");
+        lblCEP.setText("* CEP");
 
-        lblLog.setText("Log.");
+        lblLog.setText("* Log.");
 
-        lblNum.setText("Nº");
+        lblNum.setText("* Nº");
 
         lblComp.setText("Compl.");
 
@@ -211,7 +211,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBairro)))
+                            .addComponent(txtBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
                     .addComponent(fTxtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLog, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
@@ -246,9 +246,9 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         panelContato.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
 
-        lblEmail.setText("Email");
+        lblEmail.setText("* Email");
 
-        lblTel.setText("Telefone");
+        lblTel.setText("* Telefone");
 
         javax.swing.GroupLayout panelContatoLayout = new javax.swing.GroupLayout(panelContato);
         panelContato.setLayout(panelContatoLayout);
