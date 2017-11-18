@@ -148,14 +148,14 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Quantidade", "Preço Unit.", "Preço Total"
+                "ID Produto", "Nome", "Quantidade", "Preço Unit.", "Preço Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -290,11 +290,12 @@ public class FormVenda extends javax.swing.JInternalFrame {
             venda.adicionarItem(item);
 
             //aparecer na tabela
-            Object[] row = new Object[4];
-            row[0] = comboProduto.getSelectedItem();
-            row[1] = fTxtQntd.getText();
-            row[2] = item.unitario();
-            row[3] = item.calcularItem();
+            Object[] row = new Object[5];
+            row[0] = item.getIdProd();
+            row[1] = comboProduto.getSelectedItem();
+            row[2] = fTxtQntd.getText();
+            row[3] = item.unitario();
+            row[4] = item.calcularItem();
             model.addRow(row);
             
             item.ajustarEstq();
@@ -308,6 +309,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     "Falha ao adicionar", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
+        tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_buttonAdicionarActionPerformed
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
@@ -316,6 +322,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             //Chama o serviço para cadastro da venda
             venda.setCliente(cli);
             venda.setData();
+            System.out.println("data venda " +venda.getData());
             ServicoVenda.cadastrarVenda(venda);
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário

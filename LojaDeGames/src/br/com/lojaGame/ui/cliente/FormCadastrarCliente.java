@@ -73,6 +73,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         lblDataNasc.setText("Data de Nasc.");
 
         fTxtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
+        fTxtDataNasc.setToolTipText("dd/MM/yyyy");
 
         lblRG.setText("* RG");
 

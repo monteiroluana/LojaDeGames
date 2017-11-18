@@ -5,6 +5,7 @@ import br.com.lojaGame.exceptions.VendasException;
 import br.com.lojaGame.mock.MockVenda;
 import br.com.lojaGame.model.validadores.ValidadorVenda;
 import br.com.lojaGame.models.Venda;
+import java.util.Date;
 import java.util.List;
 
 public class ServicoVenda {
@@ -26,24 +27,17 @@ public class ServicoVenda {
         }
     }
 
-    /*public static List<Venda> procurarCliente(String nome) 
-        throws VendasException, DataSourceException
-        {
+    public static List<Venda> procurarVenda(Date dataInicial, Date dataFinal)
+            throws VendasException, DataSourceException {
 
-            try {
-                if (nome == null || "".equals(nome)) {
+        try {
+            System.out.println("Serviço procurar venda");
+            return MockVenda.procurar(dataInicial, dataFinal);
+        } catch (Exception e) {
 
-//                    return MockVenda.();
-                } else {
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
+        }
+    }
 
-  //                  return MockCliente.procurar(nome);
-                }
-            }
-                catch(Exception e){
-                    
-                    e.printStackTrace();
-                    throw new DataSourceException("Erro na fonte de dados", e);
-                    }
-            }
-     */
 }

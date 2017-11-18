@@ -24,5 +24,9 @@ public class ItemCart {
     public float unitario() {
         return produto.getPreco();
     }
+    
+    public Integer getIdProd(){
+        return produto.getIdProd();
+    }
 
 }
