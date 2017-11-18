@@ -35,7 +35,7 @@ public class MockVenda {
         calendarInicial.set(Calendar.MILLISECOND, 0);
         Date dtInit = new Date();
         dtInit = (calendarInicial.getTime());
-        System.out.println("inicio: "+dtInit);
+        System.out.println("inicio: " + dtInit);
         /*~~~~~~~*/
 
         //DATA FINAL*/
@@ -48,22 +48,21 @@ public class MockVenda {
         calendarFinal.set(Calendar.MILLISECOND, 1000);
         Date dtFinal = new Date();
         dtFinal = (calendarFinal.getTime());
-        System.out.println("final: "+dtFinal);
+        System.out.println("final: " + dtFinal);
         /*~~~~~~~*/
 
-//        for (Venda vendaLi : listaVendas) {
-        Venda vendaLi = new Venda();
-        Date comp = vendaLi.getData();
+        for (Venda vendaLi : listaVendas) {
+            Date comp = vendaLi.getData();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String currDt = sdf.format(comp);
-        if ((comp.after(dtInit)) && (comp.before(dtFinal)) || (currDt.equals(sdf.format(dtInit)) || currDt.equals(sdf.format(dtFinal)))) {
-            System.out.println("Sayuri o if está funcionando (º 3º) ");
-            listaResultado.add(vendaLi);
-        }else{
-            System.out.println("Sayuri o if não funiona ('¬ ¬) ");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            String currDt = sdf.format(comp);
+            if ((comp.after(dtInit)) && (comp.before(dtFinal)) || (currDt.equals(sdf.format(dtInit)) || currDt.equals(sdf.format(dtFinal)))) {
+                System.out.println("Sayuri o if está funcionando (º 3º) ");
+                listaResultado.add(vendaLi);
+            } else {
+                System.out.println("Sayuri o if não funiona ('¬ ¬) ");
+            }
         }
-
         //Retorna a lista de vendas encontrados
         return listaResultado;
     }
