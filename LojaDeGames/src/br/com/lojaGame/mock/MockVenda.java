@@ -1,6 +1,7 @@
 package br.com.lojaGame.mock;
 
 import br.com.lojaGame.models.Venda;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,32 +25,43 @@ public class MockVenda {
 
         System.out.println("cheguei aqui mock procurar ");
 
+        //DATA INICIO*/
         Calendar calendarInicial = Calendar.getInstance();
         calendarInicial.setTime(dataInicial);
 
-        calendarInicial.set(Calendar.HOUR, 0);
+        calendarInicial.set(Calendar.HOUR_OF_DAY, 0);
         calendarInicial.set(Calendar.MINUTE, 0);
         calendarInicial.set(Calendar.SECOND, 0);
         calendarInicial.set(Calendar.MILLISECOND, 0);
+        Date dtInit = new Date();
+        dtInit = (calendarInicial.getTime());
+        System.out.println("inicio: "+dtInit);
+        /*~~~~~~~*/
 
+        //DATA FINAL*/
         Calendar calendarFinal = Calendar.getInstance();
         calendarFinal.setTime(dataFinal);
 
-        calendarFinal.set(Calendar.HOUR, 23);
+        calendarFinal.set(Calendar.HOUR_OF_DAY, 23);
         calendarFinal.set(Calendar.MINUTE, 59);
-        calendarFinal.set(Calendar.SECOND, 59);
+        calendarFinal.set(Calendar.SECOND, 58);
         calendarFinal.set(Calendar.MILLISECOND, 1000);
+        Date dtFinal = new Date();
+        dtFinal = (calendarFinal.getTime());
+        System.out.println("final: "+dtFinal);
+        /*~~~~~~~*/
 
-        System.out.println("formRelatorio data inicial " + dataInicial);
-        System.out.println("formRelatorio data final " + dataFinal);
+//        for (Venda vendaLi : listaVendas) {
+        Venda vendaLi = new Venda();
+        Date comp = vendaLi.getData();
 
-        for (Venda vendaLi : listaVendas) {
-            if (calendarInicial.before(vendaLi.getData()) && calendarFinal.after(vendaLi.getData())) {
-                listaResultado.add(vendaLi);
-                System.out.println("FOI");
-            } else {
-                System.out.println("NÃO FOI NADA!!");
-            }
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String currDt = sdf.format(comp);
+        if ((comp.after(dtInit)) && (comp.before(dtFinal)) || (currDt.equals(sdf.format(dtInit)) || currDt.equals(sdf.format(dtFinal)))) {
+            System.out.println("Sayuri o if está funcionando (º 3º) ");
+            listaResultado.add(vendaLi);
+        }else{
+            System.out.println("Sayuri o if não funiona ('¬ ¬) ");
         }
 
         //Retorna a lista de vendas encontrados
