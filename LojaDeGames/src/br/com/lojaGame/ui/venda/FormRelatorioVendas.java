@@ -1,5 +1,11 @@
 package br.com.lojaGame.ui.venda;
 
+import br.com.lojaGame.exceptions.VendasException;
+import br.com.lojaGame.models.Venda;
+import br.com.lojaGame.services.ServicoVenda;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bruna
@@ -47,23 +53,25 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
         buttonGerarRelat.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonGerarRelat.setText("Gerar Relatório");
+        buttonGerarRelat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGerarRelatActionPerformed(evt);
+            }
+        });
 
         tableRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Cliente", "Produto", "Qntd.", "Valor"
+                "Data", "Cliente", "Produto", "Qntd.", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -140,6 +148,47 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    private void buttonGerarRelatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGerarRelatActionPerformed
+       
+    }//GEN-LAST:event_buttonGerarRelatActionPerformed
+
+//    //Atualiza a lista de clientes. Pode ser chamado por outras telas
+//    public boolean refreshList() throws VendasException, Exception {
+//        //Realiza a pesquisa de clientes com o último valor de pesquisa
+//        //para atualizar a lista
+//        //List<Venda> resultado = ServicoVenda.();
+//
+//        //Obtém o elemento representante do conteúdo da tabela na tela
+//        DefaultTableModel model = (DefaultTableModel) tableRelatorio.getModel();
+//        //Indica que a tabela deve excluir todos seus elementos
+//        //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
+//        model.setRowCount(0);
+//
+//        //Verifica se não existiram resultados. Caso afirmativo, encerra a
+//        //atualização e indica ao elemento acionador o não sucesso da pesquisa
+//        if (resultado == null || resultado.size() <= 0) {
+//            return false;
+//        }
+//
+//        //Percorre a lista de resultados e os adiciona na tabela
+//        for (int i = 0; i < resultado.size(); i++) {
+//            Venda venda = resultado.get(i);
+//            if (venda != null) {
+//                Object[] row = new Object[5];
+//                row[0] = venda.getIdVenda();
+//                row[1] = venda.getData();
+//                row[2] = venda.getCliente();
+//                row[3] = null;
+//                row[4] = null;
+//                model.addRow(row);
+//            }
+//        }
+//
+//        //Se chegamos até aqui, a pesquisa teve sucesso, então
+//        //retornamos "true" para o elemento acionante, indicando
+//        //que não devem ser exibidas mensagens de erro
+//        return true;
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;

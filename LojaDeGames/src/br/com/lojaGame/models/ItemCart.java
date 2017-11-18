@@ -1,4 +1,3 @@
-
 package br.com.lojaGame.models;
 
 import br.com.lojaGame.models.Produto;
@@ -8,8 +7,8 @@ public class ItemCart {
     private Produto produto;
     private int quantidade;
 
-    public ItemCart(Produto jogo, int qtde) {
-        produto = jogo;
+    public ItemCart(Object jogo, int qtde) {
+        produto = (Produto) jogo;
         quantidade = qtde;
     }
 
@@ -18,5 +17,12 @@ public class ItemCart {
         return valor;
     }
 
-   
+    public void ajustarEstq() {
+        produto.setQtdEstoque(produto.getQtdEstoque() - quantidade);
+    }
+
+    public float unitario() {
+        return produto.getPreco();
+    }
+
 }

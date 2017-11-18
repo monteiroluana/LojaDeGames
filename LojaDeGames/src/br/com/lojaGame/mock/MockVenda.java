@@ -20,4 +20,6 @@ public class MockVenda {
         venda.setIdVenda(totalVendas++);
         listaVendas.add(venda);
     }
+    
+    
 }

@@ -25,12 +25,8 @@ public class ServicoCliente {
                 throw new DataSourceException("Erro na fonte de dados", e);
 
             }
-        }
-        
-         
-
-    
-
+        }              
+   
     public static void atualizarCliente(Cliente cliente) 
         throws ClientesException, DataSourceException
         {
@@ -49,9 +45,7 @@ public class ServicoCliente {
 
             }
         }
-    
-
-    
+       
     public static List<Cliente> procurarCliente(String nome) 
         throws ClientesException, DataSourceException
         {
@@ -72,8 +66,6 @@ public class ServicoCliente {
                     }
             }
         
-        
-
     public static Cliente obterCliente(int id) 
         throws ClientesException, DataSourceException
         {
@@ -89,7 +81,6 @@ public class ServicoCliente {
         }
 //teste
     
-
     public static void excluirCliente(int id) 
         throws ClientesException, DataSourceException
         {
@@ -102,12 +93,5 @@ public class ServicoCliente {
                 throw new DataSourceException("Erro nda fonte de dados", e);
             }
 
-        }      
-        
-                
-    
+        }               
 }
-    
- 
-    
-

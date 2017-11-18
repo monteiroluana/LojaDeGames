@@ -5,6 +5,7 @@ import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.models.Cliente;
 import br.com.lojaGame.models.Produto;
 import br.com.lojaGame.models.Cart;
+import br.com.lojaGame.models.ItemCart;
 import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoCliente;
 import br.com.lojaGame.services.ServicoProduto;
@@ -15,6 +16,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormVenda extends javax.swing.JInternalFrame {
+
+    private Venda venda = new Venda();
+    private Object prod, cli;
+    
 
     /**
      * Creates new form FormVenda
@@ -88,6 +93,12 @@ public class FormVenda extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        comboProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboProdutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAdicionarLayout = new javax.swing.GroupLayout(panelAdicionar);
         panelAdicionar.setLayout(panelAdicionarLayout);
         panelAdicionarLayout.setHorizontalGroup(
@@ -97,9 +108,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addComponent(lblProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(comboProduto, 0, 217, Short.MAX_VALUE)
+                    .addComponent(txtProduto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
                         .addComponent(lblQntd)
@@ -163,7 +174,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCarrinhoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         panelCarrinhoLayout.setVerticalGroup(
@@ -208,27 +219,33 @@ public class FormVenda extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(panelCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblTotal)
-                            .addGap(139, 139, 139))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(buttonCancelar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonFinalizar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(lblID)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(fTxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblNome)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNome))))
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonFinalizar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTotal)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblID)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fTxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblNome)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 10, Short.MAX_VALUE))
+                            .addComponent(panelCarrinho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(panelAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,23 +277,30 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
-        Cart carrinho = new Cart();
 
         try {
+            //adiciona o item
+            addProduto();
+
             DefaultTableModel model = (DefaultTableModel) tableCarrinho.getModel();
-//            if (carrinho != null) {
-//                Object[] row = new Object[3];
-//                row[0] = carrinho.;
-//                row[1] = carrinho.getNome();
-//                row[2] = carrinho.getCPF();
-//                model.addRow(row);
-//            }
+
+            //Adicionando item no cart
+            ItemCart item = new ItemCart(prod, Integer.parseInt(fTxtQntd.getText()));
+            venda.adicionarItem(item);
+
+            //aparecer na tabela
             Object[] row = new Object[4];
             row[0] = comboProduto.getSelectedItem();
-            row[1] = "oeoeoeoe";
-            row[2] = "oeoeoeoe";
-            row[3] = "oeoeoeoe";
+            row[1] = fTxtQntd.getText();
+            row[2] = item.unitario();
+            row[3] = item.calcularItem();
             model.addRow(row);
+            
+            item.ajustarEstq();
+
+            fTxtQntd.setText("");
+            lblTotal.setText("Total: R$ " + venda.calcularValorTotal());
+
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -286,11 +310,12 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonAdicionarActionPerformed
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
-        //Venda venda = new Venda ();
 
         try {
-            //Chama o serviço para cadastro do cliente
-            //ServicoVenda.cadastrarVenda(venda);
+            //Chama o serviço para cadastro da venda
+            venda.setCliente(cli);
+            venda.setData();
+            ServicoVenda.cadastrarVenda(venda);
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -325,19 +350,25 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
     //carrega o nome do cliente assim que é pressionado a telca 'Enter'
     private void keyPressedEnterCPF(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedEnterCPF
-        boolean resultSearch = false;
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            boolean resultSearch = false;
 
-        try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
-            resultSearch = buscaCliente();
-        } catch (Exception e) {
-            //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-            return;
+            try {
+                //Solicita a atualização da lista com o novo critério
+                //de pesquisa (ultimaPesquisa)
+                resultSearch = buscaCliente();
+            } catch (Exception e) {
+                //Exibe mensagens de erro na fonte de dados e para o listener
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                        "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
     }//GEN-LAST:event_keyPressedEnterCPF
+
+    private void comboProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProdutoActionPerformed
+        txtProduto.setText((String) comboProduto.getSelectedItem());
+    }//GEN-LAST:event_comboProdutoActionPerformed
 
     //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
@@ -352,10 +383,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             if (cliente != null) {
                 txtNome.setText(cliente.getNome());
-
-//                cli[0] = cliente.getIdCliente();
-//                cli[1] = cliente.getNome();
-//                cli[2] = cliente.getCPF();
+                cli = cliente;
             }
         }
 
@@ -378,10 +406,33 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             if (produto != null) {
                 comboProduto.addItem(produto.getNome());
+                //prod = produto;
+
             }
         }
 
         return true;
+    }
+
+    //realiza a busca para achar os produtos que correspondem ao texto informado
+    public void addProduto() throws ProdutosException, Exception {
+        //cria lista, porém o esperado é retornar somente um objeto produto
+        List<Produto> resultado = ServicoProduto.procurarProduto((String) comboProduto.getSelectedItem());
+
+//        if (resultado == null || resultado.size() <= 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Ops! Aconteceu algum problema no addProduto()",
+//                "Erro ao adicionar", JOptionPane.INFORMATION_MESSAGE);
+//            return false;
+//        }
+        //for (int i = 0; i < resultado.size(); i++) {
+        Produto produto = resultado.get(0);
+
+        //if (produto != null) {
+        prod = produto;
+
+        //}
+        //       }
+//        return true;
     }
 
 
