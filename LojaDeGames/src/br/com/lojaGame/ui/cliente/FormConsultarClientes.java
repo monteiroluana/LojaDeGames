@@ -203,26 +203,33 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
 
             //Obtém a linha do item selecionado
             final int row = tableConsultaCliente.getSelectedRow();
+            
             //Obtém o nome do cliente da linha indicada para exibição
             //de mensagem de confirmação de exclusão utilizando seu nome
             String nome = (String) tableConsultaCliente.getValueAt(row, 1);
+            
             //Mostra o diálogo de confirmação de exclusão
             int resposta = JOptionPane.showConfirmDialog(rootPane,
                     "Excluir o cliente \"" + nome + "\"?",
                     "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+            
             //Se o valor de resposta for "Sim" para a exclusão
             if (resposta == JOptionPane.YES_OPTION) {
                 try {
                     //Obtém o ID do cliente
                     Integer id = (Integer) tableConsultaCliente.getValueAt(row, 0);
+                    
                     //Solicita ao serviço a inativação do cliente com o ID
                     ServicoCliente.excluirCliente(id);
+                    
                     //Atualiza a lista após a "exclusão"
                     this.refreshList();
+                    
                 } catch (Exception e) {
                     //Se ocorrer algum erro técnico, mostra-o no console,
                     //mas esconde-o do usuário
                     e.printStackTrace();
+                    
                     //Exibe uma mensagem de erro genérica ao usuário
                     JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                             "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
@@ -255,6 +262,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         try {
                 //Obtém a linha selecionada da tabela de resultados
                 final int row = tableConsultaCliente.getSelectedRow();
+                
                 //Obtém o valor do ID da coluna "ID" da tabela de resultados
                 Integer id = (Integer) tableConsultaCliente.getValueAt(row, 0);
 
@@ -279,6 +287,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 //Se ocorrer algum erro técnico, mostra-o no console,
                 //mas esconde-o do usuário
                 e.printStackTrace();
+                
                 //Exibe uma mensagem de erro genérica ao usuário
                 JOptionPane.showMessageDialog(rootPane, "Não é possível "
                         + "exibir os detalhes deste cliente.",
@@ -294,6 +303,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tableConsultaCliente.getModel();
+        
         //Indica que a tabela deve excluir todos seus elementos
         //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
         model.setRowCount(0);
@@ -323,9 +333,6 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
             }
         }
 
-        //Se chegamos até aqui, a pesquisa teve sucesso, então
-        //retornamos "true" para o elemento acionante, indicando
-        //que não devem ser exibidas mensagens de erro
         return true;
     }
     /**

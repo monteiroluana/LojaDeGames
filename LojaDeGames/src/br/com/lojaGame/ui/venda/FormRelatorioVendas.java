@@ -6,10 +6,6 @@ import br.com.lojaGame.services.ServicoVenda;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Bruna
- */
 public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
     /**

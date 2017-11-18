@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FormCadastrarQuartos
+     * Creates new form FormCadastrarJogo
      */
     public FormCadastrarJogo() {
         initComponents();
@@ -62,7 +62,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonCadastrar.setText("Cadastrar");
         buttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +84,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
         comboFaixaEt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos" }));
 
-        lblEstoque.setText("Qntd. Estoque");
+        lblEstoque.setText("* Qntd. Estoque");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,46 +92,49 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(buttonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonCadastrar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNome))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblEstoque)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCategoria)
-                            .addComponent(lblFab)
-                            .addComponent(lblFaixaEt))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboFaixaEt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addComponent(lblJogadores)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(213, 213, 213)
+                                .addComponent(buttonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblPreco)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPreco))
+                                .addComponent(buttonCadastrar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEstoque)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPlat)
+                                .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCategoria)
+                                    .addComponent(lblFab)
+                                    .addComponent(lblFaixaEt))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboPlat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(comboFaixaEt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                        .addComponent(lblJogadores)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblPreco)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtPreco))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPlat)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboPlat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +169,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancelar)
                     .addComponent(buttonCadastrar))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,9 +180,9 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
-       //instancia o jogo
-         Produto jogo = new Produto();
-        
+        //instancia o jogo
+        Produto jogo = new Produto();
+
         //obtem as informações do campos
         jogo.setNome(txtNome.getText());
         jogo.setCategoria((String) comboCategoria.getSelectedItem());
@@ -189,7 +192,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
         jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
         jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));
-        
+
         try {
             //Chama o serviço para cadastro do jogo
             ServicoProduto.cadastrarProduto(jogo);
@@ -199,7 +202,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                     "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         //se tudo tiver certo, exibe mensagem
         JOptionPane.showMessageDialog(rootPane, "Jogo inserido com sucesso.",
                 "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);

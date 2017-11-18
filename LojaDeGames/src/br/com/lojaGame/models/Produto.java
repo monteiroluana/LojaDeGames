@@ -1,9 +1,5 @@
 package br.com.lojaGame.models;
 
-/**
- *
- * @author nicolas.cmelo
- */
 public class Produto {
 
     private Integer idProduto;

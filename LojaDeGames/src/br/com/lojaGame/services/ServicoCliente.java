@@ -9,89 +9,82 @@ import java.util.List;
 
 public class ServicoCliente {
 
-    public static void cadastrarCliente(Cliente cliente) 
-        throws ClientesException, DataSourceException
-        {
+    public static void cadastrarCliente(Cliente cliente)
+            throws ClientesException, DataSourceException {
 
-            ValidadorCliente.validar(cliente);
+        ValidadorCliente.validar(cliente);
 
-            try {
+        try {
 
-                MockCliente.inserir(cliente);
+            MockCliente.inserir(cliente);
 
-            } catch (Exception e) {
+        } catch (Exception e) {
 
-                e.printStackTrace();
-                throw new DataSourceException("Erro na fonte de dados", e);
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
 
-            }
-        }              
-   
-    public static void atualizarCliente(Cliente cliente) 
-        throws ClientesException, DataSourceException
-        {
-
-            ValidadorCliente.validar(cliente);
-
-            try {
-
-                MockCliente.atualizar(cliente);
-                return;
-
-            } catch (Exception e) {
-
-                e.printStackTrace();
-                throw new DataSourceException("Erro na fonte de dados", e);
-
-            }
         }
-       
-    public static List<Cliente> procurarCliente(String nome) 
-        throws ClientesException, DataSourceException
-        {
+    }
 
-            try {
-                if (nome == null || "".equals(nome)) {
+    public static void atualizarCliente(Cliente cliente)
+            throws ClientesException, DataSourceException {
 
-                    return MockCliente.listar();
-                } else {
+        ValidadorCliente.validar(cliente);
 
-                    return MockCliente.procurar(nome);
-                }
-            }
-                catch(Exception e){
-                    
-                    e.printStackTrace();
-                    throw new DataSourceException("Erro na fonte de dados", e);
-                    }
-            }
-        
-    public static Cliente obterCliente(int id) 
-        throws ClientesException, DataSourceException
-        {
+        try {
 
-            try {
+            MockCliente.atualizar(cliente);
+            return;
 
-                return MockCliente.obter(id);
-            } catch (Exception e) {
+        } catch (Exception e) {
 
-                e.printStackTrace();
-                throw new DataSourceException("Erro na fonte de dados", e);
-            }
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
+
         }
-//teste
-    
-    public static void excluirCliente(int id) 
-        throws ClientesException, DataSourceException
-        {
+    }
 
-            try {
-                MockCliente.excluir(id);
-            } catch (Exception e) {
+    public static List<Cliente> procurarCliente(String nome)
+            throws ClientesException, DataSourceException {
 
-                e.printStackTrace();
-                throw new DataSourceException("Erro nda fonte de dados", e);
+        try {
+            if (nome == null || "".equals(nome)) {
+
+                return MockCliente.listar();
+            } else {
+
+                return MockCliente.procurar(nome);
             }
+        } catch (Exception e) {
 
-        }               
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
+        }
+    }
+
+    public static Cliente obterCliente(int id)
+            throws ClientesException, DataSourceException {
+
+        try {
+
+            return MockCliente.obter(id);
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
+        }
+    }
+
+    public static void excluirCliente(int id)
+            throws ClientesException, DataSourceException {
+
+        try {
+            MockCliente.excluir(id);
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
+        }
+
+    }
 }

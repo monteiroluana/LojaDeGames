@@ -97,17 +97,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCliente = new javax.swing.JMenu();
         itemCadastrarCliente = new javax.swing.JMenuItem();
         itemConsultarCliente = new javax.swing.JMenuItem();
-        itemEditarCliente = new javax.swing.JMenuItem();
         menuProduto = new javax.swing.JMenu();
         itemCadastrarProduto = new javax.swing.JMenuItem();
         itemConsultarProduto = new javax.swing.JMenuItem();
-        itemEditarJogo = new javax.swing.JMenuItem();
         menuVenda = new javax.swing.JMenu();
         menuCarrinho = new javax.swing.JMenuItem();
         menuRelatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Lojinha de vijo Gueime");
+        setTitle("Loja da Galerinha");
+        setResizable(false);
 
         desktop.setDoubleBuffered(true);
         desktop.setPreferredSize(new java.awt.Dimension(1200, 800));
@@ -141,14 +140,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCliente.add(itemConsultarCliente);
 
-        itemEditarCliente.setText("Editar Cliente");
-        itemEditarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemEditarClienteActionPerformed(evt);
-            }
-        });
-        menuCliente.add(itemEditarCliente);
-
         menuBarPrincipal.add(menuCliente);
 
         menuProduto.setText("Produto");
@@ -168,14 +159,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menuProduto.add(itemConsultarProduto);
-
-        itemEditarJogo.setText("Editar Jogo");
-        itemEditarJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemEditarJogoActionPerformed(evt);
-            }
-        });
-        menuProduto.add(itemEditarJogo);
 
         menuBarPrincipal.add(menuProduto);
 
@@ -270,24 +253,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         carrinhoVenda.toFront();
     }//GEN-LAST:event_menuRelatorioActionPerformed
 
-    private void itemEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarClienteActionPerformed
-        if (editarCliente == null || !editarCliente.isDisplayable()) {
-            editarCliente = new FormEditarCliente();
-            desktop.add(editarCliente);
-            this.openFrameInCenter(editarCliente);
-        }
-        editarCliente.toFront();
-    }//GEN-LAST:event_itemEditarClienteActionPerformed
-
-    private void itemEditarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarJogoActionPerformed
-        if (editarJogo == null || !editarJogo.isDisplayable()) {
-            editarJogo = new FormEditarJogo();
-            desktop.add(editarJogo);
-            this.openFrameInCenter(editarJogo);
-        }
-        editarJogo.toFront();
-    }//GEN-LAST:event_itemEditarJogoActionPerformed
-
     //Abre um internal frame centralizado na tela
     public void openFrameInCenter(JInternalFrame jif) {
         Dimension desktopSize = desktop.getSize();
@@ -339,8 +304,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadastrarProduto;
     private javax.swing.JMenuItem itemConsultarCliente;
     private javax.swing.JMenuItem itemConsultarProduto;
-    private javax.swing.JMenuItem itemEditarCliente;
-    private javax.swing.JMenuItem itemEditarJogo;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenuItem menuCarrinho;
     private javax.swing.JMenu menuCliente;

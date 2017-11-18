@@ -1,4 +1,3 @@
-
 package br.com.lojaGame.models;
 
 import br.com.lojaGame.models.Cliente;

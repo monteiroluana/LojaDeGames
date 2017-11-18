@@ -80,7 +80,7 @@ public class MockCliente {
             for (Cliente clienteLi : listaClientes) {
                 if (clienteLi != null && clienteLi.getNome() != null
                         && clienteLi.getCPF() != null) {
-                   
+
                     //depois da modificação do tipo de dado do cpf (no model.cliente)
                     String CPF = clienteLi.getCPF();
                     if (clienteLi.getNome().toUpperCase().contains(valor.toUpperCase())

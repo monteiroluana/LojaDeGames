@@ -279,7 +279,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        buttonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonCadastrar.setText("Cadastrar");
         buttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,11 +321,11 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                 .addComponent(panelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCadastrar)
+                    .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonCancelar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -346,7 +346,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         cliente.setRG(fTxtRG.getText());
         cliente.setSexo((String) comboSexo.getSelectedItem());
 
-        //pra data de nascimento, seguindo o modelo do prof
+        //pra data de nascimento
         Date data = null;
         try {
             data = (Date) fTxtDataNasc.getValue();
@@ -371,7 +371,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         cliente.setEmail(txtEmail.getText());
 
         try {
-            //Chama o serviço para cadastro do cliente
+            //Chama o serviço para cadastrar do cliente
             ServicoCliente.cadastrarCliente(cliente);
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário

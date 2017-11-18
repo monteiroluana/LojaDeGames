@@ -18,7 +18,6 @@ public class ValidadorProduto {
         if (produto.getPlataforma() == null || "Selecione".equals(produto.getPlataforma())) {
             throw new ProdutosException("É necessário informar a plataforma do jogo");
         }
-
         if (produto.getPreco() == null) {
             throw new ProdutosException("É necessário informar o preço do jogo");
         }

@@ -100,14 +100,14 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblDataNasc" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="fTxtDataNasc" pref="97" max="32767" attributes="0"/>
+                                  <Component id="fTxtDataNasc" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
                                   <Component id="fTxtCPF" min="-2" pref="129" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="lblRG" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="lblRG" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="fTxtRG" max="32767" attributes="0"/>
+                                  <Component id="fTxtRG" min="-2" pref="123" max="-2" attributes="0"/>
                               </Group>
                               <Component id="txtNomeCliente" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -158,12 +158,12 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblNome">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome"/>
+            <Property name="text" type="java.lang.String" value="* Nome"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCPF">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CPF"/>
+            <Property name="text" type="java.lang.String" value="* CPF"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDataNasc">
@@ -182,7 +182,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblRG">
           <Properties>
-            <Property name="text" type="java.lang.String" value="RG"/>
+            <Property name="text" type="java.lang.String" value="* RG"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="comboSexo">
@@ -202,7 +202,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblSexo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sexo"/>
+            <Property name="text" type="java.lang.String" value="* Sexo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEstCivil">
@@ -345,19 +345,19 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblCEP">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CEP"/>
+            <Property name="text" type="java.lang.String" value="* CEP"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblLog">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Log."/>
+            <Property name="text" type="java.lang.String" value="* Log."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtLog">
         </Component>
         <Component class="javax.swing.JLabel" name="lblNum">
           <Properties>
-            <Property name="text" type="java.lang.String" value="N&#xba;"/>
+            <Property name="text" type="java.lang.String" value="* N&#xba;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNum">
@@ -442,12 +442,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Email"/>
+            <Property name="text" type="java.lang.String" value="* Email"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Telefone"/>
+            <Property name="text" type="java.lang.String" value="* Telefone"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTel">
@@ -465,7 +465,7 @@
     <Component class="javax.swing.JButton" name="buttonSalvar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="11" style="1"/>
+          <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>

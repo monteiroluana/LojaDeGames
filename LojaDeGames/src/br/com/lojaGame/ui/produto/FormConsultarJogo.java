@@ -11,13 +11,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class FormConsultarJogo
         extends javax.swing.JInternalFrame {
-    
+
     FormEditarJogo formEditarJogo = new FormEditarJogo();
-    
+
     String ultimaPesquisa = null;
 
     /**
-     * Creates new form FormConsultarQuartos
+     * Creates new form FormConsultarJogo
      */
     public FormConsultarJogo() {
         initComponents();
@@ -168,10 +168,10 @@ public class FormConsultarJogo
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
-       //Inicializa o sucesso da pesquisa com valor negativo, indicando que
+        //Inicializa o sucesso da pesquisa com valor negativo, indicando que
         //a pesquisa de jogos não obteve resultados (situação padrão)
         boolean resultSearch = false;
-        
+
         //Grava o campo de pesquisa como a última pesquisa válida. O valor
         //de última pesquisa válida é utilizado na atualização da lista
         ultimaPesquisa = txtPesquisa.getText();
@@ -192,7 +192,7 @@ public class FormConsultarJogo
             JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
                     "Sem resultados", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         //faz com que a coluna do ID não seja mostrada ao usuário
         tableConsultaJogo.getColumnModel().getColumn(0).setMinWidth(0);
         tableConsultaJogo.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -203,29 +203,36 @@ public class FormConsultarJogo
         //Verifica se há itens selecionados para exclusão.
         //Caso negativo, ignora o comando
         if (tableConsultaJogo.getSelectedRow() >= 0) {
-            
+
             //Obtém a linha do item selecionado
             final int row = tableConsultaJogo.getSelectedRow();
+
             //Obtém o nome do jogo da linha indicada para exibição
             //de mensagem de confirmação de exclusão utilizando seu número
             String jogo = (String) tableConsultaJogo.getValueAt(row, 1);
+
             //Mostra o diálogo de confirmação de exclusão
             int resposta = JOptionPane.showConfirmDialog(rootPane,
-                "Excluir o jogo \"" + jogo + "\"?",
-                "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+                    "Excluir o jogo \"" + jogo + "\"?",
+                    "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+
             //Se o valor de resposta for "Sim" para a exclusão
             if (resposta == JOptionPane.YES_OPTION) {
                 try {
                     //Obtém o ID do jogo
                     Integer id = (Integer) tableConsultaJogo.getValueAt(row, 0);
+
                     //Solicita ao serviço a inativação do jogo com o ID
                     ServicoProduto.excluirProduto(id);
+
                     //Atualiza a lista após a "exclusão"
                     this.refreshList();
+
                 } catch (Exception e) {
                     //Se ocorrer algum erro técnico, mostra-o no console,
                     //mas esconde-o do usuário
                     e.printStackTrace();
+
                     //Exibe uma mensagem de erro genérica ao usuário
                     JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                             "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
@@ -236,42 +243,44 @@ public class FormConsultarJogo
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
         try {
-                //Obtém a linha selecionada da tabela de resultados
-                final int row = tableConsultaJogo.getSelectedRow();
-                //Obtém o valor do ID da coluna "ID" da tabela de resultados
-                Integer id = (Integer) tableConsultaJogo.getValueAt(row, 0);
+            //Obtém a linha selecionada da tabela de resultados
+            final int row = tableConsultaJogo.getSelectedRow();
 
-                //Com o ID da coluna, chama o serviço de cliente para
-                //obter o cliente com dados atualizados do mock
-                Produto jogo = ServicoProduto.obterProduto(id);
-                
-                //Cria uma nova instância da tela de edição,
-                //configura o cliente selecionado como elemento a
-                //ser editado e mostra a tela de edição.
-                //Para exibir a tela, é necessário adicioná-la ao
-                //componente de desktop, o "pai" da janela corrente
-                formEditarJogo.dispose();
-                formEditarJogo = new FormEditarJogo();
-                formEditarJogo.setProduto(jogo);
-                formEditarJogo.setTitle(jogo.getNome());
-                this.getParent().add(formEditarJogo);
-                this.openFrameInCenter(formEditarJogo);                
-                formEditarJogo.toFront();
+            //Obtém o valor do ID da coluna "ID" da tabela de resultados
+            Integer id = (Integer) tableConsultaJogo.getValueAt(row, 0);
 
-            } catch (Exception e) {
-                //Se ocorrer algum erro técnico, mostra-o no console,
-                //mas esconde-o do usuário
-                e.printStackTrace();
-                //Exibe uma mensagem de erro genérica ao usuário
-                JOptionPane.showMessageDialog(rootPane, "Não é possível "
-                        + "exibir os detalhes deste cliente.",
-                        "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
-            }
+            //Com o ID da coluna, chama o serviço de cliente para
+            //obter o cliente com dados atualizados do mock
+            Produto jogo = ServicoProduto.obterProduto(id);
+
+            //Cria uma nova instância da tela de edição,
+            //configura o cliente selecionado como elemento a
+            //ser editado e mostra a tela de edição.
+            //Para exibir a tela, é necessário adicioná-la ao
+            //componente de desktop, o "pai" da janela corrente
+            formEditarJogo.dispose();
+            formEditarJogo = new FormEditarJogo();
+            formEditarJogo.setProduto(jogo);
+            formEditarJogo.setTitle(jogo.getNome());
+            this.getParent().add(formEditarJogo);
+            this.openFrameInCenter(formEditarJogo);
+            formEditarJogo.toFront();
+
+        } catch (Exception e) {
+            //Se ocorrer algum erro técnico, mostra-o no console,
+            //mas esconde-o do usuário
+            e.printStackTrace();
+
+            //Exibe uma mensagem de erro genérica ao usuário
+            JOptionPane.showMessageDialog(rootPane, "Não é possível "
+                    + "exibir os detalhes deste cliente.",
+                    "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonRetornarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetornarTodosActionPerformed
-       boolean resultSearch = false;
-        
+        boolean resultSearch = false;
+
         try {
             //Solicita a atualização da lista com o novo critério
             //de pesquisa (ultimaPesquisa)
@@ -282,7 +291,7 @@ public class FormConsultarJogo
                     "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         //faz com que a coluna do ID não seja mostrada ao usuário
         tableConsultaJogo.getColumnModel().getColumn(0).setMinWidth(0);
         tableConsultaJogo.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -297,6 +306,7 @@ public class FormConsultarJogo
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tableConsultaJogo.getModel();
+
         //Indica que a tabela deve excluir todos seus elementos
         //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
         model.setRowCount(0);
@@ -321,17 +331,14 @@ public class FormConsultarJogo
                 row[6] = jogo.getQtdEstoque();
                 row[7] = jogo.getFaixaEtaria();
                 row[8] = jogo.getFabricante();
-                
+
                 model.addRow(row);
             }
         }
 
-        //Se chegamos até aqui, a pesquisa teve sucesso, então
-        //retornamos "true" para o elemento acionante, indicando
-        //que não devem ser exibidas mensagens de erro
         return true;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -366,7 +373,7 @@ public class FormConsultarJogo
             }
         });
     }
-    
+
     //Abre um internal frame centralizado na tela
     public void openFrameInCenter(JInternalFrame jif) {
         Dimension desktopSize = this.getParent().getSize();

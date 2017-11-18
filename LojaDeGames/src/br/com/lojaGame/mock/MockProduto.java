@@ -56,10 +56,10 @@ public class MockProduto {
         }
     }
 
-    //Lista todos os quartos
+    //Lista todos os jogos
     public static List<Produto> listar()
             throws Exception {
-        //Retorna a lista de quartos 
+        //Retorna a lista de jogos 
         return listaProdutos;
     }
 
@@ -82,7 +82,7 @@ public class MockProduto {
             }
         }
 
-        //Retorna a lista de clientes encontrados
+        //Retorna a lista de jogos encontrados
         return listaResultado;
     }
 

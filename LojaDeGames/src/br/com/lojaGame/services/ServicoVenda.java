@@ -25,7 +25,7 @@ public class ServicoVenda {
 
         }
     }
-    
+
     /*public static List<Venda> procurarCliente(String nome) 
         throws VendasException, DataSourceException
         {
@@ -45,5 +45,5 @@ public class ServicoVenda {
                     throw new DataSourceException("Erro na fonte de dados", e);
                     }
             }
-*/
+     */
 }

@@ -6,10 +6,10 @@ import br.com.lojaGame.ui.principal.TelaPrincipal;
 import javax.swing.JOptionPane;
 
 public class FormEditarJogo extends javax.swing.JInternalFrame {
-    
+
     //Armazena o cliente em edição
     Produto jogo = new Produto();
-    
+
     //Construtor e inicialização de componentes
     public FormEditarJogo() {
         initComponents();
@@ -32,7 +32,6 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelEditar = new javax.swing.JPanel();
         buttonCancelar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
         lblPlat = new javax.swing.JLabel();
@@ -56,6 +55,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Editar Jogo");
+        setPreferredSize(new java.awt.Dimension(438, 236));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -81,7 +81,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonSalvar.setText("Salvar");
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,122 +89,114 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
             }
         });
 
-        lblPlat.setText("Plataforma");
+        lblPlat.setText("* Plataforma");
 
         comboPlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Playstation 4", "Xbox One", "Playstation 3", "Xbox 360", "Nintendo Wii U", "Nintendo 3DS", "PC" }));
 
-        lblPreco.setText("Preço");
+        lblPreco.setText("* Preço R$ ");
 
         lblJogadores.setText("Jogadores");
 
-        lblFaixaEt.setText("Faixa Etária");
+        lblFaixaEt.setText("* Faixa Etária");
 
         comboJogadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1 Player", "2 Players", "Multplayers" }));
 
         comboFaixaEt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos", " " }));
 
-        lblNome.setText("Nome");
+        lblNome.setText("* Nome");
 
         lblFab.setText("Fabricante");
 
-        lblCategoria.setText("Categoria");
+        lblCategoria.setText("* Categoria");
 
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Ação", "Aventura", "Corrida", "Em Grupo/Familia", "Esporte", "Estratégia", "Infantil", "Luta", "Música", "RPG", "Simulação", "Terror", "Tiro", "Suspense/Terror" }));
 
-        lblEstoque.setText("Qntd. Estoque");
-
-        javax.swing.GroupLayout panelEditarLayout = new javax.swing.GroupLayout(panelEditar);
-        panelEditar.setLayout(panelEditarLayout);
-        panelEditarLayout.setHorizontalGroup(
-            panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                        .addComponent(buttonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSalvar))
-                    .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelEditarLayout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(lblFab)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(lblPlat)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comboPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(lblPreco)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelEditarLayout.createSequentialGroup()
-                            .addComponent(lblFaixaEt)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comboFaixaEt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comboJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblEstoque)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(lblNome)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(lblCategoria)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        panelEditarLayout.setVerticalGroup(
-            panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCategoria)
-                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFab)
-                    .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPreco)
-                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPlat)
-                    .addComponent(comboPlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFaixaEt)
-                    .addComponent(comboFaixaEt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblJogadores)
-                    .addComponent(comboJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEstoque)
-                    .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSalvar)
-                    .addComponent(buttonCancelar))
-                .addContainerGap())
-        );
+        lblEstoque.setText("* Qntd. Estoque");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFab)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPreco)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPreco))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCategoria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboCategoria, 0, 148, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPlat)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNome)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblFaixaEt)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(comboFaixaEt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblEstoque)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(comboJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(buttonCancelar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonSalvar)
+                            .addGap(16, 16, 16))))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboPlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPlat)
+                    .addComponent(lblCategoria)
+                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFab)
+                    .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPreco)
+                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFaixaEt)
+                    .addComponent(comboFaixaEt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblJogadores)
+                    .addComponent(comboJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEstoque)
+                    .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonCancelar)
+                    .addComponent(buttonSalvar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,7 +207,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-         //Configura os novos valores dos campos de edição da tela
+        //Configura os novos valores dos campos de edição da tela
         //para o objeto de cliente, a fim de passá-lo para o serviço
         //e realizar as atualizações no mock
         //obtem as informações dos campos
@@ -227,7 +219,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         jogo.setPreco(Float.parseFloat(txtPreco.getText()));
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
         jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
-        jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));        
+        jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));
 
         try {
             //Chama o serviço para realizar as alterações necessárias
@@ -248,9 +240,11 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
             if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
                 TelaPrincipal principal = (TelaPrincipal) this.
                         getDesktopPane().getTopLevelAncestor();
+                
                 if (principal != null) {
                     principal.getConsultarClientes().refreshList();
                 }
+                
             }
         } catch (Exception e) {
             //Exibe erros de atualização da lista no
@@ -266,41 +260,41 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     //Listener de abertura da janela. Aproveita o evento para obter os valores
     //do cliente em edição e passa-os para os campos de edição da tela
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-       txtNome.setText(jogo.getNome());
-       
-       for (int i = 0; i < comboCategoria.getItemCount(); i++) {
+        txtNome.setText(jogo.getNome());
+
+        for (int i = 0; i < comboCategoria.getItemCount(); i++) {
             if (comboCategoria.getItemAt(i).equals(jogo.getCategoria())) {
                 comboCategoria.setSelectedIndex(i);
                 break;
             }
         }
-       
-       txtFab.setText(jogo.getFabricante());
-       
-       for (int i = 0; i < comboPlat.getItemCount(); i++) {
+
+        txtFab.setText(jogo.getFabricante());
+
+        for (int i = 0; i < comboPlat.getItemCount(); i++) {
             if (comboPlat.getItemAt(i).equals(jogo.getPlataforma())) {
                 comboPlat.setSelectedIndex(i);
                 break;
             }
         }
-       
-       txtPreco.setText(jogo.getPreco().toString());
-       
-       for (int i = 0; i < comboFaixaEt.getItemCount(); i++) {
+
+        txtPreco.setText(jogo.getPreco().toString());
+
+        for (int i = 0; i < comboFaixaEt.getItemCount(); i++) {
             if (comboFaixaEt.getItemAt(i).equals(jogo.getFaixaEtaria())) {
                 comboFaixaEt.setSelectedIndex(i);
                 break;
             }
         }
-       
-       for (int i = 0; i < comboJogadores.getItemCount(); i++) {
+
+        for (int i = 0; i < comboJogadores.getItemCount(); i++) {
             if (comboJogadores.getItemAt(i).equals(jogo.getQtdJogadores())) {
                 comboJogadores.setSelectedIndex(i);
                 break;
             }
         }
-            
-       txtEstoque.setText(jogo.getQtdEstoque().toString());
+
+        txtEstoque.setText(jogo.getQtdEstoque().toString());
     }//GEN-LAST:event_formInternalFrameOpened
 
     /**
@@ -354,7 +348,6 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPlat;
     private javax.swing.JLabel lblPreco;
-    private javax.swing.JPanel panelEditar;
     private javax.swing.JTextField txtEstoque;
     private javax.swing.JTextField txtFab;
     private javax.swing.JTextField txtNome;

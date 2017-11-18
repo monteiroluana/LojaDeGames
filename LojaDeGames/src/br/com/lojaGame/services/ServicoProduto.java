@@ -46,18 +46,11 @@ public class ServicoProduto {
 
         try {
 
-                if (nomeProduto == null || "".equals(nomeProduto)) {
-                    return MockProduto.listar();
-                } else {
-                    return MockProduto.procurar(nomeProduto);
-                }
-
-//           //lógica invertida
-//            if (nomeProduto != null || !"".equals(nomeProduto)) {
-//                return MockProduto.procurar(nomeProduto);
-//            } else {
-//                return MockProduto.listar();                
-//            }
+            if (nomeProduto == null || "".equals(nomeProduto)) {
+                return MockProduto.listar();
+            } else {
+                return MockProduto.procurar(nomeProduto);
+            }
 
         } catch (Exception e) {
 
