@@ -173,12 +173,9 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
     //Atualiza a lista de clientes. Pode ser chamado por outras telas
     public boolean refreshList() throws VendasException, Exception {
-        //Realiza a pesquisa de clientes com o último valor de pesquisa
+        //Realiza a pesquisa de Venda
         //para atualizar a lista
-  
-        
         List<Venda> resultado = ServicoVenda.procurarVenda((Date) fTxtDataInicial.getValue(), (Date) fTxtDataFinal.getValue());
-        
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tableRelatorio.getModel();
@@ -193,18 +190,24 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
         }
 
         //Percorre a lista de resultados e os adiciona na tabela
+        float total = 0.0f;
         for (int i = 0; i < resultado.size(); i++) {
             Venda venda = resultado.get(i);
+
             if (venda != null) {
                 Object[] row = new Object[5];
                 row[0] = venda.getIdVenda();
                 row[1] = venda.getData();
                 row[2] = venda.getCliente();
                 row[3] = null;
-                row[4] = null;
+                row[4] = venda.calcularValorTotal();
                 model.addRow(row);
+
+                //Guardando o total do relatório
+                total += venda.calcularValorTotal();
             }
         }
+        lblTotal.setText("Total: R$ " + total);
 
         //Se chegamos até aqui, a pesquisa teve sucesso, então
         //retornamos "true" para o elemento acionante, indicando

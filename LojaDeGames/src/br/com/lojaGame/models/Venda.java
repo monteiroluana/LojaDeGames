@@ -25,8 +25,8 @@ public class Venda {
         return idVenda;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getCliente() {
+        return cliente.getCPF();
     }
 
     public void setCliente(Object cliente) {
