@@ -1,10 +1,8 @@
 package br.com.lojaGame.models;
 
-import br.com.lojaGame.models.Cliente;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Venda {
 
@@ -12,6 +10,8 @@ public class Venda {
     private Cliente cliente;
     private ArrayList<ItemCart> Cart;
     private Date data;
+    private float valorTotal = 0.00f;
+    public List<ItemCart> getCart;
 
     public Venda() {
         Cart = new ArrayList<ItemCart>();
@@ -25,16 +25,28 @@ public class Venda {
         return idVenda;
     }
 
-    public String getCliente() {
-        return cliente.getCPF();
+    public String getNomeCliente() {
+        return cliente.getNome();
     }
 
     public void setCliente(Object cliente) {
         this.cliente = (Cliente) cliente;
     }
 
-    public void adicionarItem(ItemCart item) {
+    public void addItem(ItemCart item) {
         Cart.add(item);
+    }
+
+    public void deleteItem(Integer idItemCart) {
+        for (ItemCart item : Cart) {
+            if (item.getIdProd() == idItemCart) {
+
+                valorTotal -= item.getValor();
+                Cart.remove(item);
+
+                break;
+            }
+        }
     }
 
     public void setData() {
@@ -45,12 +57,24 @@ public class Venda {
         return data;
     }
 
-    public float calcularValorTotal() {
-        float total = 0.0f;
-        for (ItemCart item : Cart) {
-            total += item.calcularItem();
-        }
-        return total;
+    public void setValorTotal(float total) {
+        valorTotal = total;
+    }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+//    public void addDesconto(float desc) {
+//        valorTotal -= desc;
+//    }
+
+    public ArrayList<ItemCart> getCart() {
+        return Cart;
+    }
+
+    public void setCart(ArrayList<ItemCart> Cart) {
+        this.Cart = Cart;
     }
 
 //FABIO

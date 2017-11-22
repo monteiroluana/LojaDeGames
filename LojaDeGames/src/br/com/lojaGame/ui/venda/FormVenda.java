@@ -4,7 +4,6 @@ import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.models.Cliente;
 import br.com.lojaGame.models.Produto;
-import br.com.lojaGame.models.Cart;
 import br.com.lojaGame.models.ItemCart;
 import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoCliente;
@@ -19,7 +18,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
     private Venda venda = new Venda();
     private Object prod, cli;
-    
+    private float total;
 
     /**
      * Creates new form FormVenda
@@ -50,6 +49,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
         panelCarrinho = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCarrinho = new javax.swing.JTable();
+        buttonExcluir = new javax.swing.JButton();
         buttonFinalizar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
@@ -81,6 +81,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
             }
         });
 
+        txtProduto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                focusLostProduto(evt);
+            }
+        });
         txtProduto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 keyPressedEnterProduto(evt);
@@ -168,20 +173,33 @@ public class FormVenda extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tableCarrinho);
 
+        buttonExcluir.setText("Excluir Produto");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCarrinhoLayout = new javax.swing.GroupLayout(panelCarrinho);
         panelCarrinho.setLayout(panelCarrinhoLayout);
         panelCarrinhoLayout.setHorizontalGroup(
             panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCarrinhoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                    .addGroup(panelCarrinhoLayout.createSequentialGroup()
+                        .addComponent(buttonExcluir)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelCarrinhoLayout.setVerticalGroup(
             panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCarrinhoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonExcluir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -261,9 +279,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addComponent(panelAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTotal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonFinalizar)
                     .addComponent(buttonCancelar))
@@ -280,28 +298,47 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
 
         try {
-            //adiciona o item
-            addProduto();
+            if (comboProduto.getSelectedItem() != null) {
+                //sempre que adicionar item no carrindo, total é zerado, para percorrer
+                //novamente na tabela e somar
+                //somente ao finalizar o pedido, que vai ser enviado o valor total
 
-            DefaultTableModel model = (DefaultTableModel) tableCarrinho.getModel();
+                total = 0.00f;
 
-            //Adicionando item no cart
-            ItemCart item = new ItemCart(prod, Integer.parseInt(fTxtQntd.getText()));
-            venda.adicionarItem(item);
+                //adiciona todo o objeto produto na venda
+                addProduto();
 
-            //aparecer na tabela
-            Object[] row = new Object[5];
-            row[0] = item.getIdProd();
-            row[1] = comboProduto.getSelectedItem();
-            row[2] = fTxtQntd.getText();
-            row[3] = item.unitario();
-            row[4] = item.calcularItem();
-            model.addRow(row);
-            
-            item.ajustarEstq();
+                DefaultTableModel model = (DefaultTableModel) tableCarrinho.getModel();
 
+                //Adicionando item na venda
+                ItemCart item = new ItemCart(prod, Integer.parseInt(fTxtQntd.getText()));
+                venda.addItem(item);
+
+                //aparecer na tabela
+                Object[] row = new Object[5];
+                row[0] = item.getIdProd();
+                row[1] = comboProduto.getSelectedItem();
+                row[2] = fTxtQntd.getText();
+                row[3] = item.getPrecoUnit();
+                row[4] = item.getValor();
+                model.addRow(row);
+
+                for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
+                    float valorItem = (float) tableCarrinho.getValueAt(i, 4);
+
+                    total += valorItem;
+
+                    lblTotal.setText("Total: R$ " + total);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Produto não informado/selecionado");
+            }
+
+            //limpa o campo de texto Produto e o combo também
             fTxtQntd.setText("");
-            lblTotal.setText("Total: R$ " + venda.calcularValorTotal());
+            txtProduto.setText("");
+            comboProduto.removeAllItems();
 
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
@@ -309,33 +346,46 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     "Falha ao adicionar", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         //faz com que a coluna do ID não seja mostrada ao usuário
         tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
+
     }//GEN-LAST:event_buttonAdicionarActionPerformed
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
 
         try {
-            //Chama o serviço para cadastro da venda
+
+            List<ItemCart> itensCart = venda.getCart();
+
             venda.setCliente(cli);
             venda.setData();
-            System.out.println("data venda " +venda.getData());
+
+            //Chama o serviço para cadastro da venda (valida a venda e o list de itens
             ServicoVenda.cadastrarVenda(venda);
+
+            //ajusta o estoque
+            for (int i = 0; i < itensCart.size(); i++) {
+                ItemCart itemCart = itensCart.get(i);
+                itemCart.ajustarEstq();
+            }
+
+            venda.setValorTotal(total);
+
         } catch (Exception e) {
-            //Exibe mensagens de erro para o usuário
+
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                     "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
+
         }
 
-        //se tudo tiver certo, exibe mensagem
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
                 "Finalizado", JOptionPane.INFORMATION_MESSAGE);
 
         this.dispose();
+
     }//GEN-LAST:event_buttonFinalizarActionPerformed
 
     //carrega a lista de produtos no comboBox assim que pressionar a tecla 'Enter'
@@ -344,50 +394,109 @@ public class FormVenda extends javax.swing.JInternalFrame {
             boolean resultSearch = false;
 
             try {
-                //Solicita a atualização da lista com o novo critério
-                //de pesquisa (ultimaPesquisa)
                 resultSearch = buscaProduto();
             } catch (Exception e) {
-                //Exibe mensagens de erro na fonte de dados e para o listener
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                         "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-                return;
             }
         }
     }//GEN-LAST:event_keyPressedEnterProduto
 
-    //carrega o nome do cliente assim que é pressionado a telca 'Enter'
+    //carrega o nome do cliente assim que é pressionado aqualquer tecla
     private void keyPressedEnterCPF(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedEnterCPF
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            boolean resultSearch = false;
+        //        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        boolean resultSearch = false;
 
-            try {
-                //Solicita a atualização da lista com o novo critério
-                //de pesquisa (ultimaPesquisa)
-                resultSearch = buscaCliente();
-            } catch (Exception e) {
-                //Exibe mensagens de erro na fonte de dados e para o listener
-                JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                        "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+        try {
+            resultSearch = buscaCliente();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
         }
+//        }
     }//GEN-LAST:event_keyPressedEnterCPF
 
     private void comboProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProdutoActionPerformed
         txtProduto.setText((String) comboProduto.getSelectedItem());
     }//GEN-LAST:event_comboProdutoActionPerformed
 
-    //realiza a busca para achar o cliente que corresponde ao cpf informado
-    public boolean buscaCliente() throws ClientesException, Exception {
-        List<Cliente> resultado = ServicoCliente.procurarCliente(fTxtCPF.getText());
+    private void focusLostProduto(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLostProduto
+       boolean resultSearch = false;
 
-        if (resultado == null || resultado.size() <= 0) {
+        try {
+
+            resultSearch = buscaProduto();
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_focusLostProduto
+
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tableCarrinho.getModel();
+
+        //Verifica se há itens selecionados para exclusão.
+        //Caso negativo, ignora o comando
+        if (tableCarrinho.getSelectedRow() >= 0) {
+
+            //Obtém a linha do item selecionado
+            final int row = tableCarrinho.getSelectedRow();
+
+            //Obtém o nome do produto da linha indicada para exibição
+            //de mensagem de confirmação de exclusão utilizando seu nome
+            String nome = (String) tableCarrinho.getValueAt(row, 1);
+
+            //Mostra o diálogo de confirmação de exclusão
+            int resposta = JOptionPane.showConfirmDialog(rootPane,
+                    "Excluir o \"" + nome + "\"do carrinho?",
+                    "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+
+            //Se o valor de resposta for "Sim" para a exclusão
+            if (resposta == JOptionPane.YES_OPTION) {
+                try {
+
+                    //Obtém o valor do item p/ subtrair do total
+                    Float valorItem = (float) tableCarrinho.getValueAt(row, 4);
+
+                    //Obtém o ID do produto
+                    Integer idItemCart = (Integer) tableCarrinho.getValueAt(row, 0);
+
+                    //deleta o item da venda
+                    venda.deleteItem(idItemCart);
+
+                    //exclui a linha da tabela
+                    model.removeRow(tableCarrinho.getSelectedRow());
+
+                    //altera a label total
+                    lblTotal.setText("Total: R$ " + (total - valorItem));
+
+                } catch (Exception e) {
+                    //Se ocorrer algum erro técnico, mostra-o no console,
+                    //mas esconde-o do usuário
+                    e.printStackTrace();
+
+                    //Exibe uma mensagem de erro genérica ao usuário
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                            "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        }
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+   //realiza a busca para achar o cliente que corresponde ao cpf informado
+    public boolean buscaCliente() throws ClientesException, Exception {
+        List<Cliente> resultadoCliente = ServicoCliente.procurarCliente(fTxtCPF.getText());
+
+        if (resultadoCliente == null || resultadoCliente.size() <= 0) {
             return false;
         }
 
-        for (int i = 0; i < resultado.size(); i++) {
-            Cliente cliente = resultado.get(i);
+        for (int i = 0; i < resultadoCliente.size(); i++) {
+            Cliente cliente = resultadoCliente.get(i);
 
             if (cliente != null) {
                 txtNome.setText(cliente.getNome());
@@ -400,22 +509,21 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
     //realiza a busca para achar os produtos que correspondem ao texto informado
     public boolean buscaProduto() throws ProdutosException, Exception {
+
         //limpa o combo
         comboProduto.removeAllItems();
 
-        List<Produto> resultado = ServicoProduto.procurarProduto(txtProduto.getText());
+        List<Produto> resultadoProd = ServicoProduto.procurarProduto(txtProduto.getText());
 
-        if (resultado == null || resultado.size() <= 0) {
+        if (resultadoProd == null || resultadoProd.size() <= 0) {
             return false;
         }
 
-        for (int i = 0; i < resultado.size(); i++) {
-            Produto produto = resultado.get(i);
+        for (int i = 0; i < resultadoProd.size(); i++) {
+            Produto produto = resultadoProd.get(i);
 
             if (produto != null) {
                 comboProduto.addItem(produto.getNome());
-                //prod = produto;
-
             }
         }
 
@@ -424,29 +532,21 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
     //realiza a busca para achar os produtos que correspondem ao texto informado
     public void addProduto() throws ProdutosException, Exception {
+
         //cria lista, porém o esperado é retornar somente um objeto produto
         List<Produto> resultado = ServicoProduto.procurarProduto((String) comboProduto.getSelectedItem());
 
-//        if (resultado == null || resultado.size() <= 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Ops! Aconteceu algum problema no addProduto()",
-//                "Erro ao adicionar", JOptionPane.INFORMATION_MESSAGE);
-//            return false;
-//        }
-        //for (int i = 0; i < resultado.size(); i++) {
         Produto produto = resultado.get(0);
 
-        //if (produto != null) {
         prod = produto;
 
-        //}
-        //       }
-//        return true;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdicionar;
     private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinalizar;
     private javax.swing.JComboBox<String> comboProduto;
     private javax.swing.JFormattedTextField fTxtCPF;

@@ -1,6 +1,7 @@
 package br.com.lojaGame.ui.venda;
 
 import br.com.lojaGame.exceptions.VendasException;
+import br.com.lojaGame.models.ItemCart;
 import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoVenda;
 import java.util.Date;
@@ -64,14 +65,14 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID Venda", "Data", "Cliente", "Produto", "Qntd.", "Valor"
+                "ID Venda", "Data", "Cliente", "Produto", "Qntd.", "Preço Unit.", "Unit. x Qntd", "Valor Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,6 +103,9 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDataInicial)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fTxtDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,13 +115,12 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
                         .addComponent(fTxtDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buttonGerarRelat)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(212, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buttonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblTotal)
-                        .addGap(125, 125, 125))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)))
+                        .addGap(125, 125, 125))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,12 +133,12 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
                     .addComponent(fTxtDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonGerarRelat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotal)
                     .addComponent(buttonCancelar))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,42 +174,68 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
         tableRelatorio.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_buttonGerarRelatActionPerformed
 
-    //Atualiza a lista de clientes. Pode ser chamado por outras telas
     public boolean refreshList() throws VendasException, Exception {
-        //Realiza a pesquisa de Venda
-        //para atualizar a lista
+
         List<Venda> resultado = ServicoVenda.procurarVenda((Date) fTxtDataInicial.getValue(), (Date) fTxtDataFinal.getValue());
 
-        //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) tableRelatorio.getModel();
         //Indica que a tabela deve excluir todos seus elementos
         //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
         model.setRowCount(0);
 
-        //Verifica se não existiram resultados. Caso afirmativo, encerra a
-        //atualização e indica ao elemento acionador o não sucesso da pesquisa
         if (resultado == null || resultado.size() <= 0) {
             return false;
         }
 
         //Percorre a lista de resultados e os adiciona na tabela
         float total = 0.0f;
+
+        int agrupaVenda = -1;
+
         for (int i = 0; i < resultado.size(); i++) {
             Venda venda = resultado.get(i);
 
             if (venda != null) {
-                Object[] row = new Object[5];
-                row[0] = venda.getIdVenda();
-                row[1] = venda.getData();
-                row[2] = venda.getCliente();
-                row[3] = null;
-                row[4] = venda.calcularValorTotal();
-                model.addRow(row);
+                List<ItemCart> itensCart = venda.getCart();
 
-                //Guardando o total do relatório
-                total += venda.calcularValorTotal();
+                //ItemCart itemCart = null;
+                for (int j = 0; j < itensCart.size(); j++) {
+                    ItemCart itemCart = itensCart.get(j);
+
+                    //agrupar a venda e não mostrar dados repetidos na tabela
+                    if (agrupaVenda == venda.getIdVenda()) {
+                        Object[] row = new Object[8];
+                        row[0] = null;
+                        row[1] = null;
+                        row[2] = null;
+                        row[3] = itemCart.getNomeProd();
+                        row[4] = itemCart.getQntdCompra();
+                        row[5] = itemCart.getPrecoUnit();
+                        row[6] = itemCart.getValor();
+                        row[7] = null;
+                        model.addRow(row);
+
+                    } else {
+                        Object[] row = new Object[8];
+                        row[0] = venda.getIdVenda();
+                        row[1] = venda.getData();
+                        row[2] = venda.getNomeCliente();
+                        row[3] = itemCart.getNomeProd();
+                        row[4] = itemCart.getQntdCompra();
+                        row[5] = itemCart.getPrecoUnit();
+                        row[6] = itemCart.getValor();
+                        row[7] = venda.getValorTotal();
+                        model.addRow(row);
+
+                        //Guardando o total do relatório
+                        total += venda.getValorTotal();
+                    }
+
+                    agrupaVenda = venda.getIdVenda();
+                }
             }
         }
+
         lblTotal.setText("Total: R$ " + total);
 
         //Se chegamos até aqui, a pesquisa teve sucesso, então
