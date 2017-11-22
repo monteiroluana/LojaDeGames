@@ -23,8 +23,6 @@ public class MockVenda {
             throws Exception {
         List<Venda> listaResultado = new ArrayList<Venda>();
 
-        System.out.println("cheguei aqui mock procurar ");
-
         //DATA INICIO*/
         Calendar calendarInicial = Calendar.getInstance();
         calendarInicial.setTime(dataInicial);
@@ -35,8 +33,6 @@ public class MockVenda {
         calendarInicial.set(Calendar.MILLISECOND, 0);
         Date dtInit = new Date();
         dtInit = (calendarInicial.getTime());
-        System.out.println("inicio: " + dtInit);
-        /*~~~~~~~*/
 
         //DATA FINAL*/
         Calendar calendarFinal = Calendar.getInstance();
@@ -48,8 +44,6 @@ public class MockVenda {
         calendarFinal.set(Calendar.MILLISECOND, 1000);
         Date dtFinal = new Date();
         dtFinal = (calendarFinal.getTime());
-        System.out.println("final: " + dtFinal);
-        /*~~~~~~~*/
 
         for (Venda vendaLi : listaVendas) {
             Date comp = vendaLi.getData();
@@ -57,10 +51,7 @@ public class MockVenda {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             String currDt = sdf.format(comp);
             if ((comp.after(dtInit)) && (comp.before(dtFinal)) || (currDt.equals(sdf.format(dtInit)) || currDt.equals(sdf.format(dtFinal)))) {
-                System.out.println("Sayuri o if está funcionando (º 3º) ");
                 listaResultado.add(vendaLi);
-            } else {
-                System.out.println("Sayuri o if não funiona ('¬ ¬) ");
             }
         }
         //Retorna a lista de vendas encontrados
