@@ -2,6 +2,8 @@ package br.com.lojaGame.model.validadores;
 
 import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.models.Cliente;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ValidadorCliente {
 
@@ -37,9 +39,20 @@ public class ValidadorCliente {
         if (cliente.getTelefone() == null || "".equals(cliente.getTelefone())) {
             throw new ClientesException("É necessário informar um telefone para contato");
         }
+        
+        //Validando email
         if (cliente.getEmail() == null || "".equals(cliente.getEmail())) {
-            throw new ClientesException("É necessário informar um email");
+            throw new ClientesException("Campo email vazio");
+        } else if (cliente.getEmail() != null && cliente.getEmail().length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(cliente.getEmail());
+            if (!matcher.matches()) {
+                throw new ClientesException("Email inválido");
+            }
         }
-    }
 
+    }
 }
+
+
