@@ -2,6 +2,7 @@ package br.com.lojaGame.model.validadores;
 
 import br.com.lojaGame.exceptions.VendasException;
 import br.com.lojaGame.models.Venda;
+import br.com.lojaGame.ui.venda.FormVenda;
 
 public class ValidadorVenda {
 
