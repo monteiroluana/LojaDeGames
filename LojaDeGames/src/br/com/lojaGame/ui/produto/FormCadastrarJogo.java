@@ -187,14 +187,26 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         jogo.setCategoria((String) comboCategoria.getSelectedItem());
         jogo.setPlataforma((String) comboPlat.getSelectedItem());
         jogo.setFabricante(txtFab.getText());
-        jogo.setPreco(Float.parseFloat(txtPreco.getText()));
+
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
         jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
-        jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));
 
         try {
+
+            if (txtEstoque.getText().isEmpty()) {
+                jogo.setQtdEstoque(0);
+            } else {
+                jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));
+            }
+            
+            if (txtPreco.getText().isEmpty()) {
+                jogo.setPreco(0);
+            } else {
+                jogo.setPreco(Float.parseFloat(txtPreco.getText()));
+            }
             //Chama o serviço para cadastro do jogo
             ServicoProduto.cadastrarProduto(jogo);
+
         } catch (Exception e) {
             //Exibe mensagens de erro para o usuário
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
