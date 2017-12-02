@@ -71,7 +71,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
         lblPlat.setText("* Plataforma");
 
-        comboPlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Playstation 4", "Xbox One", "Playstation 3", "Xbox 360", "Nintendo Wii U", "Nintendo 3DS", "PC" }));
+        comboPlat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Playstation 4", "Xbox One", "Playstation 3", "Xbox 360", "Nintendo Wii U", "Nintendo 3DS", "Nitendo Switch", "PC" }));
 
         lblPreco.setText("* Preço R$");
 
@@ -116,7 +116,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(comboFaixaEt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lblJogadores)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(comboJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
