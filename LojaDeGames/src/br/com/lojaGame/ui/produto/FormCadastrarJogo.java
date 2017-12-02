@@ -198,9 +198,16 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
             } else {
                 jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));
             }
-            
+
             if (txtPreco.getText().isEmpty()) {
-                jogo.setPreco(0);
+                JOptionPane.showMessageDialog(rootPane, "Insira o preco do produto!");
+
+                if (Float.parseFloat(txtPreco.getText()) <= 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Insira um preco valido para o produto!");
+                    return;
+                }
+                return;
+
             } else {
                 jogo.setPreco(Float.parseFloat(txtPreco.getText()));
             }
