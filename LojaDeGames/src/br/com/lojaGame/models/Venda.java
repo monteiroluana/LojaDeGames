@@ -43,6 +43,7 @@ public class Venda {
         for (ItemCart item : Cart) {
             if (item.getIdProd() == idItemCart) {
                 valorTotal -= item.getValor();
+                item.ajustarEstqCancel();
                 Cart.remove(item);
                 break;
             }
@@ -77,7 +78,7 @@ public class Venda {
     }
 
     //Ajustando o estoque
-    public void ajuste(Integer idProd) {
+    public void ajusteEstoque(Integer idProd) {
         for (ItemCart item : Cart) {
             if (item.getIdProd() == idProd) {
                 item.ajustarEstq();

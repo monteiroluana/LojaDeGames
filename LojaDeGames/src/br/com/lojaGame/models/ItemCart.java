@@ -15,7 +15,7 @@ public class ItemCart {
 
     }
 
-    public float getValor(){
+    public float getValor() {
         return valor;
     }
 
@@ -23,24 +23,28 @@ public class ItemCart {
         produto.setQtdEstoque(produto.getQtdEstoque() - qntdCompra);
     }
 
+    public void ajustarEstqCancel() {
+        produto.setQtdEstoque(produto.getQtdEstoque() + qntdCompra);
+    }
+
     public float getPrecoUnit() {
         return produto.getPreco();
     }
-    
-    public Integer getIdProd(){
+
+    public Integer getIdProd() {
         return produto.getIdProd();
     }
-    
-    public String getNomeProd(){
+
+    public String getNomeProd() {
         return produto.getNome();
     }
-    
-    public Integer getQntdCompra(){
+
+    public Integer getQntdCompra() {
         return qntdCompra;
     }
-    
-    public Integer getQntdEstoque(){
+
+    public Integer getQntdEstoque() {
         return produto.getQtdEstoque();
     }
-    
+
 }

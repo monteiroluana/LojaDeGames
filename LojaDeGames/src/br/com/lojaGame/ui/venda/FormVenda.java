@@ -317,7 +317,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                     //id do produto.
                     Integer ia = item.getIdProd();
-                    venda.ajuste(ia);
+                    venda.ajusteEstoque(ia);
 
                     //aparecer na tabela
                     Object[] row = new Object[5];
