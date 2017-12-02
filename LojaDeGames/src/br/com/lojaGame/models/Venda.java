@@ -36,7 +36,7 @@ public class Venda {
     public void addItem(ItemCart item) {
         Cart.add(item);
     }
-
+   
     public void deleteItem(Integer idItemCart) {
         for (ItemCart item : Cart) {
             if (item.getIdProd() == idItemCart) {
@@ -68,7 +68,7 @@ public class Venda {
 //    public void addDesconto(float desc) {
 //        valorTotal -= desc;
 //    }
-
+    
     public ArrayList<ItemCart> getCart() {
         return Cart;
     }

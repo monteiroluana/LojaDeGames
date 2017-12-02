@@ -357,15 +357,21 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
 
         try {
-
             List<ItemCart> itensCart = venda.getCart();
 
             venda.setCliente(cli);
             venda.setData();
-
+            //RODRIGO
+            if (fTxtCPF.getText().equals("") || fTxtCPF.getText().equals("   .   .   -  ")){
+            JOptionPane.showMessageDialog(rootPane, "Insira um cliente para realizar a venda!");
+            return;
+            }else if(txtNome.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Insira um cliente válido!");
+            return;
+            }
             //Chama o serviço para cadastro da venda (valida a venda e o list de itens
             ServicoVenda.cadastrarVenda(venda);
-
+            
             //ajusta o estoque
             for (int i = 0; i < itensCart.size(); i++) {
                 ItemCart itemCart = itensCart.get(i);
@@ -373,7 +379,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
             }
 
             venda.setValorTotal(total);
-
+                JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
+                "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+                 this.dispose();
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -381,10 +389,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         }
 
-        JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
-                "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+        
 
-        this.dispose();
+       
 
     }//GEN-LAST:event_buttonFinalizarActionPerformed
 

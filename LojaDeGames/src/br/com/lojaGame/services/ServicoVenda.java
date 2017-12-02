@@ -16,7 +16,7 @@ public class ServicoVenda {
             throws VendasException, DataSourceException, ItemCartException {
         
         
-        ValidadorVenda.validar(venda);
+        // ValidadorVenda.validar(venda);
         //ValidadorItemCart.validar(venda.getCart);
 
         try {

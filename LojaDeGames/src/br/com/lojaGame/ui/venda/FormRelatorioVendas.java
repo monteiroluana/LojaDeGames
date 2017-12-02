@@ -44,12 +44,20 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
         lblDataInicial.setText("Data Inicial");
 
-        fTxtDataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try {
+            fTxtDataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         fTxtDataInicial.setToolTipText("dd/MM/yyyy");
 
         lblDataFinal.setText("Data Final");
 
-        fTxtDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try {
+            fTxtDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         fTxtDataFinal.setToolTipText("dd/MM/yyyy");
 
         buttonGerarRelat.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
