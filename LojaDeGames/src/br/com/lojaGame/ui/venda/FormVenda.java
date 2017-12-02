@@ -291,6 +291,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        List<ItemCart> itensCart = venda.getCart();
+        for (int i = 0; i < itensCart.size(); i++) {
+            ItemCart itemCart = itensCart.get(i);
+            itemCart.ajustarEstqCancel();
+        }
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
