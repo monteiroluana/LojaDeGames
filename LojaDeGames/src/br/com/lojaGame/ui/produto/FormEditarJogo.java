@@ -53,7 +53,6 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Editar Jogo");
         setPreferredSize(new java.awt.Dimension(438, 236));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {

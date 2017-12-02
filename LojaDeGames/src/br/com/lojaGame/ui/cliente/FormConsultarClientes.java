@@ -45,7 +45,6 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Consulta de Clientes");
 
         lblDado.setText("Pesquisar");

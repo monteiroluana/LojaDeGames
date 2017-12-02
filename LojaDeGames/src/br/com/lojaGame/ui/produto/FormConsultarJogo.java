@@ -47,7 +47,6 @@ public class FormConsultarJogo
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Consulta de Jogos");
         setToolTipText("Nome/Categoria/Plataforma");
 

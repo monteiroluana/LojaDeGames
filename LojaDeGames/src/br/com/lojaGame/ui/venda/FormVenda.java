@@ -42,7 +42,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
         panelAdicionar = new javax.swing.JPanel();
         lblProduto = new javax.swing.JLabel();
         lblQntd = new javax.swing.JLabel();
-        buttonAdicionar = new javax.swing.JButton();
+        btnAdicionar = new javax.swing.JButton();
         txtProduto = new javax.swing.JTextField();
         fTxtQntd = new javax.swing.JFormattedTextField();
         comboProduto = new javax.swing.JComboBox<>();
@@ -57,7 +57,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Tela de Venda");
 
         lblID.setText("CPF");
@@ -73,11 +72,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         lblQntd.setText("Quantidade:");
 
-        buttonAdicionar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonAdicionar.setText("Adicionar ao Carrinho");
-        buttonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnAdicionar.setText("Adicionar ao Carrinho");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAdicionarActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
 
@@ -123,7 +122,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                         .addComponent(fTxtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
-                        .addComponent(buttonAdicionar)
+                        .addComponent(btnAdicionar)
                         .addGap(36, 36, 36))))
         );
         panelAdicionarLayout.setVerticalGroup(
@@ -138,7 +137,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAdicionarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(buttonAdicionar)
+                        .addComponent(btnAdicionar)
                         .addContainerGap())
                     .addGroup(panelAdicionarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -295,7 +294,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
-    private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
 
         try {
             if (comboProduto.getSelectedItem() != null) {
@@ -312,23 +311,30 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                 //Adicionando item na venda
                 ItemCart item = new ItemCart(prod, Integer.parseInt(fTxtQntd.getText()));
-                venda.addItem(item);
 
-                //aparecer na tabela
-                Object[] row = new Object[5];
-                row[0] = item.getIdProd();
-                row[1] = comboProduto.getSelectedItem();
-                row[2] = fTxtQntd.getText();
-                row[3] = item.getPrecoUnit();
-                row[4] = item.getValor();
-                model.addRow(row);
+                if (Integer.parseInt(fTxtQntd.getText()) <= item.getQntdEstoque()) {
+                    venda.addItem(item);
 
-                for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
-                    float valorItem = (float) tableCarrinho.getValueAt(i, 4);
+                    //aparecer na tabela
+                    Object[] row = new Object[5];
+                    row[0] = item.getIdProd();
+                    row[1] = comboProduto.getSelectedItem();
+                    row[2] = fTxtQntd.getText();
+                    row[3] = item.getPrecoUnit();
+                    row[4] = item.getValor();
+                    model.addRow(row);
 
-                    total += valorItem;
+                    for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
+                        float valorItem = (float) tableCarrinho.getValueAt(i, 4);
 
-                    lblTotal.setText("Total: R$ " + total);
+                        total += valorItem;
+
+                        lblTotal.setText("Total: R$ " + total);
+                    }
+                } else if (item.getQntdEstoque() == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "O estoque do produto está vazio");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Só exite " + item.getQntdEstoque() + " quantidade(s) desse produto em estoque");
                 }
 
             } else {
@@ -352,7 +358,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
         tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
 
-    }//GEN-LAST:event_buttonAdicionarActionPerformed
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
 
@@ -361,17 +367,23 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             venda.setCliente(cli);
             venda.setData();
-            //RODRIGO
-            if (fTxtCPF.getText().equals("") || fTxtCPF.getText().equals("   .   .   -  ")){
-            JOptionPane.showMessageDialog(rootPane, "Insira um cliente para realizar a venda!");
-            return;
-            }else if(txtNome.getText().equals("")){
+
+            /*Validando a venda ------------------------------------*/
+            if (fTxtCPF.getText().equals("") || fTxtCPF.getText().equals("   .   .   -  ")) {
+                JOptionPane.showMessageDialog(rootPane, "Insira um cliente para realizar a venda!");
+                return;
+            } else if (txtNome.getText().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "Insira um cliente válido!");
-            return;
+                return;
+            } else if (venda.contItens() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Nenhum produto foi inserido a venda");
+                return;
             }
+            /*Fim validando a venda ---------------------------------*/
+
             //Chama o serviço para cadastro da venda (valida a venda e o list de itens
             ServicoVenda.cadastrarVenda(venda);
-            
+
             //ajusta o estoque
             for (int i = 0; i < itensCart.size(); i++) {
                 ItemCart itemCart = itensCart.get(i);
@@ -379,9 +391,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
             }
 
             venda.setValorTotal(total);
-                JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
-                "Finalizado", JOptionPane.INFORMATION_MESSAGE);
-                 this.dispose();
+            JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
+                    "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -389,9 +401,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         }
 
-        
-
-       
 
     }//GEN-LAST:event_buttonFinalizarActionPerformed
 
@@ -428,7 +437,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboProdutoActionPerformed
 
     private void focusLostProduto(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLostProduto
-       boolean resultSearch = false;
+        boolean resultSearch = false;
 
         try {
 
@@ -494,7 +503,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
-   //realiza a busca para achar o cliente que corresponde ao cpf informado
+    //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
         List<Cliente> resultadoCliente = ServicoCliente.procurarCliente(fTxtCPF.getText());
 
@@ -551,7 +560,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAdicionar;
+    private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinalizar;

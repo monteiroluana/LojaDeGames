@@ -12,6 +12,7 @@ public class Venda {
     private Date data;
     private float valorTotal = 0.00f;
     public List<ItemCart> getCart;
+    public int itens = 0;
 
     public Venda() {
         Cart = new ArrayList<ItemCart>();
@@ -35,15 +36,14 @@ public class Venda {
 
     public void addItem(ItemCart item) {
         Cart.add(item);
+        itens++;
     }
-   
+
     public void deleteItem(Integer idItemCart) {
         for (ItemCart item : Cart) {
             if (item.getIdProd() == idItemCart) {
-
                 valorTotal -= item.getValor();
                 Cart.remove(item);
-
                 break;
             }
         }
@@ -68,7 +68,6 @@ public class Venda {
 //    public void addDesconto(float desc) {
 //        valorTotal -= desc;
 //    }
-    
     public ArrayList<ItemCart> getCart() {
         return Cart;
     }
@@ -77,6 +76,9 @@ public class Venda {
         this.Cart = Cart;
     }
 
+    public int contItens() {
+        return itens;
+    }
 //FABIO
 //        Date dataRelatorio = new Date();
 //        
