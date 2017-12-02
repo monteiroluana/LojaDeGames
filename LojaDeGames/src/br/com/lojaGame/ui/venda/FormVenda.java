@@ -315,6 +315,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 if (Integer.parseInt(fTxtQntd.getText()) <= item.getQntdEstoque()) {
                     venda.addItem(item);
 
+                    //id do produto.
+                    Integer ia = item.getIdProd();
+                    venda.ajuste(ia);
+
                     //aparecer na tabela
                     Object[] row = new Object[5];
                     row[0] = item.getIdProd();
@@ -385,11 +389,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
             ServicoVenda.cadastrarVenda(venda);
 
             //ajusta o estoque
-            for (int i = 0; i < itensCart.size(); i++) {
-                ItemCart itemCart = itensCart.get(i);
-                itemCart.ajustarEstq();
-            }
-
+//            for (int i = 0; i < itensCart.size(); i++) {
+//                ItemCart itemCart = itensCart.get(i);
+//                itemCart.ajustarEstq();
+//            }
             venda.setValorTotal(total);
             JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
                     "Finalizado", JOptionPane.INFORMATION_MESSAGE);

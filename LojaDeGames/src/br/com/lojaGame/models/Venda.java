@@ -76,6 +76,16 @@ public class Venda {
         this.Cart = Cart;
     }
 
+    //Ajustando o estoque
+    public void ajuste(Integer idProd) {
+        for (ItemCart item : Cart) {
+            if (item.getIdProd() == idProd) {
+                item.ajustarEstq();
+                break;
+            }
+        }
+    }
+
     public int contItens() {
         return itens;
     }
