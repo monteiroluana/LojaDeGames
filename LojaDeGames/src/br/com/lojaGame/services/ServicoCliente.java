@@ -1,5 +1,6 @@
 package br.com.lojaGame.services;
 
+import br.com.lojaGame.db.dao.DaoCliente;
 import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.mock.MockCliente;
 import br.com.lojaGame.exceptions.DataSourceException;
@@ -17,6 +18,7 @@ public class ServicoCliente {
         try {
 
             MockCliente.inserir(cliente);
+            DaoCliente.inserir(cliente);
 
         } catch (Exception e) {
 

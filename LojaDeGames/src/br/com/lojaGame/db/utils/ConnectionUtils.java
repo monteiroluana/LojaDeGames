@@ -14,12 +14,12 @@ public class ConnectionUtils {
 
         try {
             //Endereço de conexão com o banco
-            String dbURL = MainConstants.DB_ADDRESS;
+            String dbURL = "jdbc:derby://localhost:1527/jdbc_lojaGames";
 
             //Armazena usuário e senha
             Properties properties = new Properties();
-            properties.put("user", MainConstants.DB_USER);
-            properties.put("password", MainConstants.DB_PASS);
+            properties.put("user", "admgames");
+            properties.put("password", "games");
 
             //realiza a conexâo com o banco
             connection = DriverManager.getConnection(dbURL, properties);

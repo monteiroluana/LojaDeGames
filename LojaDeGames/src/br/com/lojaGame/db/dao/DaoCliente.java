@@ -11,7 +11,7 @@ public class DaoCliente {
 
     public static void inserir(Cliente cliente) throws SQLException, Exception {
         //Monta a String de 'INSERT' de um cliente no DB;
-        String sql = "INSERT INTO cliente () VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cliente (id, nome, endereco) VALUES (?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -20,6 +20,9 @@ public class DaoCliente {
             connection = ConnectionUtils.getConnetion();
             //Cria um Statment para executar as instruções sql
             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, cliente.getCPF());
+            preparedStatement.setString(2, cliente.getNome());
+            preparedStatement.setString(3, cliente.getLogradouro());
 
             //configura os parâmetros do preparedStatement
             //Executa o comando no banco de dados;
@@ -35,8 +38,7 @@ public class DaoCliente {
             }
         }
     }
-    
-    
+
     public static void atualizar(Cliente cliente) throws SQLException, Exception {
         //Monta a String de 'INSERT' de um cliente no DB;
         String sql = "UPDATE cliente SET  nome=?, ";
@@ -63,7 +65,7 @@ public class DaoCliente {
             }
         }
     }
-    
+
     public static void excluir(Integer id) throws SQLException, Exception {
         //Monta a String de 'INSERT' de um cliente no DB;
         String sql = "INSERT INTO cliente () VALUES (?, ?, ?)";
