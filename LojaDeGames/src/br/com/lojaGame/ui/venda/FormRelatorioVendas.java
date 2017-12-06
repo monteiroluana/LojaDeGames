@@ -73,14 +73,14 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID Venda", "Data", "Cliente", "Produto", "Qntd.", "Preço Unit.", "Unit. x Qntd", "Valor Total"
+                "ID Venda", "Data", "Cliente", "Produto", "Plataforma", "Qntd.", "Preço Unit.", "Unit. x Qntd", "Valor Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -212,15 +212,16 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
                     //agrupar a venda e não mostrar dados repetidos na tabela
                     if (agrupaVenda == venda.getIdVenda()) {
-                        Object[] row = new Object[8];
+                        Object[] row = new Object[9];
                         row[0] = null;
                         row[1] = null;
                         row[2] = null;
                         row[3] = itemCart.getNomeProd();
-                        row[4] = itemCart.getQntdCompra();
-                        row[5] = itemCart.getPrecoUnit();
-                        row[6] = itemCart.getValor();
-                        row[7] = null;
+                        row[4] = itemCart.getPlataforma();
+                        row[5] = itemCart.getQntdCompra();
+                        row[6] = itemCart.getPrecoUnit();
+                        row[7] = itemCart.getValor();
+                        row[8] = null;
                         model.addRow(row);
 
                     } else {
@@ -229,10 +230,11 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
                         row[1] = venda.getData();
                         row[2] = venda.getNomeCliente();
                         row[3] = itemCart.getNomeProd();
-                        row[4] = itemCart.getQntdCompra();
-                        row[5] = itemCart.getPrecoUnit();
-                        row[6] = itemCart.getValor();
-                        row[7] = venda.getValorTotal();
+                        row[4] = itemCart.getPlataforma();
+                        row[5] = itemCart.getQntdCompra();
+                        row[6] = itemCart.getPrecoUnit();
+                        row[7] = itemCart.getValor();
+                        row[8] = venda.getValorTotal();
                         model.addRow(row);
 
                         //Guardando o total do relatório
