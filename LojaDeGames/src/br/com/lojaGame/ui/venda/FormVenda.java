@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class FormVenda extends javax.swing.JInternalFrame {
 
     private Venda venda = new Venda();
-    private Object prod, cli;
+    private Object cli;
     private float total;
 
     /**
@@ -318,24 +318,24 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
 
         try {
-            
+
             if (tablePesquisaProd.getSelectedRow() >= 0) {
-                
-                final int rowPesquisa = tablePesquisaProd.getSelectedRow();
-                
-                String pesquisa = (String) tablePesquisaProd.getValueAt(rowPesquisa, 0);
-                
+
                 //sempre que adicionar item no carrindo, total é zerado, para percorrer
                 //novamente na tabela e somar
                 //somente ao finalizar o pedido, que vai ser enviado o valor total
                 total = 0.00f;
 
-                List<Produto> resultado = ServicoProduto.procurarProduto(pesquisa);
+                final int rowPesquisa = tablePesquisaProd.getSelectedRow();
 
-                DefaultTableModel model = (DefaultTableModel) tableCarrinho.getModel();
+                Integer idPesquisa = (Integer) tablePesquisaProd.getValueAt(rowPesquisa, 0);
+
+                Produto prodSelecionado = ServicoProduto.obterProduto(idPesquisa);
+                
+                DefaultTableModel modelCarrinho = (DefaultTableModel) tableCarrinho.getModel();
 
                 //Adicionando item na venda
-                ItemCart item = new ItemCart(prod, Integer.parseInt(fTxtQntd.getText()));
+                ItemCart item = new ItemCart(prodSelecionado, Integer.parseInt(fTxtQntd.getText()));
 
                 if (Integer.parseInt(fTxtQntd.getText()) <= item.getQntdEstoque()) {
                     venda.addItem(item);
@@ -354,14 +354,14 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     row[3] = item.getQntdCompra();
                     row[4] = item.getPrecoUnit();
                     row[5] = item.getValor();
-                    model.addRow(row);
+                    modelCarrinho.addRow(row);
 
                     for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
-                        float valorItem = (float) tableCarrinho.getValueAt(i, 4);
+                        float valorItem = (float) tableCarrinho.getValueAt(i, 5);
 
                         total += valorItem;
 
-                        lblTotal.setText("Total: R$ " + total);
+                        lblTotal.setText("Total: R$ %.2f" +total);
                     }
                 } else if (item.getQntdEstoque() == 0) {
                     JOptionPane.showMessageDialog(rootPane, "O estoque do produto está vazio");
@@ -388,6 +388,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
         tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
+        
+        DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
+
+        modelPesquisaProd.setRowCount(0);        
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -439,7 +443,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
     //carrega a lista de produtos no comboBox assim que pressionar a tecla 'Enter'
     private void keyPressedEnterProduto(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedEnterProduto
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            
+
             boolean resultSearch = false;
 
             try {
@@ -542,9 +546,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         List<Produto> resultadoProd = ServicoProduto.procurarProduto(txtProduto.getText());
 
-        DefaultTableModel model = (DefaultTableModel) tablePesquisaProd.getModel();
+        DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
 
-        model.setRowCount(0);
+        modelPesquisaProd.setRowCount(0);
 
         if (resultadoProd == null || resultadoProd.size() <= 0) {
             return false;
@@ -560,30 +564,17 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 row[2] = produto.getPlataforma();
                 row[3] = produto.getPreco();
 
-                model.addRow(row);
+                modelPesquisaProd.addRow(row);
             }
         }
 
         //faz com que a coluna do ID não seja mostrada ao usuário
-        tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
-        tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
-        tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
+        tablePesquisaProd.getColumnModel().getColumn(0).setMinWidth(0);
+        tablePesquisaProd.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablePesquisaProd.getColumnModel().getColumn(0).setWidth(0);
 
         return true;
     }
-
-//    //realiza a busca para achar os produtos que correspondem ao texto informado
-//    public void addProduto() throws ProdutosException, Exception {
-//
-//        //cria lista, porém o esperado é retornar somente um objeto produto
-//        List<Produto> resultado = ServicoProduto.procurarProduto();
-//
-//        Produto produto = resultado.get(0);
-//
-//        prod = produto;
-//
-//    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;

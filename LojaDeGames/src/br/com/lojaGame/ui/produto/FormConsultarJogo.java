@@ -207,7 +207,7 @@ public class FormConsultarJogo
 
             //Obtém o nome do jogo da linha indicada para exibição
             //de mensagem de confirmação de exclusão utilizando seu número
-            String jogo = (String) tableConsultaJogo.getValueAt(row, 1);
+            String jogo = (String) tableConsultaJogo.getValueAt(row, 2);
 
             //Mostra o diálogo de confirmação de exclusão
             int resposta = JOptionPane.showConfirmDialog(rootPane,
@@ -247,12 +247,12 @@ public class FormConsultarJogo
             //Obtém o valor do ID da coluna "ID" da tabela de resultados
             Integer id = (Integer) tableConsultaJogo.getValueAt(row, 0);
 
-            //Com o ID da coluna, chama o serviço de cliente para
-            //obter o cliente com dados atualizados do mock
+            //Com o ID da coluna, chama o serviço de produto para
+            //obter o produto com dados atualizados do mock
             Produto jogo = ServicoProduto.obterProduto(id);
 
             //Cria uma nova instância da tela de edição,
-            //configura o cliente selecionado como elemento a
+            //configura o produto selecionado como elemento a
             //ser editado e mostra a tela de edição.
             //Para exibir a tela, é necessário adicioná-la ao
             //componente de desktop, o "pai" da janela corrente
