@@ -38,6 +38,10 @@ public class ItemCart {
     public String getNomeProd() {
         return produto.getNome();
     }
+    
+    public String getPlataforma(){
+        return produto.getPlataforma();
+    }
 
     public Integer getQntdCompra() {
         return qntdCompra;
@@ -47,7 +51,7 @@ public class ItemCart {
         return produto.getQtdEstoque();
     }
 
-    public String getCodString() {
+    public String getCodBarras() {
         return produto.getCodBarras();
     }
 
