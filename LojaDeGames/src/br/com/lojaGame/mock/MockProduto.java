@@ -35,6 +35,7 @@ public class MockProduto {
                     produtoCli.setFaixaEtaria(produtoProcura.getFaixaEtaria());
                     produtoCli.setQtdJogadores(produtoProcura.getQtdJogadores());
                     produtoCli.setQtdEstoque(produtoProcura.getQtdEstoque());
+                    produtoCli.setCodBarras(produtoProcura.getCodBarras());
 
                     break;
                 }
@@ -72,10 +73,12 @@ public class MockProduto {
         if (valor != null && !listaProdutos.isEmpty()) {
             for (Produto produtoLi : listaProdutos) {
                 if (produtoLi != null && produtoLi.getNome() != null
-                        && produtoLi.getCategoria() != null && produtoLi.getPlataforma() != null) {
+                        && produtoLi.getCategoria() != null && produtoLi.getPlataforma() != null
+                        && produtoLi.getCodBarras() != null) {
                     if (produtoLi.getNome().toUpperCase().contains(valor.toUpperCase())
                             || produtoLi.getCategoria().toUpperCase().contains(valor.toUpperCase())
-                            || produtoLi.getPlataforma().toUpperCase().contains(valor.toUpperCase())) {
+                            || produtoLi.getPlataforma().toUpperCase().contains(valor.toUpperCase())
+                            || produtoLi.getCodBarras().toUpperCase().contains(valor.toUpperCase())) {
                         listaResultado.add(produtoLi);
                     }
                 }

@@ -18,10 +18,13 @@ public class ValidadorProduto {
         if (produto.getPlataforma() == null || "Selecione".equals(produto.getPlataforma())) {
             throw new ProdutosException("É necessário informar a plataforma do jogo");
         }
-        if (produto.getPreco() == null ||produto.getPreco()<0) {
+        if (produto.getPreco() == null || produto.getPreco() < 0) {
             throw new ProdutosException("É necessário informar o preço do jogo");
         }
-        if (produto.getQtdEstoque() == null ||produto.getQtdEstoque()<0) {
+        if (produto.getCodBarras() == null || "".equals(produto.getCodBarras().trim())) {
+            throw new ProdutosException("Campo estoque está vazio");
+        }
+        if (produto.getQtdEstoque() == null || produto.getQtdEstoque() < 0) {
             throw new ProdutosException("Campo estoque está vazio");
         }
         if (produto.getFaixaEtaria() == null || "Selecione".equals(produto.getFaixaEtaria())) {

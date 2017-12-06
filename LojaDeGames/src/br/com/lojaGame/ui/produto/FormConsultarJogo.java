@@ -51,21 +51,21 @@ public class FormConsultarJogo
 
         lblPesquisa.setText("Pesquisar");
 
-        txtPesquisa.setToolTipText("Nome/Categoria/Plataforma. Deixar vazio retornará todos.");
+        txtPesquisa.setToolTipText("Cód. Barras/Nome/Categoria/Plataforma. Deixar vazio retornará todos.");
 
         tableConsultaJogo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome", "Categoria", "Plataforma", "Jogadores", "Preço", "Qtd Estoque", "Faixa Etária", "Fabricante"
+                "ID", "Cód. Barras", "Nome", "Categoria", "Plataforma", "Jogadores", "Preço", "Qtd Estoque", "Faixa Etária", "Fabricante"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -299,16 +299,17 @@ public class FormConsultarJogo
         for (int i = 0; i < resultado.size(); i++) {
             Produto jogo = resultado.get(i);
             if (jogo != null) {
-                Object[] row = new Object[9];
+                Object[] row = new Object[10];
                 row[0] = jogo.getIdProd();
-                row[1] = jogo.getNome();
-                row[2] = jogo.getCategoria();
-                row[3] = jogo.getPlataforma();
-                row[4] = jogo.getQtdJogadores();
-                row[5] = jogo.getPreco();
-                row[6] = jogo.getQtdEstoque();
-                row[7] = jogo.getFaixaEtaria();
-                row[8] = jogo.getFabricante();
+                row[1] = jogo.getCodBarras();
+                row[2] = jogo.getNome();
+                row[3] = jogo.getCategoria();
+                row[4] = jogo.getPlataforma();
+                row[5] = jogo.getQtdJogadores();
+                row[6] = jogo.getPreco();
+                row[7] = jogo.getQtdEstoque();
+                row[8] = jogo.getFaixaEtaria();
+                row[9] = jogo.getFabricante();
 
                 model.addRow(row);
             }

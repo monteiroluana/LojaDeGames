@@ -47,4 +47,8 @@ public class ItemCart {
         return produto.getQtdEstoque();
     }
 
+    public String getCodString() {
+        return produto.getCodBarras();
+    }
+
 }

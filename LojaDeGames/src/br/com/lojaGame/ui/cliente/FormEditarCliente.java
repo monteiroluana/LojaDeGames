@@ -373,7 +373,6 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         //obtem as informações dos campos
         //Informações Pessoais
         cliente.setNome(txtNomeCliente.getText());
-        cliente.setCPF(fTxtCPF.getText());
         cliente.setRG(fTxtRG.getText());
         cliente.setSexo((String) comboSexo.getSelectedItem());
 

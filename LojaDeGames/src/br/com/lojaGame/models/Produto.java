@@ -11,6 +11,7 @@ public class Produto {
     private String qtdJogadores;
     private Integer qtdEstoque;
     private Float preco;
+    private String codBarras;
 
     public Integer getIdProd() {
         return idProduto;
@@ -82,6 +83,14 @@ public class Produto {
 
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
+    }
+    
+    public String getCodBarras() {
+        return codBarras;
+    }
+
+    public void setCodBarras(String codBarras) {
+        this.codBarras = codBarras;
     }
 
 }
