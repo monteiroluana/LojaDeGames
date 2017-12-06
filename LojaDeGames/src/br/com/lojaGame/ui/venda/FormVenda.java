@@ -326,6 +326,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 //somente ao finalizar o pedido, que vai ser enviado o valor total
                 total = 0.00f;
 
+                //pega a linha selecionada
                 final int rowPesquisa = tablePesquisaProd.getSelectedRow();
 
                 Integer idPesquisa = (Integer) tablePesquisaProd.getValueAt(rowPesquisa, 0);

@@ -30,5 +30,9 @@ public class ValidadorProduto {
         if (produto.getFaixaEtaria() == null || "Selecione".equals(produto.getFaixaEtaria())) {
             throw new ProdutosException("É necessário informar a faixa etária do jogo");
         }
+        //teste
+        if ("Selecione".equals(produto.getQtdJogadores())){
+            produto.setQtdJogadores("oeoeoe");
+        }
     }
 }
