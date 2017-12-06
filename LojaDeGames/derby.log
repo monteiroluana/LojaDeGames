@@ -1,0 +1,18 @@
+Wed Dec 06 21:04:40 BRST 2017 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+----------------------------------------------------------------
+Wed Dec 06 21:04:40 BRST 2017:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-0160-2e12-ed6c-000059ef32a1
+no diretório de banco de dados C:\Users\luana.mpereira5\Documents\GitHub\LojaDeGames\LojaDeGames\jdbc_lojaGames 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_111-b14
+user.dir=C:\Program Files\glassfish-4.1.1\javadb
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\luana.mpereira5\Documents\GitHub\LojaDeGames\LojaDeGames
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Dec 06 21:04:48 BRST 2017:
+Encerrando a instância a816c00e-0160-2e12-ed6c-000059ef32a1
+Wed Dec 06 21:04:48 BRST 2017 Thread[DRDAConnThread_2,5,main] (DATABASE = jdbc_lojaGames), (DRDAID = {2}), Banco de dados 'jdbc_lojaGames' fechado.
