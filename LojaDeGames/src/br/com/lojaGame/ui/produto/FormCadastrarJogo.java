@@ -40,6 +40,8 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         comboFaixaEt = new javax.swing.JComboBox<>();
         lblEstoque = new javax.swing.JLabel();
         txtEstoque = new javax.swing.JTextField();
+        lblCodBarras = new javax.swing.JLabel();
+        fTxtCodBarras = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -79,11 +81,22 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
         lblFaixaEt.setText("* Faixa Etária");
 
-        comboJogadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "SinglePlayer", "Multiplayer" }));
+        txtPreco.setToolTipText("Ex.: 20.99 (Utilize ponto ao invés de vírgula)");
+
+        comboJogadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Singleplayer", "Multiplayer" }));
 
         comboFaixaEt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos" }));
 
         lblEstoque.setText("* Qntd. Estoque");
+
+        lblCodBarras.setText("* Cód. Barras");
+
+        try {
+            fTxtCodBarras.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        fTxtCodBarras.setToolTipText("10 dígitos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,20 +106,25 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCodBarras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fTxtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEstoque)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNome))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(213, 213, 213)
+                                .addGap(205, 205, 205)
                                 .addComponent(buttonCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(buttonCadastrar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblEstoque)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCategoria)
@@ -163,12 +181,14 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEstoque))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCancelar)
-                    .addComponent(buttonCadastrar))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(lblEstoque)
+                    .addComponent(lblCodBarras)
+                    .addComponent(fTxtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonCadastrar)
+                    .addComponent(buttonCancelar))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,6 +210,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
         jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
+        jogo.setCodBarras(fTxtCodBarras.getText());
 
         try {
 
@@ -200,10 +221,10 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
             }
 
             if (txtPreco.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(rootPane, "Insira o preco do produto!");
+                JOptionPane.showMessageDialog(rootPane, "Insira o preço do produto!");
 
                 if (Float.parseFloat(txtPreco.getText()) <= 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Insira um preco valido para o produto!");
+                    JOptionPane.showMessageDialog(rootPane, "Insira um preço válido para o produto!");
                     return;
                 }
                 return;
@@ -233,6 +254,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         txtPreco.setText("");
         comboFaixaEt.setSelectedIndex(0);
         comboJogadores.setSelectedIndex(0);
+        fTxtCodBarras.setValue(null);
         txtEstoque.setText("");
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
@@ -278,7 +300,9 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboFaixaEt;
     private javax.swing.JComboBox<String> comboJogadores;
     private javax.swing.JComboBox<String> comboPlat;
+    private javax.swing.JFormattedTextField fTxtCodBarras;
     private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblCodBarras;
     private javax.swing.JLabel lblEstoque;
     private javax.swing.JLabel lblFab;
     private javax.swing.JLabel lblFaixaEt;

@@ -23,10 +23,7 @@ public class ValidadorCliente {
         }
         if (cliente.getSexo() == null || "Selecione...".equals(cliente.getSexo())) {
             throw new ClientesException("É necessário informar o sexo");
-        }
-//        if (cliente.getDataNasc() == null) {
-//            throw new ClientesException("É necessário informar data de nascimento");
-//        }
+        }       
         if (cliente.getCep() == null || "".equals(cliente.getCep())) {
             throw new ClientesException("É necessário informar o CEP");
         }
@@ -50,6 +47,11 @@ public class ValidadorCliente {
             if (!matcher.matches()) {
                 throw new ClientesException("Email inválido");
             }
+        }
+        
+         //teste p/ não deixar o Selecione...
+        if ("Selecione...".equals(cliente.getEstadoCivil())){
+            cliente.setEstadoCivil("");
         }
 
     }
