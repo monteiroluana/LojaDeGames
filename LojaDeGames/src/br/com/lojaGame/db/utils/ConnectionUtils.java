@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class ConnectionUtils {
 
-    public static Connection getConnetion() throws SQLException {
+    public static Connection getConnetion() {
 
         Connection connection = null;
 
@@ -32,4 +32,5 @@ public class ConnectionUtils {
         return connection;
 
     }
+
 }

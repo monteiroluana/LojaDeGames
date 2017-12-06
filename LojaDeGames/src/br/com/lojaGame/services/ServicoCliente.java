@@ -52,10 +52,12 @@ public class ServicoCliente {
         try {
             if (nome == null || "".equals(nome)) {
 
-                return MockCliente.listar();
+//                return MockCliente.listar();
+                return DaoCliente.listar();
             } else {
 
                 return MockCliente.procurar(nome);
+//                return DaoCliente.procurar(nome);
             }
         } catch (Exception e) {
 
