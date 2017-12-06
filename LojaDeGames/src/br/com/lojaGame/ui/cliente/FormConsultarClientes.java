@@ -36,7 +36,6 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         txtDado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableConsultaCliente = new javax.swing.JTable();
-        buttonRetornarTodos = new javax.swing.JButton();
         buttonBuscar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
@@ -48,6 +47,8 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         setTitle("Consulta de Clientes");
 
         lblDado.setText("Pesquisar");
+
+        txtDado.setToolTipText("Nome ou CPF (000.000.000-00). Deixar vazio retornará todos.");
 
         tableConsultaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,18 +73,12 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableConsultaCliente.setToolTipText("");
         jScrollPane1.setViewportView(tableConsultaCliente);
-
-        buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonRetornarTodos.setText("Retornar todos");
-        buttonRetornarTodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRetornarTodosActionPerformed(evt);
-            }
-        });
 
         buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonBuscar.setText("Buscar");
+        buttonBuscar.setToolTipText("Busca cliente por nome ou CPF.");
         buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBuscarActionPerformed(evt);
@@ -91,6 +86,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         });
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.setToolTipText("Cancela/fecha a janela.");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarActionPerformed(evt);
@@ -99,6 +95,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
 
         buttonExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonExcluir.setText("Excluir");
+        buttonExcluir.setToolTipText("Exclui o cliente selecionado.");
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirActionPerformed(evt);
@@ -107,6 +104,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
 
         buttonEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonEditar.setText("Editar");
+        buttonEditar.setToolTipText("Abre a janela p/ editar o cliente selecionado.");
         buttonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditarActionPerformed(evt);
@@ -119,23 +117,25 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(buttonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonExcluir)
                         .addGap(18, 18, 18)
                         .addComponent(buttonEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonRetornarTodos))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDado, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonBuscar)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtDado, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonBuscar)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,14 +146,13 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                     .addComponent(txtDado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonBuscar))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancelar)
                     .addComponent(buttonExcluir)
-                    .addComponent(buttonEditar)
-                    .addComponent(buttonRetornarTodos))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(buttonEditar))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,26 +235,6 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
-
-    private void buttonRetornarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetornarTodosActionPerformed
-        boolean resultSearch = false;
-        
-        try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
-            resultSearch = refreshList();
-        } catch (Exception e) {
-            //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //faz com que a coluna do ID não seja mostrada ao usuário
-        tableConsultaCliente.getColumnModel().getColumn(0).setMinWidth(0);
-        tableConsultaCliente.getColumnModel().getColumn(0).setMaxWidth(0);
-        tableConsultaCliente.getColumnModel().getColumn(0).setWidth(0);
-    }//GEN-LAST:event_buttonRetornarTodosActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
         try {
@@ -384,7 +363,6 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
-    private javax.swing.JButton buttonRetornarTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDado;
     private javax.swing.JTable tableConsultaCliente;

@@ -39,7 +39,6 @@ public class FormConsultarJogo
         jScrollPane1 = new javax.swing.JScrollPane();
         tableConsultaJogo = new javax.swing.JTable();
         buttonBuscar = new javax.swing.JButton();
-        buttonRetornarTodos = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
         buttonEditar = new javax.swing.JButton();
@@ -48,9 +47,11 @@ public class FormConsultarJogo
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setTitle("Consulta de Jogos");
-        setToolTipText("Nome/Categoria/Plataforma");
+        setToolTipText("");
 
         lblPesquisa.setText("Pesquisar");
+
+        txtPesquisa.setToolTipText("Nome/Categoria/Plataforma. Deixar vazio retornará todos.");
 
         tableConsultaJogo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,22 +79,16 @@ public class FormConsultarJogo
         jScrollPane1.setViewportView(tableConsultaJogo);
 
         buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search2.png"))); // NOI18N
+        buttonBuscar.setText("Buscar");
+        buttonBuscar.setToolTipText("Busca o(s) jogo(s) por Nome, Categoria ou Plataforma.");
         buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBuscarActionPerformed(evt);
             }
         });
 
-        buttonRetornarTodos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonRetornarTodos.setText("Retornar todos");
-        buttonRetornarTodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRetornarTodosActionPerformed(evt);
-            }
-        });
-
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.setToolTipText("Cancela/fecha a janela.");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarActionPerformed(evt);
@@ -102,7 +97,7 @@ public class FormConsultarJogo
 
         buttonExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonExcluir.setText("Excluir");
-        buttonExcluir.setToolTipText("");
+        buttonExcluir.setToolTipText("Exclui o jogo selecionado.");
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirActionPerformed(evt);
@@ -111,6 +106,7 @@ public class FormConsultarJogo
 
         buttonEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonEditar.setText("Editar");
+        buttonEditar.setToolTipText("Abre a janela p/ editar o jogo selecionado.");
         buttonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditarActionPerformed(evt);
@@ -126,19 +122,19 @@ public class FormConsultarJogo
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
                         .addComponent(buttonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonRetornarTodos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonEditar)
+                        .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonBuscar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -150,16 +146,16 @@ public class FormConsultarJogo
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblPesquisa)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(buttonBuscar))
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonRetornarTodos)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonCancelar)
-                    .addComponent(buttonExcluir)
-                    .addComponent(buttonEditar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonEditar)
+                        .addComponent(buttonExcluir)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -280,26 +276,6 @@ public class FormConsultarJogo
         }
     }//GEN-LAST:event_buttonEditarActionPerformed
 
-    private void buttonRetornarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetornarTodosActionPerformed
-        boolean resultSearch = false;
-
-        try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
-            resultSearch = refreshList();
-        } catch (Exception e) {
-            //Exibe mensagens de erro na fonte de dados e para o listener
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //faz com que a coluna do ID não seja mostrada ao usuário
-        tableConsultaJogo.getColumnModel().getColumn(0).setMinWidth(0);
-        tableConsultaJogo.getColumnModel().getColumn(0).setMaxWidth(0);
-        tableConsultaJogo.getColumnModel().getColumn(0).setWidth(0);
-    }//GEN-LAST:event_buttonRetornarTodosActionPerformed
-
     //Atualiza a lista de jogos. Pode ser chamado por outras telas
     public boolean refreshList() throws ProdutosException, Exception {
         //Realiza a pesquisa de jogos com o último valor de pesquisa
@@ -391,7 +367,6 @@ public class FormConsultarJogo
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
-    private javax.swing.JButton buttonRetornarTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPesquisa;
     private javax.swing.JTable tableConsultaJogo;
