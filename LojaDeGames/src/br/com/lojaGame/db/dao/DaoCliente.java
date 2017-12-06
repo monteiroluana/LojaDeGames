@@ -15,7 +15,7 @@ public class DaoCliente {
 
     public static void inserir(Cliente cliente) throws SQLException, Exception {
         //Monta a String de 'INSERT' de um cliente no DB;
-        String sql = "INSERT INTO cliente (id, nome, endereco) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cliente (id, nome, logradouro) VALUES (?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -47,7 +47,7 @@ public class DaoCliente {
     public static List<Cliente> listar()
             throws SQLException, Exception {
    
-        String sql = "SELECT * FROM cliente;";
+        String sql = "SELECT * FROM cliente";
         //Lista de clientes de resultado
         List<Cliente> listaClientes = null;
         //Conexão para abertura e fechamento
@@ -77,17 +77,18 @@ public class DaoCliente {
                 Cliente cliente = new Cliente();
                 cliente.setNome(result.getString("nome"));
                 cliente.setCPF(result.getString("id"));
-                cliente.setRG(result.getString("nome"));
+                cliente.setRG(result.getString("id"));
                 cliente.setSexo(result.getString("nome"));
                 cliente.setEstadoCivil(result.getString("nome"));
-//                Date d = new Date(result.getTimestamp("nome").getTime());
                 cliente.setEmail(result.getString("nome"));
                 cliente.setTelefone(result.getString("nome"));
-                cliente.setCep(result.getString("nome"));
-                cliente.setLogradouro(result.getString("nome"));
-                cliente.setBairro(result.getString("nome"));
-                cliente.setCidade(result.getString("nome"));
-                cliente.setUF(result.getString("nome"));
+                cliente.setCep(result.getString("logradouro"));
+                cliente.setLogradouro(result.getString("logradouro"));
+                cliente.setBairro(result.getString("logradouro"));
+                cliente.setCidade(result.getString("logradouro"));
+                cliente.setUF(result.getString("logradouro"));
+                cliente.setNumero(result.getString("logradouro"));
+                cliente.setIdCliente(1);
                 
             
                 //Adiciona a instância na lista
