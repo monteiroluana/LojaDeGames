@@ -10,6 +10,7 @@ import br.com.lojaGame.services.ServicoCliente;
 import br.com.lojaGame.services.ServicoProduto;
 import br.com.lojaGame.services.ServicoVenda;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +20,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private Venda venda = new Venda();
     private Object cli;
     private float total;
+    // formatar o valor total e exibir somente duas casas decimais
+    private DecimalFormat valorFormat = new DecimalFormat("0.00");
 
     /**
      * Creates new form FormVenda
@@ -316,11 +319,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        
 
         try {
 
             if (tablePesquisaProd.getSelectedRow() >= 0) {
-
                 //sempre que adicionar item no carrindo, total é zerado, para percorrer
                 //novamente na tabela e somar
                 //somente ao finalizar o pedido, que vai ser enviado o valor total
@@ -332,7 +335,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 Integer idPesquisa = (Integer) tablePesquisaProd.getValueAt(rowPesquisa, 0);
 
                 Produto prodSelecionado = ServicoProduto.obterProduto(idPesquisa);
-                
+
                 DefaultTableModel modelCarrinho = (DefaultTableModel) tableCarrinho.getModel();
 
                 //Adicionando item na venda
@@ -362,12 +365,12 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                         total += valorItem;
 
-                        lblTotal.setText("Total: R$ %.2f" +total);
+                        lblTotal.setText("Total: R$ " + valorFormat.format(total));
                     }
                 } else if (item.getQntdEstoque() == 0) {
                     JOptionPane.showMessageDialog(rootPane, "O estoque do produto está vazio");
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Só exite " + item.getQntdEstoque() + " quantidade(s) desse produto em estoque");
+                    JOptionPane.showMessageDialog(rootPane, "Só existe " + item.getQntdEstoque() + " quantidade(s) desse produto em estoque");
                 }
 
             } else {
@@ -389,10 +392,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
         tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
-        
+
         DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
 
-        modelPesquisaProd.setRowCount(0);        
+        modelPesquisaProd.setRowCount(0);
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -494,7 +497,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 try {
 
                     //Obtém o valor do item p/ subtrair do total
-                    Float valorItem = (float) tableCarrinho.getValueAt(row, 4);
+                    Float valorItem = (float) tableCarrinho.getValueAt(row, 5);
 
                     //Obtém o ID do produto
                     Integer idItemCart = (Integer) tableCarrinho.getValueAt(row, 0);
@@ -506,7 +509,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     model.removeRow(tableCarrinho.getSelectedRow());
 
                     //altera a label total
-                    lblTotal.setText("Total: R$ " + (total - valorItem));
+                    lblTotal.setText("Total: R$ " + valorFormat.format(total - valorItem));
 
                 } catch (Exception e) {
                     //Se ocorrer algum erro técnico, mostra-o no console,

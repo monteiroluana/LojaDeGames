@@ -51,7 +51,7 @@ public class ValidadorCliente {
         
          //teste p/ não deixar o Selecione...
         if ("Selecione...".equals(cliente.getEstadoCivil())){
-            cliente.setEstadoCivil("");
+            cliente.setEstadoCivil(null);
         }
 
     }
