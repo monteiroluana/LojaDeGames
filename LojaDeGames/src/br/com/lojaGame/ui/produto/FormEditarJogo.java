@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class FormEditarJogo extends javax.swing.JInternalFrame {
 
-    //Armazena o cliente em edição
+    //Armazena o produto em edição
     Produto jogo = new Produto();
 
     //Construtor e inicialização de componentes
@@ -227,7 +227,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
         //Configura os novos valores dos campos de edição da tela
-        //para o objeto de cliente, a fim de passá-lo para o serviço
+        //para o objeto de produto, a fim de passá-lo para o serviço
         //e realizar as atualizações no mock
         //obtem as informações dos campos
 
@@ -250,7 +250,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
             return;
         }
 
-        //Atualiza a tela de consulta de clientes, caso possível. Para isso,
+        //Atualiza a tela de consulta de produtos, caso possível. Para isso,
         //obtém o "top level ancestor" (ou seja, o componente pai mais acima
         //do formulário, no nosso caso, o desktop) para conseguir o frame
         //de consulta e daí solicitar a atualização da lista através da
@@ -277,7 +277,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     //Listener de abertura da janela. Aproveita o evento para obter os valores
-    //do cliente em edição e passa-os para os campos de edição da tela
+    //do produto em edição e passa-os para os campos de edição da tela
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         txtNome.setText(jogo.getNome());
 
