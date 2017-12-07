@@ -23,6 +23,10 @@ public class FormConsultarJogo
      */
     public FormConsultarJogo() {
         initComponents();
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tableConsultaJogo.getColumnModel().getColumn(0).setMinWidth(0);
+        tableConsultaJogo.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableConsultaJogo.getColumnModel().getColumn(0).setWidth(0);
     }
 
     /**
@@ -191,11 +195,6 @@ public class FormConsultarJogo
             JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
                     "Sem resultados", JOptionPane.ERROR_MESSAGE);
         }
-
-        //faz com que a coluna do ID não seja mostrada ao usuário
-        tableConsultaJogo.getColumnModel().getColumn(0).setMinWidth(0);
-        tableConsultaJogo.getColumnModel().getColumn(0).setMaxWidth(0);
-        tableConsultaJogo.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed

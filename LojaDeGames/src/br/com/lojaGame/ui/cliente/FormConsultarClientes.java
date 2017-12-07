@@ -21,6 +21,11 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
      */
     public FormConsultarClientes() {
         initComponents();
+        
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tableConsultaCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tableConsultaCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableConsultaCliente.getColumnModel().getColumn(0).setWidth(0);
     }
 
     /**
@@ -186,12 +191,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         if (!resultSearch) {
             JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
                     "Sem resultados", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        //faz com que a coluna do ID não seja mostrada ao usuário
-        tableConsultaCliente.getColumnModel().getColumn(0).setMinWidth(0);
-        tableConsultaCliente.getColumnModel().getColumn(0).setMaxWidth(0);
-        tableConsultaCliente.getColumnModel().getColumn(0).setWidth(0);
+        }        
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed

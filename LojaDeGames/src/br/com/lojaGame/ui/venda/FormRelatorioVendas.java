@@ -16,6 +16,11 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
      */
     public FormRelatorioVendas() {
         initComponents();
+        
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tableRelatorio.getColumnModel().getColumn(0).setMinWidth(0);
+        tableRelatorio.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableRelatorio.getColumnModel().getColumn(0).setWidth(0);
     }
 
     /**
@@ -175,11 +180,7 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
                     "Sem resultados", JOptionPane.ERROR_MESSAGE);
         }
-
-        //faz com que a coluna do ID não seja mostrada ao usuário
-        tableRelatorio.getColumnModel().getColumn(0).setMinWidth(0);
-        tableRelatorio.getColumnModel().getColumn(0).setMaxWidth(0);
-        tableRelatorio.getColumnModel().getColumn(0).setWidth(0);
+        
     }//GEN-LAST:event_buttonGerarRelatActionPerformed
 
     public boolean refreshList() throws VendasException, Exception {

@@ -215,6 +215,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             this.openFrameInCenter(consultarClientes);
         }
         consultarClientes.toFront();
+        
     }//GEN-LAST:event_itemConsultarClienteActionPerformed
 
     private void itemCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarProdutoActionPerformed

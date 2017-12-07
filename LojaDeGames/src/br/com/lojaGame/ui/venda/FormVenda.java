@@ -28,6 +28,15 @@ public class FormVenda extends javax.swing.JInternalFrame {
      */
     public FormVenda() {
         initComponents();
+        
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tablePesquisaProd.getColumnModel().getColumn(0).setMinWidth(0);
+        tablePesquisaProd.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablePesquisaProd.getColumnModel().getColumn(0).setWidth(0);
+        
+        tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
+        tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
     }
 
     /**
@@ -127,28 +136,29 @@ public class FormVenda extends javax.swing.JInternalFrame {
         panelAdicionarLayout.setHorizontalGroup(
             panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(panelAdicionarLayout.createSequentialGroup()
-                .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAdicionarLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblQntd))
-                    .addGroup(panelAdicionarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblProduto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
-                        .addComponent(fTxtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133))))
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAdicionarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAdicionarLayout.createSequentialGroup()
+                        .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelAdicionarLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblQntd))
+                            .addGroup(panelAdicionarLayout.createSequentialGroup()
+                                .addComponent(lblProduto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionarLayout.createSequentialGroup()
+                                .addComponent(fTxtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(133, 133, 133))))
+                    .addGroup(panelAdicionarLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelAdicionarLayout.setVerticalGroup(
             panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +260,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
         }
         fTxtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                keyPressedEnterCPF(evt);
+                keyPressedCPF(evt);
             }
         });
 
@@ -386,12 +396,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                     "Falha ao adicionar", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-
-        //faz com que a coluna do ID não seja mostrada ao usuário
-        tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
-        tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
-        tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
+        }        
 
         DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
 
@@ -460,8 +465,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_keyPressedEnterProduto
 
     //carrega o nome do cliente assim que é pressionado aqualquer tecla
-    private void keyPressedEnterCPF(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedEnterCPF
-        //        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+    private void keyPressedCPF(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyPressedCPF
         boolean resultSearch = false;
 
         try {
@@ -470,8 +474,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                     "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
         }
-//        }
-    }//GEN-LAST:event_keyPressedEnterCPF
+    }//GEN-LAST:event_keyPressedCPF
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         DefaultTableModel model = (DefaultTableModel) tableCarrinho.getModel();
@@ -570,12 +573,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                 modelPesquisaProd.addRow(row);
             }
-        }
-
-        //faz com que a coluna do ID não seja mostrada ao usuário
-        tablePesquisaProd.getColumnModel().getColumn(0).setMinWidth(0);
-        tablePesquisaProd.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablePesquisaProd.getColumnModel().getColumn(0).setWidth(0);
+        }      
 
         return true;
     }
