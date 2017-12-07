@@ -51,7 +51,6 @@ public class FormConsultarJogo
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setTitle("Consulta de Jogos");
-        setToolTipText("");
 
         lblPesquisa.setText("Pesquisar");
 
@@ -80,7 +79,6 @@ public class FormConsultarJogo
                 return canEdit [columnIndex];
             }
         });
-        tableConsultaJogo.setToolTipText("");
         jScrollPane1.setViewportView(tableConsultaJogo);
 
         buttonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
