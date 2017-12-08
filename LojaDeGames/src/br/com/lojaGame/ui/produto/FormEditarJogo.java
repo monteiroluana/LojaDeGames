@@ -233,7 +233,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
         jogo.setNome(txtNome.getText());
         jogo.setCategoria((String) comboCategoria.getSelectedItem());
-        jogo.setFabricante(txtFab.getText());
+        jogo.setDesenv(txtFab.getText());
         jogo.setPlataforma((String) comboPlat.getSelectedItem());
         jogo.setPreco(Float.parseFloat(txtPreco.getText()));
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
@@ -288,7 +288,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
             }
         }
 
-        txtFab.setText(jogo.getFabricante());
+        txtFab.setText(jogo.getDesenv());
 
         for (int i = 0; i < comboPlat.getItemCount(); i++) {
             if (comboPlat.getItemAt(i).equals(jogo.getPlataforma())) {

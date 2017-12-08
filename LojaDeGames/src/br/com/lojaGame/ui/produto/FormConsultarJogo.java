@@ -307,7 +307,7 @@ public class FormConsultarJogo
                 row[6] = jogo.getPreco();
                 row[7] = jogo.getQtdEstoque();
                 row[8] = jogo.getFaixaEtaria();
-                row[9] = jogo.getFabricante();
+                row[9] = jogo.getDesenv();
 
                 model.addRow(row);
             }
