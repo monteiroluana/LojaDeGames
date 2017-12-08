@@ -91,7 +91,7 @@
                                               <Component id="comboCategoria" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="lblFab" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblDesenv" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="txtFab" min="-2" pref="127" max="-2" attributes="0"/>
                                           </Group>
@@ -125,7 +125,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPlat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboPlat" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFab" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDesenv" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtFab" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -255,9 +255,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNome">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblFab">
+    <Component class="javax.swing.JLabel" name="lblDesenv">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fabricante"/>
+        <Property name="text" type="java.lang.String" value="Desenv."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFab">

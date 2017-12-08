@@ -24,7 +24,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        lblFab = new javax.swing.JLabel();
+        lblDesenv = new javax.swing.JLabel();
         txtFab = new javax.swing.JTextField();
         lblCategoria = new javax.swing.JLabel();
         comboCategoria = new javax.swing.JComboBox<>();
@@ -50,7 +50,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
 
         lblNome.setText("* Nome");
 
-        lblFab.setText("Fabricante");
+        lblDesenv.setText("Desenv.");
 
         lblCategoria.setText("* Categoria");
 
@@ -119,7 +119,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(comboPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblFab)
+                            .addComponent(lblDesenv)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -142,7 +142,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                         .addComponent(lblEstoque)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(0, 28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonCancelar)
@@ -168,7 +168,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
                     .addComponent(lblPlat)
                     .addComponent(comboPlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFab))
+                    .addComponent(lblDesenv))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFaixaEt)
@@ -300,8 +300,8 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField fTxtCodBarras;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblCodBarras;
+    private javax.swing.JLabel lblDesenv;
     private javax.swing.JLabel lblEstoque;
-    private javax.swing.JLabel lblFab;
     private javax.swing.JLabel lblFaixaEt;
     private javax.swing.JLabel lblJogadores;
     private javax.swing.JLabel lblNome;

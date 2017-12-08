@@ -43,7 +43,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="comboPlat" min="-2" pref="139" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lblFab" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDesenv" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="txtFab" min="-2" pref="135" max="-2" attributes="0"/>
                       </Group>
@@ -72,7 +72,7 @@
                       <Component id="txtEstoque" min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -103,7 +103,7 @@
                   <Component id="lblPlat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboPlat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtFab" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFab" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDesenv" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -137,9 +137,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNome">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblFab">
+    <Component class="javax.swing.JLabel" name="lblDesenv">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fabricante"/>
+        <Property name="text" type="java.lang.String" value="Desenv."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFab">

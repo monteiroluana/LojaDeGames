@@ -44,7 +44,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         comboFaixaEt = new javax.swing.JComboBox<>();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        lblFab = new javax.swing.JLabel();
+        lblDesenv = new javax.swing.JLabel();
         txtFab = new javax.swing.JTextField();
         lblCategoria = new javax.swing.JLabel();
         comboCategoria = new javax.swing.JComboBox<>();
@@ -105,7 +105,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
         lblNome.setText("* Nome");
 
-        lblFab.setText("Fabricante");
+        lblDesenv.setText("Desenv.");
 
         lblCategoria.setText("* Categoria");
 
@@ -175,7 +175,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(comboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblFab)
+                                                .addComponent(lblDesenv)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(30, 30, 30))))
@@ -197,7 +197,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPlat)
                     .addComponent(comboPlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFab)
+                    .addComponent(lblDesenv)
                     .addComponent(txtFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -363,8 +363,8 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField fTxtCodBarras;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblCodBarras;
+    private javax.swing.JLabel lblDesenv;
     private javax.swing.JLabel lblEstoque;
-    private javax.swing.JLabel lblFab;
     private javax.swing.JLabel lblFaixaEt;
     private javax.swing.JLabel lblJogadores;
     private javax.swing.JLabel lblNome;
