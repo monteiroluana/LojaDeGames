@@ -163,6 +163,11 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        fTxtCEP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fTxtCEPFocusLost(evt);
+            }
+        });
 
         lblCEP.setText("* CEP");
 
@@ -358,14 +363,19 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         cliente.setEstadoCivil((String) comboEstCivil.getSelectedItem());
 
         //Endereço
-        cliente.setCep(fTxtCEP.getText());
-        cliente.setLogradouro(txtLog.getText());
-        cliente.setNumero(txtNum.getText());
-        cliente.setComplemento(txtComp.getText());
-        cliente.setBairro(txtBairro.getText());
-        cliente.setCidade(txtCidade.getText());
-        cliente.setUF(txtUF.getText());
+        WebServiceCep buscaCep = WebServiceCep.searchCep(fTxtCEP.getText());
+        if (buscaCep.wasSuccessful()) {
+            cliente.setCep(buscaCep.getCep());
+            cliente.setLogradouro(buscaCep.getLogradouro());
+            cliente.setBairro(buscaCep.getBairro());
+            cliente.setCidade(buscaCep.getCidade());
+            cliente.setUF(buscaCep.getUf());
 
+        }
+        /*else {
+            JOptionPane.showMessageDialog(rootPane, "CEP inválido");
+        }*/
+        cliente.setNumero(txtNum.getText());
         //Contato
         cliente.setTelefone(txtTel.getText());
         cliente.setEmail(txtEmail.getText());
@@ -403,6 +413,15 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
         txtTel.setText("");
         txtEmail.setText("");
     }//GEN-LAST:event_buttonCadastrarActionPerformed
+
+    private void fTxtCEPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fTxtCEPFocusLost
+        WebServiceCep buscaCep = WebServiceCep.searchCep(fTxtCEP.getText());
+
+        txtLog.setText(buscaCep.getLogradouro());
+        txtBairro.setText(buscaCep.getBairro());
+        txtCidade.setText(buscaCep.getCidade());
+        txtUF.setText(buscaCep.getUf());
+    }//GEN-LAST:event_fTxtCEPFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

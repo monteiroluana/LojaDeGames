@@ -242,7 +242,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
         try {
             //Chama o serviço para realizar as alterações necessárias
-            ServicoProduto.atualizarProduto(jogo);
+             ServicoProduto.atualizarProduto(jogo);
         } catch (Exception e) {
             //Exibe alguma mensagem de erro que pode ter vindo do serviço
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),

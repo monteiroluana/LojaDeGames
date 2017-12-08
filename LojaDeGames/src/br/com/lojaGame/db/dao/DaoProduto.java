@@ -13,8 +13,8 @@ public class DaoProduto {
 
     public static void inserir(Produto produto) throws SQLException, Exception {
         //Monta a String de 'INSERT' de um cliente no DB;
-        String sql = "INSERT INTO produto (nome, codBarra, categoria, plataforma, "
-                + "desenv, preco, faixaEtaria, qtdJogadores, qtdEstoque, enabled) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO produto (nome, codBarra, categoria,  "
+                + "desenv, preco, faixaEtaria, jogadores, qtdEstoque, idPlataforma, enabled) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -26,13 +26,12 @@ public class DaoProduto {
             preparedStatement.setString(1, produto.getNome());
             preparedStatement.setString(2, produto.getCodBarras());
             preparedStatement.setString(3, produto.getCategoria());
-            preparedStatement.setString(4, produto.getPlataforma());
-            preparedStatement.setString(5, produto.getDesenv());
-            preparedStatement.setString(5, produto.getFaixaEtaria());
-            preparedStatement.setString(6, produto.getQtdJogadores());
-            preparedStatement.setInt(7, produto.getQtdEstoque());
-            preparedStatement.setFloat(8, produto.getPreco());
-            preparedStatement.setString(9, produto.getCodBarras());
+            preparedStatement.setString(4, produto.getDesenv());
+            preparedStatement.setFloat(5, produto.getPreco());
+            preparedStatement.setString(6, produto.getFaixaEtaria());
+            preparedStatement.setString(7, produto.getQtdJogadores());
+            preparedStatement.setInt(8, produto.getQtdEstoque());
+            preparedStatement.setInt(9, 1);
             preparedStatement.setBoolean(10, true);
 
             //configura os parâmetros do preparedStatement
@@ -52,9 +51,9 @@ public class DaoProduto {
 
     public static void atualizar(Produto produto) throws SQLException, Exception {
         //Monta a String de 'INSERT' de um cliente no DB;
-        String sql = "UPDATE produto SET  nome = ?, categoria = ?, plataforma = ?,"
-                + " fabricante = ?, faixaEtaria = ?, qtdJogadores = ?, qtdEstoque = ?, "
-                + "preco = ?, codBarras = ? WHERE idProduto = ? ";
+        String sql = "UPDATE produto SET  nome = ?, codBarra = ?, categoria = ?, desenv = ?,"
+                + " preco = ?, faixaEtaria = ?, jogadores = ?, qtdEstoque = ?, idPlataforma  = ? "
+                +" WHERE idProduto = ? ";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -65,14 +64,14 @@ public class DaoProduto {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, produto.getNome());
-            preparedStatement.setString(2, produto.getCategoria());
-            preparedStatement.setString(3, produto.getPlataforma());
+            preparedStatement.setString(2, produto.getCodBarras());
+            preparedStatement.setString(3, produto.getCategoria());
             preparedStatement.setString(4, produto.getDesenv());
-            preparedStatement.setString(5, produto.getFaixaEtaria());
-            preparedStatement.setString(6, produto.getQtdJogadores());
-            preparedStatement.setInt(7, produto.getQtdEstoque());
-            preparedStatement.setFloat(8, produto.getPreco());
-            preparedStatement.setString(9, produto.getCodBarras());
+            preparedStatement.setFloat(5, produto.getPreco());
+            preparedStatement.setString(6, produto.getFaixaEtaria());
+            preparedStatement.setString(7, produto.getQtdJogadores());
+            preparedStatement.setInt(8, produto.getQtdEstoque());
+            preparedStatement.setInt(9, 1);
             preparedStatement.setInt(10, produto.getIdProd());
 
             //Executa o comando no banco de dados;
@@ -149,12 +148,12 @@ public class DaoProduto {
                 Produto produto = new Produto();
                 produto.setIdProd(result.getInt("idProduto"));
                 produto.setNome(result.getString("nome"));
-                produto.setCodBarras(result.getString("codBarras"));
+                produto.setCodBarras(result.getString("codBarra"));
                 produto.setCategoria(result.getString("categoria"));
-                produto.setPlataforma(result.getString("plataforma"));
+                produto.setPlataforma(result.getString("idPlataforma"));
                 produto.setDesenv(result.getString("desenv"));
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
-                produto.setQtdJogadores(result.getString("qtdJogadores"));
+                produto.setQtdJogadores(result.getString("jogadores"));
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
                 produto.setPreco(result.getFloat("preco"));
 
@@ -215,12 +214,12 @@ public class DaoProduto {
                 Produto produto = new Produto();
                 produto.setIdProd(result.getInt("idProduto"));
                 produto.setNome(result.getString("nome"));
-                produto.setCodBarras(result.getString("codBarras"));
+                produto.setCodBarras(result.getString("codBarra"));
                 produto.setCategoria(result.getString("categoria"));
-                produto.setPlataforma(result.getString("plataforma"));
+                produto.setPlataforma(result.getString("idPlataforma"));
                 produto.setDesenv(result.getString("desenv"));
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
-                produto.setQtdJogadores(result.getString("qtdJogadores"));
+                produto.setQtdJogadores(result.getString("jogadores"));
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
                 produto.setPreco(result.getFloat("preco"));
 
@@ -274,13 +273,13 @@ public class DaoProduto {
                 produto.setIdProd(result.getInt("idProduto"));
                 produto.setNome(result.getString("nome"));
                 produto.setCategoria(result.getString("categoria"));
-                produto.setPlataforma(result.getString("plataforma"));
+                produto.setPlataforma(result.getString("idPlataforma"));
                 produto.setDesenv(result.getString("desenv"));
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
-                produto.setQtdJogadores(result.getString("qtdJogadores"));
+                produto.setQtdJogadores(result.getString("jogadores"));
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
                 produto.setPreco(result.getFloat("preco"));
-                produto.setCodBarras(result.getString("codBarras"));
+                produto.setCodBarras(result.getString("codBarra"));
 
                 //Retorna o produto
                 return produto;

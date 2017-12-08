@@ -1,5 +1,6 @@
 package br.com.lojaGame.services;
 
+import br.com.lojaGame.db.dao.DaoProduto;
 import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.exceptions.DataSourceException;
 import br.com.lojaGame.mock.MockProduto;
@@ -15,7 +16,8 @@ public class ServicoProduto {
         ValidadorProduto.validar(produto);
 
         try {
-            MockProduto.inserir(produto);
+            //MockProduto.inserir(produto);
+            DaoProduto.inserir(produto);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -32,7 +34,8 @@ public class ServicoProduto {
 
         try {
 
-            MockProduto.atualizar(produto);
+            //MockProduto.atualizar(produto);
+            DaoProduto.atualizar(produto);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -47,9 +50,11 @@ public class ServicoProduto {
         try {
 
             if (nomeProduto == null || "".equals(nomeProduto)) {
-                return MockProduto.listar();
+                // return MockProduto.listar();
+                return DaoProduto.listar();
             } else {
-                return MockProduto.procurar(nomeProduto);
+                //return MockProduto.procurar(nomeProduto);
+                return DaoProduto.procurar(nomeProduto);
             }
 
         } catch (Exception e) {
@@ -65,7 +70,8 @@ public class ServicoProduto {
 
         try {
 
-            return MockProduto.obter(id);
+            //return MockProduto.obter(id);
+            return DaoProduto.obter(id);
 
         } catch (Exception e) {
 
@@ -80,7 +86,8 @@ public class ServicoProduto {
 
         try {
 
-            MockProduto.excluir(id);
+           // MockProduto.excluir(id);
+           DaoProduto.excluir(id);
 
         } catch (Exception e) {
 

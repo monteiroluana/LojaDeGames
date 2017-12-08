@@ -34,9 +34,9 @@ public class DaoCliente {
             preparedStatement.setString(4, cliente.getEmail());
             preparedStatement.setString(5, cliente.getTelefone());
             preparedStatement.setString(6, cliente.getEstadoCivil());
-//            Timestamp tDataNasc = new Timestamp(cliente.getDataNasc().getTime());
-//            preparedStatement.setTimestamp(7, tDataNasc);
-            preparedStatement.setString(7, "2015-05-01");
+            Timestamp tDataNasc = new Timestamp(cliente.getDataNasc().getTime());
+            preparedStatement.setTimestamp(7, tDataNasc);
+//            preparedStatement.setString(7, "2015-05-01");
             preparedStatement.setString(8, cliente.getSexo());
             preparedStatement.setString(9, cliente.getCep());
             preparedStatement.setString(10, cliente.getLogradouro());
@@ -81,9 +81,9 @@ public class DaoCliente {
             preparedStatement.setString(4, cliente.getEmail());
             preparedStatement.setString(5, cliente.getTelefone());
             preparedStatement.setString(6, cliente.getEstadoCivil());
-//            Timestamp tDataNasc = new Timestamp(cliente.getDataNasc().getTime());
-//            preparedStatement.setTimestamp(7, tDataNasc);
-            preparedStatement.setString(7, "2015-05-01");
+            Timestamp tDataNasc = new Timestamp(cliente.getDataNasc().getTime());
+            preparedStatement.setTimestamp(7, tDataNasc);
+//            preparedStatement.setString(7, "2015-05-01");
             preparedStatement.setString(8, cliente.getSexo());
             preparedStatement.setString(9, cliente.getCep());
             preparedStatement.setString(10, cliente.getLogradouro());
