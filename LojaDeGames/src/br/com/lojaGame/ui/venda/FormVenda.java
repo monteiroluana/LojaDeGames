@@ -111,7 +111,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        txtProduto.setToolTipText("Cód. Barras/Nome");
+        txtProduto.setToolTipText("Cód. Barras/Nome/Categoria/Plataforma");
         txtProduto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 keyPressedEnterProduto(evt);
