@@ -28,12 +28,12 @@ public class FormVenda extends javax.swing.JInternalFrame {
      */
     public FormVenda() {
         initComponents();
-        
+
         //faz com que a coluna do ID não seja mostrada ao usuário
         tablePesquisaProd.getColumnModel().getColumn(0).setMinWidth(0);
         tablePesquisaProd.getColumnModel().getColumn(0).setMaxWidth(0);
         tablePesquisaProd.getColumnModel().getColumn(0).setWidth(0);
-        
+
         tableCarrinho.getColumnModel().getColumn(0).setMinWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setMaxWidth(0);
         tableCarrinho.getColumnModel().getColumn(0).setWidth(0);
@@ -71,6 +71,23 @@ public class FormVenda extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Tela de Venda");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                FormVenda.this.internalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         lblID.setText("CPF");
 
@@ -312,16 +329,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        List<ItemCart> itensCart = venda.getCart();
-        for (int i = 0; i < itensCart.size(); i++) {
-            ItemCart itemCart = itensCart.get(i);
-            itemCart.ajustarEstqCancel();
-        }
+        reajustaEstoque();
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        
 
         try {
 
@@ -388,7 +400,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                     "Falha ao adicionar", JOptionPane.ERROR_MESSAGE);
             return;
-        }        
+        }
 
         DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
 
@@ -422,11 +434,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
             //Chama o serviço para cadastro da venda (valida a venda e o list de itens
             ServicoVenda.cadastrarVenda(venda);
 
-            //ajusta o estoque
-//            for (int i = 0; i < itensCart.size(); i++) {
-//                ItemCart itemCart = itensCart.get(i);
-//                itemCart.ajustarEstq();
-//            }
             venda.setValorTotal(total);
             JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
                     "Finalizado", JOptionPane.INFORMATION_MESSAGE);
@@ -520,6 +527,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
+    private void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_internalFrameClosing
+        reajustaEstoque();
+    }//GEN-LAST:event_internalFrameClosing
+
     //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
         List<Cliente> resultadoCliente = ServicoCliente.procurarCliente(fTxtCPF.getText());
@@ -566,9 +577,18 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                 modelPesquisaProd.addRow(row);
             }
-        }      
+        }
 
         return true;
+    }
+
+    //reajusta o estoque, caso a venda seja cancelada ou a janela fechada
+    public void reajustaEstoque() {
+        List<ItemCart> itensCart = venda.getCart();
+        for (int i = 0; i < itensCart.size(); i++) {
+            ItemCart itemCart = itensCart.get(i);
+            itemCart.ajustarEstqCancel();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

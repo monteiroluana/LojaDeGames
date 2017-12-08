@@ -25,7 +25,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     FormConsultarJogo consultarJogos = null;
     FormEditarJogo editarJogo = null;
     FormRelatorioVendas relatorioVendas = null;
-    FormVenda carrinhoVenda = null;
+    FormVenda telaVenda = null;
 
     /**
      * Creates new form TelaPrincipal
@@ -237,12 +237,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemConsultarProdutoActionPerformed
 
     private void menuCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCarrinhoActionPerformed
-        if (carrinhoVenda == null || !carrinhoVenda.isDisplayable()) {
-            carrinhoVenda = new FormVenda();
-            desktop.add(carrinhoVenda);
-            this.openFrameInCenter(carrinhoVenda);
+        if (telaVenda == null || !telaVenda.isDisplayable()) {
+            telaVenda = new FormVenda();
+            desktop.add(telaVenda);
+            this.openFrameInCenter(telaVenda);
         }
-        carrinhoVenda.toFront();
+        telaVenda.toFront();
     }//GEN-LAST:event_menuCarrinhoActionPerformed
 
     private void menuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioActionPerformed
@@ -251,7 +251,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             desktop.add(relatorioVendas);
             this.openFrameInCenter(relatorioVendas);
         }
-        carrinhoVenda.toFront();
+        telaVenda.toFront();
     }//GEN-LAST:event_menuRelatorioActionPerformed
 
     //Abre um internal frame centralizado na tela
