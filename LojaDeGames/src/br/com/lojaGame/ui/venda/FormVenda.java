@@ -56,9 +56,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
         lblQntd = new javax.swing.JLabel();
         btnAdicionar = new javax.swing.JButton();
         txtProduto = new javax.swing.JTextField();
-        fTxtQntd = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePesquisaProd = new javax.swing.JTable();
+        txtQntd = new javax.swing.JTextField();
         panelCarrinho = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCarrinho = new javax.swing.JTable();
@@ -118,12 +118,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        try {
-            fTxtQntd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         tablePesquisaProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -158,12 +152,12 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(panelAdicionarLayout.createSequentialGroup()
-                        .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(panelAdicionarLayout.createSequentialGroup()
                                 .addComponent(lblQntd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fTxtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(203, 203, 203)
+                                .addComponent(txtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelAdicionarLayout.createSequentialGroup()
                                 .addComponent(lblProduto)
@@ -185,8 +179,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQntd)
-                    .addComponent(fTxtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdicionar))
+                    .addComponent(btnAdicionar)
+                    .addComponent(txtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -339,8 +333,23 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
 
         try {
+            int qntd = 0;
 
             if (tablePesquisaProd.getSelectedRow() >= 0) {
+
+                try {
+                    qntd = Integer.parseInt(txtQntd.getText());
+                    
+                    if (qntd <= 0){
+                        JOptionPane.showMessageDialog(rootPane, "Quantidade inválida!");
+                        return;
+                    }
+                    
+                } catch (NumberFormatException e) {                    
+                    JOptionPane.showMessageDialog(rootPane, "Quantidade inválida!");
+                    return;
+                }
+                
                 //sempre que adicionar item no carrindo, total é zerado, para percorrer
                 //novamente na tabela e somar
                 //somente ao finalizar o pedido, que vai ser enviado o valor total
@@ -359,9 +368,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                 //Adicionando item na venda
                 //converte e manda por parâmetro a quantidade inserida no campo
-                ItemCart item = new ItemCart(prodSelecionado, Integer.parseInt(fTxtQntd.getText()));
+                ItemCart item = new ItemCart(prodSelecionado, qntd);
 
-                if (Integer.parseInt(fTxtQntd.getText()) <= item.getQntdEstoque()) {
+                if (Integer.parseInt(txtQntd.getText()) <= item.getQntdEstoque()) {
                     venda.addItem(item);
 
                     //id do produto.
@@ -398,7 +407,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             }
 
             //limpa o campo de texto Produto e a quantidade também
-            fTxtQntd.setText("");
+            txtQntd.setText("");
             txtProduto.setText("");
 
         } catch (Exception e) {
@@ -605,7 +614,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinalizar;
     private javax.swing.JFormattedTextField fTxtCPF;
-    private javax.swing.JFormattedTextField fTxtQntd;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblID;
@@ -619,5 +627,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablePesquisaProd;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtProduto;
+    private javax.swing.JTextField txtQntd;
     // End of variables declaration//GEN-END:variables
 }
