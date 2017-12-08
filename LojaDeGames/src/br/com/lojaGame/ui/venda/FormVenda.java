@@ -129,14 +129,14 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID Produto", "Nome", "Plataforma", "Preço Unit.", "Qntd. Estoque"
+                "ID Produto", "Cód. Barras", "Nome", "Plataforma", "Preço Unit.", "Qntd. Estoque"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -155,20 +155,23 @@ public class FormVenda extends javax.swing.JInternalFrame {
             panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAdicionarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(panelAdicionarLayout.createSequentialGroup()
-                        .addComponent(lblQntd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fTxtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203)
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelAdicionarLayout.createSequentialGroup()
-                            .addComponent(lblProduto)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelAdicionarLayout.createSequentialGroup()
+                                .addComponent(lblQntd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fTxtQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(203, 203, 203)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelAdicionarLayout.createSequentialGroup()
+                                .addComponent(lblProduto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(221, 221, 221)))
+                        .addGap(0, 28, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelAdicionarLayout.setVerticalGroup(
             panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,12 +571,13 @@ public class FormVenda extends javax.swing.JInternalFrame {
             Produto produto = resultadoProd.get(i);
 
             if (produto != null) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[6];
                 row[0] = produto.getIdProd();
-                row[1] = produto.getNome();
-                row[2] = produto.getPlataforma();
-                row[3] = produto.getPreco();
-                row[4] = produto.getQtdEstoque();
+                row[1] = produto.getCodBarras();
+                row[2] = produto.getNome();
+                row[3] = produto.getPlataforma();
+                row[4] = produto.getPreco();
+                row[5] = produto.getQtdEstoque();
 
                 modelPesquisaProd.addRow(row);
             }
