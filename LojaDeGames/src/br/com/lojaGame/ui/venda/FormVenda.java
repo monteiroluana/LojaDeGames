@@ -1,5 +1,6 @@
 package br.com.lojaGame.ui.venda;
 
+import br.com.lojaGame.db.dao.DaoItensPedido;
 import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.models.Cliente;
@@ -339,17 +340,17 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                 try {
                     qntd = Integer.parseInt(txtQntd.getText());
-                    
-                    if (qntd <= 0){
+
+                    if (qntd <= 0) {
                         JOptionPane.showMessageDialog(rootPane, "Quantidade inválida!");
                         return;
                     }
-                    
-                } catch (NumberFormatException e) {                    
+
+                } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(rootPane, "Quantidade inválida!");
                     return;
                 }
-                
+
                 //sempre que adicionar item no carrindo, total é zerado, para percorrer
                 //novamente na tabela e somar
                 //somente ao finalizar o pedido, que vai ser enviado o valor total
@@ -369,6 +370,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 //Adicionando item na venda
                 //converte e manda por parâmetro a quantidade inserida no campo
                 ItemCart item = new ItemCart(prodSelecionado, qntd);
+
+                // itensVenda acho que vamos chamar ele aqui 
+                DaoItensPedido.inserir(item);
 
                 if (Integer.parseInt(txtQntd.getText()) <= item.getQntdEstoque()) {
                     venda.addItem(item);

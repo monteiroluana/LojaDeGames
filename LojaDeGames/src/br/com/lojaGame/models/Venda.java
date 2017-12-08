@@ -30,6 +30,10 @@ public class Venda {
         return cliente.getNome();
     }
 
+    public Integer getIdCliente() {
+        return cliente.getIdCliente();
+    }
+
     public void setCliente(Object cliente) {
         this.cliente = (Cliente) cliente;
     }
