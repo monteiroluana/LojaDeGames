@@ -17,7 +17,7 @@ public class ServicoCliente {
 
         try {
 
-            MockCliente.inserir(cliente);
+            //MockCliente.inserir(cliente);
             DaoCliente.inserir(cliente);
 
         } catch (Exception e) {
@@ -35,7 +35,8 @@ public class ServicoCliente {
 
         try {
 
-            MockCliente.atualizar(cliente);
+            //MockCliente.atualizar(cliente);
+            DaoCliente.atualizar(cliente);
             return;
 
         } catch (Exception e) {
@@ -56,8 +57,8 @@ public class ServicoCliente {
                 return DaoCliente.listar();
             } else {
 
-                return MockCliente.procurar(nome);
-//                return DaoCliente.procurar(nome);
+                //               return MockCliente.procurar(nome);
+                return DaoCliente.procurar(nome);
             }
         } catch (Exception e) {
 
@@ -71,7 +72,8 @@ public class ServicoCliente {
 
         try {
 
-            return MockCliente.obter(id);
+//            return MockCliente.obter(id);
+            return DaoCliente.obter(id);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -83,7 +85,8 @@ public class ServicoCliente {
             throws ClientesException, DataSourceException {
 
         try {
-            MockCliente.excluir(id);
+           // MockCliente.excluir(id);
+           DaoCliente.excluir(id);
         } catch (Exception e) {
 
             e.printStackTrace();
