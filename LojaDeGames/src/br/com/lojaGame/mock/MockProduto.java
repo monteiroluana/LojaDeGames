@@ -29,7 +29,7 @@ public class MockProduto {
                 if (produtoCli != null && produtoCli.getIdProd() == produtoProcura.getIdProd()) {
                     produtoCli.setNome(produtoProcura.getNome());
                     produtoCli.setCategoria(produtoProcura.getCategoria());
-                    produtoCli.setFabricante(produtoProcura.getFabricante());
+                    produtoCli.setDesenv(produtoProcura.getDesenv());
                     produtoCli.setPlataforma(produtoProcura.getPlataforma());
                     produtoCli.setPreco(produtoProcura.getPreco());
                     produtoCli.setFaixaEtaria(produtoProcura.getFaixaEtaria());

@@ -6,7 +6,7 @@ public class Produto {
     private String nome;
     private String categoria;
     private String plataforma;
-    private String fabricante;
+    private String desenv;
     private String faixaEtaria;
     private String qtdJogadores;
     private Integer qtdEstoque;
@@ -45,12 +45,12 @@ public class Produto {
         this.plataforma = plataforma;
     }
 
-    public String getFabricante() {
-        return fabricante;
+    public String getDesenv() {
+        return desenv;
     }
 
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
+    public void setDesenv(String fabricante) {
+        this.desenv = fabricante;
     }
 
     public Float getPreco() {
