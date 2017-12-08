@@ -349,13 +349,16 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 //pega a linha selecionada
                 final int rowPesquisa = tablePesquisaProd.getSelectedRow();
 
+                //guarda a id do produto da linha selecionado
                 Integer idPesquisa = (Integer) tablePesquisaProd.getValueAt(rowPesquisa, 0);
 
+                //chama o serviço para obter as informações do produto
                 Produto prodSelecionado = ServicoProduto.obterProduto(idPesquisa);
 
                 DefaultTableModel modelCarrinho = (DefaultTableModel) tableCarrinho.getModel();
 
                 //Adicionando item na venda
+                //converte e manda por parâmetro a quantidade inserida no campo
                 ItemCart item = new ItemCart(prodSelecionado, Integer.parseInt(fTxtQntd.getText()));
 
                 if (Integer.parseInt(fTxtQntd.getText()) <= item.getQntdEstoque()) {
@@ -365,13 +368,11 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     Integer ia = item.getIdProd();
                     venda.ajusteEstoque(ia);
 
-                    //aparecer na tabela
+                    //aparecer na tabela do compra
                     Object[] row = new Object[6];
                     row[0] = item.getIdProd();
                     row[1] = item.getNomeProd();
                     row[2] = item.getPlataforma();
-//                    row[3] = fTxtQntd.getText();
-                    //teste
                     row[3] = item.getQntdCompra();
                     row[4] = item.getPrecoUnit();
                     row[5] = item.getValor();
@@ -382,19 +383,21 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                         total += valorItem;
 
+                        //altera a label total
                         lblTotal.setText("Total: R$ " + valorFormat.format(total));
                     }
                 } else if (item.getQntdEstoque() == 0) {
                     JOptionPane.showMessageDialog(rootPane, "O estoque do produto está vazio");
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Só existe " + item.getQntdEstoque() + " quantidade(s) desse produto em estoque");
+                    JOptionPane.showMessageDialog(rootPane, "Só existe " + item.getQntdEstoque()
+                            + " quantidade(s) desse produto em estoque");
                 }
 
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Produto não informado/selecionado");
             }
 
-            //limpa o campo de texto Produto e o combo também
+            //limpa o campo de texto Produto e a quantidade também
             fTxtQntd.setText("");
             txtProduto.setText("");
 
@@ -407,6 +410,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
 
+        //limpa a tabela
         modelPesquisaProd.setRowCount(0);
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
