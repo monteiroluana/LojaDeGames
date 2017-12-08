@@ -108,7 +108,7 @@
                 <Column editable="false" title="Pre&#xe7;o" type="java.lang.Object"/>
                 <Column editable="false" title="Qtd Estoque" type="java.lang.Object"/>
                 <Column editable="false" title="Faixa Et&#xe1;ria" type="java.lang.Object"/>
-                <Column editable="false" title="Fabricante" type="java.lang.Object"/>
+                <Column editable="false" title="Desenv." type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

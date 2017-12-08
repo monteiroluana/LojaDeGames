@@ -61,7 +61,7 @@ public class FormConsultarJogo
 
             },
             new String [] {
-                "ID", "Cód. Barras", "Nome", "Categoria", "Plataforma", "Jogadores", "Preço", "Qtd Estoque", "Faixa Etária", "Fabricante"
+                "ID", "Cód. Barras", "Nome", "Categoria", "Plataforma", "Jogadores", "Preço", "Qtd Estoque", "Faixa Etária", "Desenv."
             }
         ) {
             Class[] types = new Class [] {
