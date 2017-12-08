@@ -14,7 +14,7 @@ public class ConnectionUtils {
 
         try {
             //Endereço de conexão com o banco
-            String dbURL = "jdbc:derby://localhost:1527/jdbc_lojaGames";
+            String dbURL = "jdbc:derby://localhost:1527/db_lojaGames";
 
             //Armazena usuário e senha
             Properties properties = new Properties();

@@ -4,9 +4,9 @@ package br.com.lojaGame.constants;
 public class MainConstants {
 
     //URL de conexão com o banco
-    public static final String DB_ADDRESS = "jdbc:derby://localhost:1527/jdbc_lojaGames";
+    public static final String DB_ADDRESS = "jdbc:derby://localhost:1527/db_lojaGames";
 
     // Usuario/senha de conexão com o banco
-    public static final String DB_USER = "admgame";
-    public static final String DB_PASS = "game";
+    public static final String DB_USER = "admgames";
+    public static final String DB_PASS = "games";
 }
