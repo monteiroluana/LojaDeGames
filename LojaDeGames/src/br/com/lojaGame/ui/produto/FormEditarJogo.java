@@ -99,7 +99,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
 
         lblFaixaEt.setText("* Faixa Etária");
 
-        comboJogadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1 Player", "2 Players", "Multplayers" }));
+        comboJogadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Singleplayer", "Multiplayer" }));
 
         comboFaixaEt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos", " " }));
 
