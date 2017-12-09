@@ -53,7 +53,7 @@ public class DaoProduto {
         //Monta a String de 'INSERT' de um cliente no DB;
         String sql = "UPDATE produto SET  nome = ?, codBarra = ?, categoria = ?, desenv = ?,"
                 + " preco = ?, faixaEtaria = ?, jogadores = ?, qtdEstoque = ?, idPlataforma  = ? "
-                +" WHERE idProduto = ? ";
+                + " WHERE idProduto = ? ";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -150,18 +150,16 @@ public class DaoProduto {
                 produto.setNome(result.getString("nome"));
                 produto.setCodBarras(result.getString("codBarra"));
                 produto.setCategoria(result.getString("categoria"));
-                produto.setPlataforma(result.getString("idPlataforma"));
                 produto.setDesenv(result.getString("desenv"));
+                produto.setPreco(result.getFloat("preco"));
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
                 produto.setQtdJogadores(result.getString("jogadores"));
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
-                produto.setPreco(result.getFloat("preco"));
-
+                produto.setIdProd(result.getInt("idPlataforma"));
                 /*
-                nome, codBarra, categoria, plataforma, "
-                + "desenv, preco, faixaEtaria, qtdJogadores, qtdEstoque, enabled
-                 */
-                //Adiciona a instância na lista
+                nome, codBarra, categoria,  "
+                + "desenv, preco, faixaEtaria, jogadores, qtdEstoque, idPlataforma, enabled
+                 */ //Adiciona a instância na lista
                 listaProdutos.add(produto);
             }
         } finally {
@@ -198,7 +196,7 @@ public class DaoProduto {
             connection = ConnectionUtils.getConnetion();
             //Cria um statement para execução de instruções SQL
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, search);
+            preparedStatement.setString(1, "%" + search + "%");
             preparedStatement.setBoolean(2, true);
 
             //Executa a consulta SQL no banco de dados
@@ -212,18 +210,17 @@ public class DaoProduto {
                 }
                 //Cria uma instância de Cliente e popula com os valores do BD
                 Produto produto = new Produto();
-                produto.setIdProd(result.getInt("idProduto"));
+               produto.setIdProd(result.getInt("idProduto"));
                 produto.setNome(result.getString("nome"));
                 produto.setCodBarras(result.getString("codBarra"));
                 produto.setCategoria(result.getString("categoria"));
-                produto.setPlataforma(result.getString("idPlataforma"));
                 produto.setDesenv(result.getString("desenv"));
+                produto.setPreco(result.getFloat("preco"));
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
                 produto.setQtdJogadores(result.getString("jogadores"));
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
-                produto.setPreco(result.getFloat("preco"));
+                produto.setIdProd(result.getInt("idPlataforma"));
 
-                /*nome, categoria, plataforma, fabricante, faixaEtaria, qtdJogadores, qtdEstoque, preco, codBarras*/
                 //Adiciona a instância na lista
                 listaProdutos.add(produto);
             }

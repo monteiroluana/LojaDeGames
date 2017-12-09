@@ -54,7 +54,7 @@ public class ServicoProduto {
                 return DaoProduto.listar();
             } else {
                 //return MockProduto.procurar(nomeProduto);
-                return DaoProduto.procurar(nomeProduto);
+               return  DaoProduto.procurar(nomeProduto);
             }
 
         } catch (Exception e) {
