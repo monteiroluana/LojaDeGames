@@ -1,18 +1,15 @@
 package br.com.lojaGame.models;
 
-import br.com.lojaGame.models.Produto;
-
-public class ItemCart {
+public class ItemVenda {
 
     private Produto produto;
     private int qntdCompra;
     private float valor;
 
-    public ItemCart(Object jogo, int qtde) {
+    public ItemVenda(Object jogo, int qtde) {
         produto = (Produto) jogo;
         qntdCompra = qtde;
         valor = produto.getPreco() * qntdCompra;
-
     }
 
     public float getValor() {
@@ -23,9 +20,9 @@ public class ItemCart {
         produto.setQtdEstoque(produto.getQtdEstoque() - qntdCompra);
     }
 
-    public void ajustarEstqCancel() {
-        produto.setQtdEstoque(produto.getQtdEstoque() + qntdCompra);
-    }
+//    public void ajustarEstqCancel() {
+//        produto.setQtdEstoque(produto.getQtdEstoque() + qntdCompra);
+//    }
 
     public float getPrecoUnit() {
         return produto.getPreco();
