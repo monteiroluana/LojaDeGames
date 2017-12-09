@@ -1,5 +1,6 @@
 package br.com.lojaGame.model.validadores;
 
+import br.com.lojaGame.db.dao.DaoCliente;
 import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.models.Cliente;
 import java.util.regex.Matcher;
@@ -7,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class ValidadorCliente {
 
-    public static void validar(Cliente cliente) throws ClientesException {
+    public static void validar(Cliente cliente) throws ClientesException, Exception {
 
         if (cliente == null) {
             throw new ClientesException("Não foi informado um cliente");
@@ -15,10 +16,14 @@ public class ValidadorCliente {
         if (cliente.getNome() == null || "".equals(cliente.getNome())) {
             throw new ClientesException("É necessário informar o nome do cliente");
         }
+        if (DaoCliente.obterCpf(cliente.getCPF())) {
+            throw new ClientesException("CPF já cadastrado no sistema");
+        }
+
         if (cliente.getCPF() == null || "".equals(cliente.getCPF())) {
             throw new ClientesException("É necessário informar o CPF");
-        
-        //verificar se o cpf é válido    
+
+            //verificar se o cpf é válido    
 //        } else {
 //            String cpf = cliente.getCPF();
 //

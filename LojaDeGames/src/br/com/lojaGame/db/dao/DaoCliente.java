@@ -347,5 +347,70 @@ public class DaoCliente {
         //Se o return anterior não foi executado
         return null;
     }
+    
+     public static boolean obterCpf(String cpf) throws SQLException, Exception {
+
+        String sql = "SELECT * FROM cliente WHERE (cpf=? and enabled=?)";
+
+        //Conexão para abertura e fechamento
+        Connection connection = null;
+
+        PreparedStatement preparedStatement = null;
+
+        //Armazenará os resultados do banco de dados
+        ResultSet result = null;
+        try {
+            //Abre uma conexão com o banco de dados
+            connection = ConnectionUtils.getConnetion();
+            //Cria um statement para execução de instruções SQL
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, cpf);
+            preparedStatement.setBoolean(2, true);
+
+            //Executa a consulta SQL no banco de dados
+            result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+
+                //Cria uma instância de Cliente e popula com os valores do BD
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(result.getInt("idCliente"));
+                cliente.setNome(result.getString("nome"));
+                cliente.setCPF(result.getString("cpf"));
+                cliente.setRG(result.getString("rg"));
+                cliente.setEmail(result.getString("email"));
+                cliente.setTelefone(result.getString("telefone"));
+                cliente.setEstadoCivil(result.getString("estCivil"));
+                Date d = new Date(result.getTimestamp("dataNasc").getTime());
+                cliente.setDataNasc(d);
+                cliente.setSexo(result.getString("sexo"));
+                cliente.setCep(result.getString("cep"));
+                cliente.setLogradouro(result.getString("logradouro"));
+                cliente.setNumero(result.getString("numero"));
+                cliente.setComplemento(result.getString("complemento"));
+                cliente.setBairro(result.getString("bairro"));
+                cliente.setCidade(result.getString("cidade"));
+                cliente.setUF(result.getString("uf"));
+
+                //Retorna o cliente
+                return true;
+            }
+        } finally {
+            //Se o result ainda estiver aberto, realiza seu fechamento
+            if (result != null && !result.isClosed()) {
+                result.close();
+            }
+            //Se o statement ainda estiver aberto, realiza seu fechamento
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            //Se a conexão ainda estiver aberta, realiza seu fechamento
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        //Se o return anterior não foi executado
+        return false;
+    }
 
 }

@@ -1,6 +1,5 @@
 package br.com.lojaGame.db.utils;
 
-import br.com.lojaGame.constants.MainConstants;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

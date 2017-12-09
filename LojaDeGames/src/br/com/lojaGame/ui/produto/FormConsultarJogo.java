@@ -274,7 +274,7 @@ public class FormConsultarJogo
         }
     }//GEN-LAST:event_buttonEditarActionPerformed
 
-    //Atualiza a lista de jogos. Pode ser chamado por outras telas
+    //Atualiza a lista de jogos. Pode ser chamado por outras catelas
     public boolean refreshList() throws ProdutosException, Exception {
         //Realiza a pesquisa de jogos com o último valor de pesquisa
         //para atualizar a lista

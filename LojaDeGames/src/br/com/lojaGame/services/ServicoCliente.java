@@ -11,7 +11,7 @@ import java.util.List;
 public class ServicoCliente {
 
     public static void cadastrarCliente(Cliente cliente)
-            throws ClientesException, DataSourceException {
+            throws ClientesException, DataSourceException, Exception {
 
         ValidadorCliente.validar(cliente);
 
@@ -29,7 +29,7 @@ public class ServicoCliente {
     }
 
     public static void atualizarCliente(Cliente cliente)
-            throws ClientesException, DataSourceException {
+            throws ClientesException, DataSourceException, Exception {
 
         ValidadorCliente.validar(cliente);
 
