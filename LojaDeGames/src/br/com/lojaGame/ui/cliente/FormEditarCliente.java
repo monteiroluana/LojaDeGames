@@ -96,7 +96,7 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
 
         lblCPF.setText("* CPF");
 
-        lblDataNasc.setText("Data de Nasc.");
+        lblDataNasc.setText("* Data de Nasc.");
 
         fTxtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
 

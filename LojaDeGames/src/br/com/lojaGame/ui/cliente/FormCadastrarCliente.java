@@ -1,5 +1,6 @@
 package br.com.lojaGame.ui.cliente;
 
+import br.com.lojaGame.model.validadores.WebServiceCep;
 import br.com.lojaGame.models.Cliente;
 import br.com.lojaGame.services.ServicoCliente;
 import java.util.Date;
@@ -69,7 +70,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
 
         lblCPF.setText("* CPF");
 
-        lblDataNasc.setText("Data de Nasc.");
+        lblDataNasc.setText("* Data de Nasc.");
 
         fTxtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
         fTxtDataNasc.setToolTipText("dd/MM/yyyy");
@@ -216,7 +217,7 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
+                            .addComponent(txtBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
                     .addComponent(fTxtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLog, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
@@ -372,9 +373,13 @@ public class FormCadastrarCliente extends javax.swing.JInternalFrame {
             cliente.setUF(buscaCep.getUf());
 
         }
-        /*else {
-            JOptionPane.showMessageDialog(rootPane, "CEP inválido");
-        }*/
+        else {
+            cliente.setCep(fTxtCEP.getText());
+            cliente.setLogradouro(txtLog.getText());
+            cliente.setBairro(txtBairro.getText());
+            cliente.setCidade(txtCidade.getText());
+            cliente.setUF(txtUF.getText());
+        }
         cliente.setNumero(txtNum.getText());
         //Contato
         cliente.setTelefone(txtTel.getText());

@@ -167,7 +167,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblDataNasc">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Data de Nasc."/>
+            <Property name="text" type="java.lang.String" value="* Data de Nasc."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="fTxtDataNasc">

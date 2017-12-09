@@ -61,6 +61,9 @@ public class ValidadorCliente {
         if (cliente.getSexo() == null || "Selecione...".equals(cliente.getSexo())) {
             throw new ClientesException("É necessário informar o sexo");
         }
+        if (cliente.getDataNasc() == null) {
+            throw new ClientesException("É necessário informar a data de nascimento");
+        }
         if (cliente.getCep() == null || "".equals(cliente.getCep())) {
             throw new ClientesException("É necessário informar o CEP");
         }

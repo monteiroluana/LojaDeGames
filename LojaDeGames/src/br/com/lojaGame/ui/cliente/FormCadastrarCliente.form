@@ -159,7 +159,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblDataNasc">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Data de Nasc."/>
+            <Property name="text" type="java.lang.String" value="* Data de Nasc."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="fTxtDataNasc">
@@ -282,7 +282,7 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtUF" min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="txtBairro" pref="128" max="32767" attributes="0"/>
+                              <Component id="txtBairro" pref="137" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="fTxtCEP" min="-2" pref="108" max="-2" attributes="0"/>

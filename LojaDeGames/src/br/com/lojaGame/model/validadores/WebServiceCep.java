@@ -1,4 +1,4 @@
-package br.com.lojaGame.ui.cliente;
+package br.com.lojaGame.model.validadores;
 
 import java.net.MalformedURLException;
 import java.net.URL;
