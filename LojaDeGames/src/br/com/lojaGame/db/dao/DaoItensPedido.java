@@ -1,7 +1,7 @@
 package br.com.lojaGame.db.dao;
 
 import br.com.lojaGame.db.utils.ConnectionUtils;
-import br.com.lojaGame.models.ItemCart;
+import br.com.lojaGame.models.ItemVenda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class DaoItensPedido {
 
     /* Insere um cliente na tabela clinte*/
-    public static void inserir(ItemCart itensVenda) throws SQLException, Exception {
+    public static void inserir(ItemVenda itensVenda) throws SQLException, Exception {
         //Monta a String de 'INSERT' de um cliente no DB;
         String sql = "INSERT INTO itensVenda (idVenda, idProduto, qtdProd, valorTotal) VALUES (?, ?, ?, ?)";
 
