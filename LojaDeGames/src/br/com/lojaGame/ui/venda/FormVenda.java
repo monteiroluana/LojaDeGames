@@ -5,7 +5,7 @@ import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.models.Cliente;
 import br.com.lojaGame.models.Produto;
-import br.com.lojaGame.models.ItemCart;
+import br.com.lojaGame.models.ItemVenda;
 import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoCliente;
 import br.com.lojaGame.services.ServicoProduto;
@@ -369,10 +369,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                 //Adicionando item na venda
                 //converte e manda por parâmetro a quantidade inserida no campo
-                ItemCart item = new ItemCart(prodSelecionado, qntd);
-
-                // itensVenda acho que vamos chamar ele aqui 
-                DaoItensPedido.inserir(item);
+                ItemVenda item = new ItemVenda(prodSelecionado, qntd);
 
                 if (Integer.parseInt(txtQntd.getText()) <= item.getQntdEstoque()) {
                     venda.addItem(item);
@@ -431,14 +428,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
 
         try {
-            List<ItemCart> itensCart = venda.getCart();
+            List<ItemVenda> itensCart = venda.getCart();           
 
-            venda.setCliente(cli);
-            venda.setData();
-
-            /*Validando a venda ------------------------------------*/
-            //if (fTxtCPF.getText().equals("") || fTxtCPF.getText().equals("   .   .   -  ")) {
-            //teste
+            //Validando a venda
             if (fTxtCPF.getText() == null) {
                 JOptionPane.showMessageDialog(rootPane, "Insira um cliente para realizar a venda!");
                 return;
@@ -449,12 +441,14 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Nenhum produto foi inserido a venda");
                 return;
             }
-            /*Fim validando a venda ---------------------------------*/
+            
+            venda.setCliente(cli);
+            venda.setData();
+            venda.setValorTotal(total);
 
             //Chama o serviço para cadastro da venda (valida a venda e o list de itens
             ServicoVenda.cadastrarVenda(venda);
-
-            venda.setValorTotal(total);
+            
             JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
                     "Finalizado", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -605,10 +599,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
     //reajusta o estoque, caso a venda seja cancelada ou a janela fechada
     public void reajustaEstoque() {
-        List<ItemCart> itensCart = venda.getCart();
+        List<ItemVenda> itensCart = venda.getCart();
         for (int i = 0; i < itensCart.size(); i++) {
-            ItemCart itemCart = itensCart.get(i);
-            itemCart.ajustarEstqCancel();
+            ItemVenda itemCart = itensCart.get(i);
+//            itemCart.ajustarEstqCancel();
         }
     }
 

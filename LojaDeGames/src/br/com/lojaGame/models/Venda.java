@@ -8,14 +8,14 @@ public class Venda {
 
     private Integer idVenda;
     private Cliente cliente;
-    private ArrayList<ItemCart> Cart;
+    private ArrayList<ItemVenda> Cart;
     private Date data;
     private float valorTotal = 0.00f;
-    public List<ItemCart> getCart;
+    public List<ItemVenda> getCart;
     public int itens = 0;
 
     public Venda() {
-        Cart = new ArrayList<ItemCart>();
+        Cart = new ArrayList<ItemVenda>();
     }
 
     public void setIdVenda(int idVenda) {
@@ -38,16 +38,16 @@ public class Venda {
         this.cliente = (Cliente) cliente;
     }
 
-    public void addItem(ItemCart item) {
+    public void addItem(ItemVenda item) {
         Cart.add(item);
         itens++;
     }
 
     public void deleteItem(Integer idItemCart) {
-        for (ItemCart item : Cart) {
+        for (ItemVenda item : Cart) {
             if (item.getIdProd() == idItemCart) {
                 valorTotal -= item.getValor();
-                item.ajustarEstqCancel();
+//                item.ajustarEstqCancel();
                 Cart.remove(item);
                 break;
             }
@@ -73,17 +73,17 @@ public class Venda {
 //    public void addDesconto(float desc) {
 //        valorTotal -= desc;
 //    }
-    public ArrayList<ItemCart> getCart() {
+    public ArrayList<ItemVenda> getCart() {
         return Cart;
     }
 
-    public void setCart(ArrayList<ItemCart> Cart) {
+    public void setCart(ArrayList<ItemVenda> Cart) {
         this.Cart = Cart;
     }
 
     //Ajustando o estoque
     public void ajusteEstoque(Integer idProd) {
-        for (ItemCart item : Cart) {
+        for (ItemVenda item : Cart) {
             if (item.getIdProd() == idProd) {
                 item.ajustarEstq();
                 break;
