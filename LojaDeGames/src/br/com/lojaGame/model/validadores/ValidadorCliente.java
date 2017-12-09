@@ -17,8 +17,8 @@ public class ValidadorCliente {
         }
         if (cliente.getCPF() == null || "".equals(cliente.getCPF())) {
             throw new ClientesException("É necessário informar o CPF");
-        
-        //verificar se o cpf é válido    
+
+            //verificar se o cpf é válido    
 //        } else {
 //            String cpf = cliente.getCPF();
 //
@@ -55,6 +55,9 @@ public class ValidadorCliente {
         }
         if (cliente.getSexo() == null || "Selecione...".equals(cliente.getSexo())) {
             throw new ClientesException("É necessário informar o sexo");
+        }
+        if (cliente.getDataNasc() == null) {
+            throw new ClientesException("É necessário informar a data de nascimento");
         }
         if (cliente.getCep() == null || "".equals(cliente.getCep())) {
             throw new ClientesException("É necessário informar o CEP");
