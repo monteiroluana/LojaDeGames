@@ -1,7 +1,7 @@
 package br.com.lojaGame.ui.venda;
 
 import br.com.lojaGame.exceptions.VendasException;
-import br.com.lojaGame.models.ItemCart;
+import br.com.lojaGame.models.ItemVenda;
 import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoVenda;
 import java.util.Date;
@@ -49,20 +49,12 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
         lblDataInicial.setText("Data Inicial");
 
-        try {
-            fTxtDataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        fTxtDataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         fTxtDataInicial.setToolTipText("dd/MM/yyyy");
 
         lblDataFinal.setText("Data Final");
 
-        try {
-            fTxtDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        fTxtDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         fTxtDataFinal.setToolTipText("dd/MM/yyyy");
 
         buttonGerarRelat.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -205,11 +197,11 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
             Venda venda = resultado.get(i);
 
             if (venda != null) {
-                List<ItemCart> itensCart = venda.getCart();
+                List<ItemVenda> itensCart = venda.getCart();
 
                 //ItemCart itemCart = null;
                 for (int j = 0; j < itensCart.size(); j++) {
-                    ItemCart itemCart = itensCart.get(j);
+                    ItemVenda itemCart = itensCart.get(j);
 
                     //agrupar a venda e não mostrar dados repetidos na tabela
                     if (agrupaVenda == venda.getIdVenda()) {
@@ -226,7 +218,7 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
                         model.addRow(row);
 
                     } else {
-                        Object[] row = new Object[8];
+                        Object[] row = new Object[9];
                         row[0] = venda.getIdVenda();
                         row[1] = venda.getData();
                         row[2] = venda.getNomeCliente();
