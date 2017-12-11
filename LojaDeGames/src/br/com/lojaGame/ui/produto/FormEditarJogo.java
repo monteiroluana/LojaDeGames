@@ -234,7 +234,8 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         jogo.setNome(txtNome.getText());
         jogo.setCategoria((String) comboCategoria.getSelectedItem());
         jogo.setDesenv(txtFab.getText());
-        jogo.setPlataforma((String) comboPlat.getSelectedItem());
+        //jogo.setPlataforma((Integer) comboPlat.getSelectedItem());
+        jogo.setPlataforma((Integer) comboPlat.getSelectedIndex());
         jogo.setPreco(Float.parseFloat(txtPreco.getText()));
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
         jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());

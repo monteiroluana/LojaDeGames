@@ -29,7 +29,7 @@ public class ServicoProduto {
     public static void atualizarProduto(Produto produto)
             throws DataSourceException, ProdutosException, Exception {
         
-        ValidadorProduto.validar(produto);
+        ValidadorProduto.validarAtualizacao(produto);
         
         try {
 

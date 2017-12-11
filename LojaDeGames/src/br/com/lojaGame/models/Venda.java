@@ -2,7 +2,7 @@ package br.com.lojaGame.models;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 public class Venda {
 
@@ -11,7 +11,6 @@ public class Venda {
     private ArrayList<ItemVenda> Cart;
     private Date data;
     private float valorTotal = 0.00f;
-    public List<ItemVenda> getCart;
     public int itens = 0;
 
     public Venda() {

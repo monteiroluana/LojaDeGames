@@ -5,13 +5,22 @@ public class Produto {
     private Integer idProduto;
     private String nome;
     private String categoria;
-    private String plataforma;
+    private Integer plataforma;
     private String desenv;
     private String faixaEtaria;
     private String qtdJogadores;
     private Integer qtdEstoque;
     private Float preco;
     private String codBarras;
+    private String strPlataforma;
+
+    public String getStrPlataforma() {
+        return strPlataforma;
+    }
+
+    public void setStrPlataforma(String strPlataforma) {
+        this.strPlataforma = strPlataforma;
+    }
 
     public Integer getIdProd() {
         return idProduto;
@@ -37,11 +46,11 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public String getPlataforma() {
+    public Integer getPlataforma() {
         return plataforma;
     }
 
-    public void setPlataforma(String plataforma) {
+    public void setPlataforma(Integer plataforma) {
         this.plataforma = plataforma;
     }
 
@@ -84,7 +93,7 @@ public class Produto {
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
-    
+
     public String getCodBarras() {
         return codBarras;
     }

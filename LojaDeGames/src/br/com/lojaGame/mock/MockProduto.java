@@ -77,7 +77,7 @@ public class MockProduto {
                         && produtoLi.getCodBarras() != null) {
                     if (produtoLi.getNome().toUpperCase().contains(valor.toUpperCase())
                             || produtoLi.getCategoria().toUpperCase().contains(valor.toUpperCase())
-                            || produtoLi.getPlataforma().toUpperCase().contains(valor.toUpperCase())
+//                            || produtoLi.getPlataforma().toUpperCase().contains(valor.toUpperCase())
                             || produtoLi.getCodBarras().toUpperCase().contains(valor.toUpperCase())) {
                         listaResultado.add(produtoLi);
                     }

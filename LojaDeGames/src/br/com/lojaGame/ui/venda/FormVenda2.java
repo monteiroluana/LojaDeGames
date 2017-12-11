@@ -15,18 +15,19 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class FormVenda extends javax.swing.JInternalFrame {
+public class FormVenda2 extends javax.swing.JInternalFrame {
 
-    private Venda venda = new Venda();
+//    private Venda venda = new Venda();
     private Object cli;
-    private float total;
+//    private float total;
+    private float totalVisual = 0.00f;
     // formatar o valor total e exibir somente duas casas decimais
     private DecimalFormat valorFormat = new DecimalFormat("0.00");
 
     /**
      * Creates new form FormVenda
      */
-    public FormVenda() {
+    public FormVenda2() {
         initComponents();
 
         //faz com que a coluna do ID não seja mostrada ao usuário
@@ -77,7 +78,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                FormVenda.this.internalFrameClosing(evt);
+                FormVenda2.this.internalFrameClosing(evt);
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -338,6 +339,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             if (tablePesquisaProd.getSelectedRow() >= 0) {
 
                 try {
+                    //converte a quantidade inserida no campo
                     qntd = Integer.parseInt(txtQntd.getText());
 
                     if (qntd <= 0) {
@@ -353,8 +355,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 //sempre que adicionar item no carrindo, total é zerado, para percorrer
                 //novamente na tabela e somar
                 //somente ao finalizar o pedido, que vai ser enviado o valor total
-                total = 0.00f;
-
                 //pega a linha selecionada
                 final int rowPesquisa = tablePesquisaProd.getSelectedRow();
 
@@ -370,31 +370,37 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 //converte e manda por parâmetro a quantidade inserida no campo
                 ItemVenda item = new ItemVenda(prodSelecionado, qntd);
 
-                if (Integer.parseInt(txtQntd.getText()) <= item.getQntdEstoque()) {
-                    venda.addItem(item);
+                //  int qntdEstoque = item.getQntdEstoque();
+                //if (Integer.parseInt(txtQntd.getText()) <= item.getQntdEstoque()) {
+                //   venda.addItem(item);
+                //id do produto.
+//                    Integer idProd = item.getIdProd();
+//                    venda.ajusteEstoque(idProd);
+                //aparecer na tabela do compra
+                Object[] row = new Object[6];
+                row[0] = item.getIdProd();
+                row[1] = item.getNomeProd();
+                row[2] = item.getPlataforma();
+                row[3] = item.getQntdCompra();
+                row[4] = item.getPrecoUnit();
+                row[5] = item.getValor();
+                modelCarrinho.addRow(row);
 
-                    //id do produto.
-//                    Integer ia = item.getIdProd();
-//                    venda.ajusteEstoque(ia);
-                    //aparecer na tabela do compra
-                    Object[] row = new Object[6];
-                    row[0] = item.getIdProd();
-                    row[1] = item.getNomeProd();
-                    row[2] = item.getPlataforma();
-                    row[3] = item.getQntdCompra();
-                    row[4] = item.getPrecoUnit();
-                    row[5] = item.getValor();
-                    modelCarrinho.addRow(row);
+                totalVisual += item.getValor();
 
-                    for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
-                        float valorItem = (float) tableCarrinho.getValueAt(i, 5);
+                //altera a label total
+                lblTotal.setText("Total: R$ " + valorFormat.format(totalVisual));
 
-                        total += valorItem;
-
-                        //altera a label total
-                        lblTotal.setText("Total: R$ " + valorFormat.format(total));
-                    }
-                } else if (item.getQntdEstoque() == 0) {
+//                    for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
+//                        float valorItem = (float) tableCarrinho.getValueAt(i, 5);
+//
+//                        total += valorItem;
+//
+//                        //altera a label total
+//                        lblTotal.setText("Total: R$ " + valorFormat.format(total));
+//                    }
+                //} else
+                if (item.getQntdEstoque() == 0) {
                     JOptionPane.showMessageDialog(rootPane, "O estoque do produto está vazio");
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Só existe " + item.getQntdEstoque()
@@ -425,6 +431,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
     private void buttonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarActionPerformed
 
+        Venda venda = new Venda();
+
+        float totalFinal = 0.00f;
+
         try {
             List<ItemVenda> itensCart = venda.getCart();
 
@@ -440,22 +450,28 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 return;
             }
 
-            venda.setCliente(cli);
-            venda.setData();
-            venda.setValorTotal(total);
-
+            //percorre a tabela do carrinho para pegar as informações
             for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
                 int qntd = (int) tableCarrinho.getValueAt(i, 3);
                 int idProd = (int) tableCarrinho.getValueAt(i, 0);
 
                 Produto prodSelecionado = ServicoProduto.obterProduto(idProd);
+
+                float valorItem = (float) tableCarrinho.getValueAt(i, 5);
+
                 ItemVenda item = new ItemVenda(prodSelecionado, qntd);
-                item.ajustarEstq();
-                ServicoProduto.atualizarProduto(prodSelecionado);
+
+                venda.addItem(item);
+
+                totalFinal += valorItem;
+
             }
 
+            venda.setCliente(cli);
+            venda.setData();
+            venda.setValorTotal(totalFinal);
+
             //Chama o serviço para cadastro da venda (valida a venda e o list de itens
-            //ServicoVenda.cadastrarVenda(venda);
             ServicoVenda.cadastrarVenda(venda);
 
             //percorre a tabela novamente, pra ajustar o estoque
@@ -536,16 +552,14 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     Float valorItem = (float) tableCarrinho.getValueAt(row, 5);
 
                     //Obtém o ID do produto
-                    Integer idItemCart = (Integer) tableCarrinho.getValueAt(row, 0);
-
+//                    Integer idItemCart = (Integer) tableCarrinho.getValueAt(row, 0);
                     //deleta o item da venda
-                    venda.deleteItem(idItemCart);
-
+//                    venda.deleteItem(idItemCart);
                     //exclui a linha da tabela
                     model.removeRow(tableCarrinho.getSelectedRow());
 
                     //altera a label total
-                    lblTotal.setText("Total: R$ " + valorFormat.format(total - valorItem));
+                    lblTotal.setText("Total: R$ " + valorFormat.format(totalVisual - valorItem));
 
                 } catch (Exception e) {
                     //Se ocorrer algum erro técnico, mostra-o no console,

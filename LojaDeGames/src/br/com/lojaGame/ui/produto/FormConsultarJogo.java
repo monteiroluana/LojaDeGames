@@ -8,8 +8,6 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ImageIcon;
-
 
 public class FormConsultarJogo
         extends javax.swing.JInternalFrame {
@@ -302,7 +300,7 @@ public class FormConsultarJogo
                 row[1] = jogo.getCodBarras();
                 row[2] = jogo.getNome();
                 row[3] = jogo.getCategoria();
-                row[4] = jogo.getPlataforma();
+                row[4] = jogo.getStrPlataforma();
                 row[5] = jogo.getQtdJogadores();
                 row[6] = jogo.getPreco();
                 row[7] = jogo.getQtdEstoque();

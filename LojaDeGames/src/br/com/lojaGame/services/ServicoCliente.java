@@ -31,7 +31,7 @@ public class ServicoCliente {
     public static void atualizarCliente(Cliente cliente)
             throws ClientesException, DataSourceException, Exception {
 
-        ValidadorCliente.validar(cliente);
+        ValidadorCliente.validarAtualizacao(cliente);
 
         try {
 

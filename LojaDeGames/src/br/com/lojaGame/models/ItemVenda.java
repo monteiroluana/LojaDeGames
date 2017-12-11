@@ -23,7 +23,6 @@ public class ItemVenda {
 //    public void ajustarEstqCancel() {
 //        produto.setQtdEstoque(produto.getQtdEstoque() + qntdCompra);
 //    }
-
     public float getPrecoUnit() {
         return produto.getPreco();
     }
@@ -35,8 +34,8 @@ public class ItemVenda {
     public String getNomeProd() {
         return produto.getNome();
     }
-    
-    public String getPlataforma(){
+
+    public Integer getPlataforma() {
         return produto.getPlataforma();
     }
 

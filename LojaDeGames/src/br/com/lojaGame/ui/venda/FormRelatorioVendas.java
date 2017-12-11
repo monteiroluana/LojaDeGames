@@ -1,9 +1,10 @@
 package br.com.lojaGame.ui.venda;
 
 import br.com.lojaGame.exceptions.VendasException;
-import br.com.lojaGame.models.ItemVenda;
-import br.com.lojaGame.models.Venda;
+//import br.com.lojaGame.models.ItemVenda;
+//import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoVenda;
+import br.com.lojaGame.models.Relatorio;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
      */
     public FormRelatorioVendas() {
         initComponents();
-        
+
         //faz com que a coluna do ID não seja mostrada ao usuário
         tableRelatorio.getColumnModel().getColumn(0).setMinWidth(0);
         tableRelatorio.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -172,12 +173,12 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
                     "Sem resultados", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_buttonGerarRelatActionPerformed
 
     public boolean refreshList() throws VendasException, Exception {
 
-        List<Venda> resultado = ServicoVenda.procurarVenda((Date) fTxtDataInicial.getValue(), (Date) fTxtDataFinal.getValue());
+        List<Relatorio> resultado = ServicoVenda.procurarVenda((Date) fTxtDataInicial.getValue(), (Date) fTxtDataFinal.getValue());
 
         DefaultTableModel model = (DefaultTableModel) tableRelatorio.getModel();
         //Indica que a tabela deve excluir todos seus elementos
@@ -187,59 +188,30 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
         if (resultado == null || resultado.size() <= 0) {
             return false;
         }
-
+  float total=0;
         //Percorre a lista de resultados e os adiciona na tabela
-        float total = 0.0f;
-
-        int agrupaVenda = -1;
-
         for (int i = 0; i < resultado.size(); i++) {
-            Venda venda = resultado.get(i);
-
-            if (venda != null) {
-                List<ItemVenda> itensCart = venda.getCart();
-
-                //ItemCart itemCart = null;
-                for (int j = 0; j < itensCart.size(); j++) {
-                    ItemVenda itemCart = itensCart.get(j);
-
-                    //agrupar a venda e não mostrar dados repetidos na tabela
-                    if (agrupaVenda == venda.getIdVenda()) {
-                        Object[] row = new Object[9];
-                        row[0] = null;
-                        row[1] = null;
-                        row[2] = null;
-                        row[3] = itemCart.getNomeProd();
-                        row[4] = itemCart.getPlataforma();
-                        row[5] = itemCart.getQntdCompra();
-                        row[6] = itemCart.getPrecoUnit();
-                        row[7] = itemCart.getValor();
-                        row[8] = null;
-                        model.addRow(row);
-
-                    } else {
-                        Object[] row = new Object[9];
-                        row[0] = venda.getIdVenda();
-                        row[1] = venda.getData();
-                        row[2] = venda.getNomeCliente();
-                        row[3] = itemCart.getNomeProd();
-                        row[4] = itemCart.getPlataforma();
-                        row[5] = itemCart.getQntdCompra();
-                        row[6] = itemCart.getPrecoUnit();
-                        row[7] = itemCart.getValor();
-                        row[8] = venda.getValorTotal();
-                        model.addRow(row);
-
-                        //Guardando o total do relatório
-                        total += venda.getValorTotal();
-                    }
-
-                    agrupaVenda = venda.getIdVenda();
-                }
+            Relatorio relatorio = resultado.get(i);
+            if (relatorio != null) {
+                Object[] row = new Object[9];
+                row[0] = relatorio.getIdVenda();
+                row[1] = relatorio.getDataCompra();
+                row[2] = relatorio.getNomeCliente();
+                row[3] = relatorio.getNomeJogo();
+                row[4] = relatorio.getPlataforma();
+                row[5] = relatorio.getQuantidade();
+                row[6] = relatorio.getPreco();
+                row[7] = null;
+                row[8] = relatorio.getValorCompra();
+                model.addRow(row);
             }
+            total = total + relatorio.getValorCompra();
         }
 
-        lblTotal.setText("Total: R$ " + total);
+      
+
+        lblTotal.setText(
+                "Total: R$ " + total);
 
         //Se chegamos até aqui, a pesquisa teve sucesso, então
         //retornamos "true" para o elemento acionante, indicando

@@ -12,7 +12,7 @@ import java.util.List;
 public class DaoProduto {
 
     public static void inserir(Produto produto) throws SQLException, Exception {
-        //Monta a String de 'INSERT' de um cliente no DB;
+        //Monta a String de 'INSERT' de no DB;
         String sql = "INSERT INTO produto (nome, codBarra, categoria,  "
                 + "desenv, preco, faixaEtaria, jogadores, qtdEstoque, idPlataforma, enabled) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -31,7 +31,7 @@ public class DaoProduto {
             preparedStatement.setString(6, produto.getFaixaEtaria());
             preparedStatement.setString(7, produto.getQtdJogadores());
             preparedStatement.setInt(8, produto.getQtdEstoque());
-            preparedStatement.setInt(9, 1);
+            preparedStatement.setInt(9, produto.getPlataforma());
             preparedStatement.setBoolean(10, true);
 
             //configura os parâmetros do preparedStatement
@@ -50,7 +50,7 @@ public class DaoProduto {
     }
 
     public static void atualizar(Produto produto) throws SQLException, Exception {
-        //Monta a String de 'INSERT' de um cliente no DB;
+        //Monta a String de 'UPDATE' no DB;
         String sql = "UPDATE produto SET  nome = ?, codBarra = ?, categoria = ?, desenv = ?,"
                 + " preco = ?, faixaEtaria = ?, jogadores = ?, qtdEstoque = ?, idPlataforma  = ? "
                 + " WHERE idProduto = ? ";
@@ -89,7 +89,7 @@ public class DaoProduto {
     }
 
     public static void excluir(Integer id) throws SQLException, Exception {
-        //Monta a String de 'INSERT' de um cliente no DB;
+        //Monta a String de 'UPDATE' no DB;
         String sql = "UPDATE produto SET enabled = ? WHERE idProduto = ?";
 
         Connection connection = null;
@@ -118,8 +118,11 @@ public class DaoProduto {
 
     /* Lista todos os produtos*/
     public static List<Produto> listar() throws SQLException, Exception {
-        String sql = "SELECT * FROM produto WHERE enabled = ?";
-        //Lista de clientes de resultado
+          //Monta a String de 'SELECT' de no DB;
+        String sql = "SELECT p.idProduto,p.nome,p.categoria,p.desenv,p.preco,p.codBarra,p.faixaEtaria,"
+                + "p.jogadores,p.qtdEstoque, plat.descricao AS Plataforma FROM produto p "
+                + "INNER JOIN plataforma plat on p.idPlataforma = plat.idPlataforma WHERE enabled = ?";
+        //Lista de Produtos
         List<Produto> listaProdutos = null;
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -144,7 +147,7 @@ public class DaoProduto {
                 if (listaProdutos == null) {
                     listaProdutos = new ArrayList<Produto>();
                 }
-                //Cria uma instância de Cliente e popula com os valores do BD
+         
                 Produto produto = new Produto();
                 produto.setIdProd(result.getInt("idProduto"));
                 produto.setNome(result.getString("nome"));
@@ -155,7 +158,8 @@ public class DaoProduto {
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
                 produto.setQtdJogadores(result.getString("jogadores"));
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
-                produto.setIdProd(result.getInt("idPlataforma"));
+              //  produto.setIdProd(result.getInt("idPlataforma"));
+              produto.setStrPlataforma(result.getString("Plataforma"));
                 /*
                 nome, codBarra, categoria,  "
                 + "desenv, preco, faixaEtaria, jogadores, qtdEstoque, idPlataforma, enabled
@@ -181,8 +185,12 @@ public class DaoProduto {
     }
 
     public static List<Produto> procurar(String search) throws SQLException, Exception {
-        String sql = "SELECT * FROM produto WHERE (UPPER(nome) LIKE UPPER(?) AND enabled = ?)";
-        //Lista de clientes de resultado
+        //Monta a String de 'SELECT' de no DB;
+        String sql = "SELECT p.idProduto,p.nome,p.categoria,p.desenv,p.preco,p.codBarra,p.faixaEtaria,"
+                + "p.jogadores,p.qtdEstoque, plat.descricao AS Plataforma FROM produto p "
+                + "INNER JOIN plataforma plat on p.idPlataforma = plat.idPlataforma WHERE (UPPER(nome) LIKE UPPER(?) AND enabled = ?)";
+//        String sql = "SELECT * FROM produto WHERE (UPPER(nome) LIKE UPPER(?) AND enabled = ?)";
+        //Lista de Produtos
         List<Produto> listaProdutos = null;
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -219,7 +227,7 @@ public class DaoProduto {
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
                 produto.setQtdJogadores(result.getString("jogadores"));
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
-                produto.setIdProd(result.getInt("idPlataforma"));
+                produto.setStrPlataforma(result.getString("Plataforma"));
                 //Adiciona a instância na lista
                 listaProdutos.add(produto);
             }
@@ -243,6 +251,7 @@ public class DaoProduto {
     }
 
     public static Produto obter(Integer id) throws SQLException, Exception {
+        //Monta a String de 'SELECT' de no DB;
         String sql = "SELECT * FROM produto WHERE idProduto = ? AND enabled = ?";
 
         //Conexão para abertura e fechamento
@@ -270,7 +279,7 @@ public class DaoProduto {
                 produto.setIdProd(result.getInt("idProduto"));
                 produto.setNome(result.getString("nome"));
                 produto.setCategoria(result.getString("categoria"));
-                produto.setPlataforma(result.getString("idPlataforma"));
+                produto.setPlataforma(result.getInt("idPlataforma"));
                 produto.setDesenv(result.getString("desenv"));
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
                 produto.setQtdJogadores(result.getString("jogadores"));
@@ -300,6 +309,7 @@ public class DaoProduto {
     }
     
     public static boolean obterIdentificador(String codBarra) throws SQLException, Exception {
+        //Monta a String de 'SELECT' de no DB;
         String sql = "SELECT * FROM produto WHERE codBarra = ? AND enabled = ?";
 
         //Conexão para abertura e fechamento
@@ -322,12 +332,12 @@ public class DaoProduto {
 
             //Se a lista não foi inicializada, a inicializa
             if (result.next()) {
-                //Cria uma instância de Cliente e popula com os valores do BD
+               
                 Produto produto = new Produto();
                 produto.setIdProd(result.getInt("idProduto"));
                 produto.setNome(result.getString("nome"));
                 produto.setCategoria(result.getString("categoria"));
-                produto.setPlataforma(result.getString("idPlataforma"));
+                produto.setPlataforma(result.getInt("idPlataforma"));
                 produto.setDesenv(result.getString("desenv"));
                 produto.setFaixaEtaria(result.getString("faixaEtaria"));
                 produto.setQtdJogadores(result.getString("jogadores"));

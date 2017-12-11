@@ -202,7 +202,7 @@ public class FormCadastrarJogo extends javax.swing.JInternalFrame {
         //obtem as informações do campos
         jogo.setNome(txtNome.getText());
         jogo.setCategoria((String) comboCategoria.getSelectedItem());
-        jogo.setPlataforma((String) comboPlat.getSelectedItem());
+        jogo.setPlataforma((Integer) comboPlat.getSelectedIndex());
         jogo.setDesenv(txtFab.getText());
 
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());

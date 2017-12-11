@@ -44,16 +44,72 @@ public class ValidadorCliente {
 //            int subt1 = 11 - restosoma1;
 //
 //            if (subt1 < 10 && subt1 == n10 || subt1 == 0) {
-//                
+//
 //                int soma2 = (n1 * 11) + (n2 * 10) + (n3 * 9) + (n4 * 8) + (n5 * 7) + (n6 * 6) + (n7 * 5) + (n8 * 4) + (n9 * 3) + (n10 * 2);
 //                int restosoma2 = soma2 % 11;
 //                int subt2 = 11 - restosoma2;
 //                if (subt2 < 10 && subt2 == n11 || subt2 == 0) {
-//                    
+//
 //                } else {
 //                    throw new ClientesException("CPF INVÁLIDO");
 //                }
 //            }
+        }
+        if (cliente.getRG() == null || "".equals(cliente.getRG())) {
+            throw new ClientesException("É necessário informar o RG");
+        }
+        if (cliente.getSexo() == null || "Selecione...".equals(cliente.getSexo())) {
+            throw new ClientesException("É necessário informar o sexo");
+        }
+        if (cliente.getDataNasc() == null) {
+            throw new ClientesException("É necessário informar a data de nascimento");
+        }
+        if (cliente.getCep() == null || "".equals(cliente.getCep())) {
+            throw new ClientesException("É necessário informar o CEP");
+        }
+        if (cliente.getLogradouro() == null || "".equals(cliente.getLogradouro())) {
+            throw new ClientesException("É necessário informar o nome da rua");
+        }
+        if (cliente.getNumero() == null) {
+            throw new ClientesException("É necessário informar o número do local");
+        }
+        if (cliente.getTelefone() == null || "".equals(cliente.getTelefone())) {
+            throw new ClientesException("É necessário informar um telefone para contato");
+        }
+
+        //Validando email
+        if (cliente.getEmail() == null || "".equals(cliente.getEmail())) {
+            throw new ClientesException("Campo email vazio");
+        } else if (cliente.getEmail() != null && cliente.getEmail().length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(cliente.getEmail());
+            if (!matcher.matches()) {
+                throw new ClientesException("Email inválido");
+            }
+        }
+
+        //teste p/ não deixar o Selecione...
+        if ("Selecione...".equals(cliente.getEstadoCivil())) {
+            cliente.setEstadoCivil(null);
+        }
+
+    }
+
+    public static void validarAtualizacao(Cliente cliente) throws ClientesException, Exception {
+
+        if (cliente == null) {
+            throw new ClientesException("Não foi informado um cliente");
+        }
+        if (cliente.getNome() == null || "".equals(cliente.getNome())) {
+            throw new ClientesException("É necessário informar o nome do cliente");
+        }
+//        if (DaoCliente.obterCpf(cliente.getCPF())) {
+//            throw new ClientesException("CPF já cadastrado no sistema");
+//        }
+
+        if (cliente.getCPF() == null || "".equals(cliente.getCPF())) {
+            throw new ClientesException("É necessário informar o CPF");
         }
         if (cliente.getRG() == null || "".equals(cliente.getRG())) {
             throw new ClientesException("É necessário informar o RG");
