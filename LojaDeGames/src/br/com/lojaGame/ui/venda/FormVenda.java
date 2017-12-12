@@ -379,7 +379,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     Object[] row = new Object[6];
                     row[0] = item.getIdProd();
                     row[1] = item.getNomeProd();
-                    row[2] = item.getPlataforma();
+                    row[2] = item.getStrPlataforma();
                     row[3] = item.getQntdCompra();
                     row[4] = item.getPrecoUnit();
                     row[5] = item.getValor();
@@ -603,7 +603,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 row[0] = produto.getIdProd();
                 row[1] = produto.getCodBarras();
                 row[2] = produto.getNome();
-                row[3] = produto.getPlataforma();
+                row[3] = produto.getStrPlataforma();
                 row[4] = produto.getPreco();
                 row[5] = produto.getQtdEstoque();
 
