@@ -1,5 +1,6 @@
 package br.com.lojaGame.ui.cliente;
 
+import br.com.lojaGame.model.validadores.WebServiceCep;
 import br.com.lojaGame.models.Cliente;
 import br.com.lojaGame.services.ServicoCliente;
 import br.com.lojaGame.ui.principal.TelaPrincipal;
@@ -191,6 +192,11 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        fTxtCEP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fTxtCEPFocusLost(evt);
+            }
+        });
 
         lblCEP.setText("* CEP");
 
@@ -388,14 +394,27 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         cliente.setEstadoCivil((String) comboEstCivil.getSelectedItem());
 
         //Endereço
-        cliente.setCep(fTxtCEP.getText());
-        cliente.setLogradouro(txtLog.getText());
+        //Endereço
+        WebServiceCep buscaCep = WebServiceCep.searchCep(fTxtCEP.getText());
+        if (buscaCep.wasSuccessful()) {
+            cliente.setCep(buscaCep.getCep());
+            cliente.setLogradouro(buscaCep.getLogradouro());
+            cliente.setBairro(buscaCep.getBairro());
+            cliente.setCidade(buscaCep.getCidade());
+            cliente.setUF(buscaCep.getUf());
+
+        }
+        else {
+            cliente.setCep(fTxtCEP.getText());
+            cliente.setLogradouro(txtLog.getText());
+            cliente.setBairro(txtBairro.getText());
+            cliente.setCidade(txtCidade.getText());
+            cliente.setUF(txtUF.getText());
+        }
+        
         cliente.setNumero(txtNum.getText());
         cliente.setComplemento(txtComp.getText());
-        cliente.setBairro(txtBairro.getText());
-        cliente.setCidade(txtCidade.getText());
-        cliente.setUF(txtUF.getText());
-
+        
         //Contato
         cliente.setTelefone(txtTel.getText());
         cliente.setEmail(txtEmail.getText());
@@ -452,7 +471,7 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
                 comboEstCivil.setSelectedIndex(i);
                 break;
             }
-        }
+        }        
 
         fTxtCEP.setText(cliente.getCep());
         txtLog.setText(cliente.getLogradouro());
@@ -466,6 +485,15 @@ public class FormEditarCliente extends javax.swing.JInternalFrame {
         txtEmail.setText(cliente.getEmail());
 
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void fTxtCEPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fTxtCEPFocusLost
+        WebServiceCep buscaCep = WebServiceCep.searchCep(fTxtCEP.getText());
+
+        txtLog.setText(buscaCep.getLogradouro());
+        txtBairro.setText(buscaCep.getBairro());
+        txtCidade.setText(buscaCep.getCidade());
+        txtUF.setText(buscaCep.getUf());
+    }//GEN-LAST:event_fTxtCEPFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
