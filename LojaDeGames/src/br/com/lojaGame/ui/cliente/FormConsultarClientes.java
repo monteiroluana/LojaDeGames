@@ -4,6 +4,7 @@ import br.com.lojaGame.exceptions.ClientesException;
 import br.com.lojaGame.models.Cliente;
 import br.com.lojaGame.services.ServicoCliente;
 import java.awt.Dimension;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -291,6 +292,8 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
         if (resultado == null || resultado.size() <= 0) {
             return false;
         }
+        
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
 
         //Percorre a lista de resultados e os adiciona na tabela
         for (int i = 0; i < resultado.size(); i++) {
@@ -306,7 +309,7 @@ public class FormConsultarClientes extends javax.swing.JInternalFrame {
                 row[6] = cliente.getEmail();
                 row[7] = cliente.getSexo();
                 row[8] = cliente.getEstadoCivil();
-                row[9] = cliente.getDataNasc();
+                row[9] = formatar.format(cliente.getDataNasc());
                 model.addRow(row);
             }
         }
