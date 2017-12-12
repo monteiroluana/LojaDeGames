@@ -51,5 +51,9 @@ public class ItemVenda {
     public String getCodBarras() {
         return produto.getCodBarras();
     }
+    
+    public String getStrPlataforma(){
+        return produto.getStrPlataforma();
+    }
 
 }
