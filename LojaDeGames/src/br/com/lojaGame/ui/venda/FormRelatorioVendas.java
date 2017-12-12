@@ -4,6 +4,7 @@ import br.com.lojaGame.exceptions.VendasException;
 import br.com.lojaGame.services.ServicoVenda;
 import br.com.lojaGame.models.Relatorio;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -194,6 +195,8 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
         int agrupaVenda = -1;
 
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+
         //Percorre a lista de resultados e os adiciona na tabela
         for (int i = 0; i < resultado.size(); i++) {
             Relatorio relatorio = resultado.get(i);
@@ -209,12 +212,13 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
                     row[5] = relatorio.getQuantidade();
                     row[6] = relatorio.getPreco();
                     row[7] = relatorio.getValorCompra();
-                    row[8] = relatorio.getValorVenda();
+                    row[8] = null;
                     model.addRow(row);
                 } else {
                     Object[] row = new Object[9];
                     row[0] = relatorio.getIdVenda();
-                    row[1] = relatorio.getDataCompra();
+                    //teste
+                    row[1] = formatar.format(relatorio.getDataCompra());
                     row[2] = relatorio.getNomeCliente();
                     row[3] = relatorio.getNomeJogo();
                     row[4] = relatorio.getPlataforma();
