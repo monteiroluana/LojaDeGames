@@ -71,7 +71,7 @@ public class DaoProduto {
             preparedStatement.setString(6, produto.getFaixaEtaria());
             preparedStatement.setString(7, produto.getQtdJogadores());
             preparedStatement.setInt(8, produto.getQtdEstoque());
-            preparedStatement.setInt(9, 1);
+            preparedStatement.setInt(9, produto.getPlataforma());
             preparedStatement.setInt(10, produto.getIdProd());
 
             //Executa o comando no banco de dados;

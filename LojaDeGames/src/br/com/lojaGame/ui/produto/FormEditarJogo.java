@@ -1,8 +1,11 @@
 package br.com.lojaGame.ui.produto;
 
+//import br.com.lojaGame.exceptions.ProdutosException;
 import br.com.lojaGame.models.Produto;
 import br.com.lojaGame.services.ServicoProduto;
 import br.com.lojaGame.ui.principal.TelaPrincipal;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FormEditarJogo extends javax.swing.JInternalFrame {
@@ -240,10 +243,11 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         jogo.setFaixaEtaria((String) comboFaixaEt.getSelectedItem());
         jogo.setQtdJogadores((String) comboJogadores.getSelectedItem());
         jogo.setQtdEstoque(Integer.parseInt(txtEstoque.getText()));
-
+        String plataforma = comboPlat.getSelectedItem().toString();
         try {
             //Chama o serviço para realizar as alterações necessárias
-             ServicoProduto.atualizarProduto(jogo);
+
+            ServicoProduto.atualizarProduto(jogo);
         } catch (Exception e) {
             //Exibe alguma mensagem de erro que pode ter vindo do serviço
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -260,11 +264,11 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
             if (this.getDesktopPane().getTopLevelAncestor() instanceof TelaPrincipal) {
                 TelaPrincipal principal = (TelaPrincipal) this.
                         getDesktopPane().getTopLevelAncestor();
-                
+
                 if (principal != null) {
                     principal.getConsultarClientes().refreshList();
                 }
-                
+
             }
         } catch (Exception e) {
             //Exibe erros de atualização da lista no
