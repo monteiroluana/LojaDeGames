@@ -3,10 +3,9 @@ package br.com.lojaGame.services;
 import br.com.lojaGame.db.dao.DaoVenda;
 import br.com.lojaGame.exceptions.DataSourceException;
 import br.com.lojaGame.exceptions.ItemCartException;
-import br.com.lojaGame.exceptions.VendasException;
-import br.com.lojaGame.mock.MockVenda;
+import br.com.lojaGame.exceptions.RelatorioException;
+import br.com.lojaGame.model.validadores.ValidadorRelatorio;
 import br.com.lojaGame.models.Relatorio;
-//import br.com.lojaGame.model.validadores.ValidadorVenda;
 import br.com.lojaGame.models.Venda;
 import java.util.Date;
 import java.util.List;
@@ -14,13 +13,9 @@ import java.util.List;
 public class ServicoVenda {
 
     public static void cadastrarVenda(Venda venda)
-            throws VendasException, DataSourceException, ItemCartException {
+            throws RelatorioException, DataSourceException, ItemCartException {
 
-        // ValidadorVenda.validar(venda, venda.getCart);
-        //ValidadorItemCart.validar(venda.getCart);
         try {
-
-            //MockVenda.inserir(venda);
             DaoVenda.inserir(venda);
         } catch (Exception e) {
 
@@ -31,10 +26,11 @@ public class ServicoVenda {
     }
 
     public static List<Relatorio> procurarVenda(Date dataInicial, Date dataFinal)
-            throws VendasException, DataSourceException {
+            throws RelatorioException, DataSourceException, Exception {
+        
+        ValidadorRelatorio.validarDatas(dataInicial, dataFinal);
 
         try {
-            // return MockVenda.procurar(dataInicial, dataFinal);
             return DaoVenda.listarVendas(dataInicial, dataFinal);
         } catch (Exception e) {
 
