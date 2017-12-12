@@ -256,7 +256,8 @@ public class DaoProduto {
 
     public static Produto obter(Integer id) throws SQLException, Exception {
         //Monta a String de 'SELECT' de no DB;
-        String sql = "SELECT * FROM produto WHERE idProduto = ? AND enabled = ?";
+        String sql = "SELECT p.*, plat.descricao FROM produto p INNER JOIN plataforma plat"
+                + " ON p.idPlataforma = plat.idPlataforma WHERE idProduto = ? AND enabled = ?";
 
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -290,6 +291,7 @@ public class DaoProduto {
                 produto.setQtdEstoque(result.getInt("qtdEstoque"));
                 produto.setPreco(result.getFloat("preco"));
                 produto.setCodBarras(result.getString("codBarra"));
+                produto.setStrPlataforma(result.getString("descricao"));
 
                 //Retorna o produto
                 return produto;
