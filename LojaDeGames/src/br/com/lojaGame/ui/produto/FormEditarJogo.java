@@ -296,7 +296,7 @@ public class FormEditarJogo extends javax.swing.JInternalFrame {
         txtFab.setText(jogo.getDesenv());
 
         for (int i = 0; i < comboPlat.getItemCount(); i++) {
-            if (comboPlat.getItemAt(i).equals(jogo.getPlataforma())) {
+            if (i == jogo.getPlataforma()) {
                 comboPlat.setSelectedIndex(i);
                 break;
             }
