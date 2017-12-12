@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Relatorio {
 
-     private Integer idVenda;
+    private Integer idVenda;
     private String nomeCliente;
     private String nomeJogo;
     private String plataforma;
@@ -12,7 +12,8 @@ public class Relatorio {
     private Integer quantidade;
     private Float valorCompra;
     private Date dataCompra;
-    
+    private Float valorVenda;
+
     public Integer getIdVenda() {
         return idVenda;
     }
@@ -21,37 +22,30 @@ public class Relatorio {
         this.idVenda = idVenda;
     }
 
-    
     public String getNomeCliente() {
         return nomeCliente;
     }
 
-   
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
     }
 
-   
     public String getNomeJogo() {
         return nomeJogo;
     }
 
-    
     public void setNomeJogo(String nomeJogo) {
         this.nomeJogo = nomeJogo;
     }
 
-   
     public String getPlataforma() {
         return plataforma;
     }
 
-    
     public void setPlataforma(String plataforma) {
         this.plataforma = plataforma;
     }
 
-   
     public Float getPreco() {
         return preco;
     }
@@ -60,34 +54,36 @@ public class Relatorio {
         this.preco = preco;
     }
 
-  
     public Integer getQuantidade() {
         return quantidade;
     }
 
-  
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
-   
     public Float getValorCompra() {
         return valorCompra;
     }
 
-   
     public void setValorCompra(Float valorCompra) {
         this.valorCompra = valorCompra;
     }
 
-   
     public Date getDataCompra() {
         return dataCompra;
     }
 
-  
     public void setDataCompra(Date dataCompra) {
         this.dataCompra = dataCompra;
     }
-  
+
+    public float getValorVenda() {
+        return valorVenda;
+    }
+
+    public void setValorVenda(Float valorVenda) {
+        this.valorVenda = valorVenda;
+    }
+
 }

@@ -34,7 +34,6 @@ public class ValidadorProduto {
         if (produto.getQtdEstoque() == null || produto.getQtdEstoque() < 0) {
             throw new ProdutosException("Campo estoque está vazio");
         }        
-        //teste
         if ("Selecione".equals(produto.getQtdJogadores())){
             produto.setQtdJogadores(null);
         }
@@ -67,7 +66,6 @@ public class ValidadorProduto {
         if (produto.getQtdEstoque() == null || produto.getQtdEstoque() < 0) {
             throw new ProdutosException("Campo estoque está vazio");
         }        
-        //teste
         if ("Selecione".equals(produto.getQtdJogadores())){
             produto.setQtdJogadores(null);
         }

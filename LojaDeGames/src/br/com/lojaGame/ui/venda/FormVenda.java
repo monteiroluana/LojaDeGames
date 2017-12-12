@@ -59,6 +59,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePesquisaProd = new javax.swing.JTable();
         txtQntd = new javax.swing.JTextField();
+        buttonPesquisar = new javax.swing.JButton();
         panelCarrinho = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCarrinho = new javax.swing.JTable();
@@ -71,23 +72,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Tela de Venda");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                FormVenda.this.internalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         lblID.setText("CPF");
 
@@ -143,6 +127,13 @@ public class FormVenda extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tablePesquisaProd);
 
+        buttonPesquisar.setText("Pesquisar");
+        buttonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAdicionarLayout = new javax.swing.GroupLayout(panelAdicionar);
         panelAdicionar.setLayout(panelAdicionarLayout);
         panelAdicionarLayout.setHorizontalGroup(
@@ -163,7 +154,9 @@ public class FormVenda extends javax.swing.JInternalFrame {
                                 .addComponent(lblProduto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(221, 221, 221)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonPesquisar)
+                                .addGap(142, 142, 142)))
                         .addGap(0, 28, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -173,7 +166,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(panelAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProduto)
-                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -225,7 +219,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
             .addGroup(panelCarrinhoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCarrinhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                     .addGroup(panelCarrinhoLayout.createSequentialGroup()
                         .addComponent(buttonExcluir)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -298,7 +292,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(panelAdicionar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(15, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,7 +309,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 .addComponent(panelCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTotal)
-                .addGap(18, 33, Short.MAX_VALUE)
+                .addGap(18, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonCancelar))
@@ -326,7 +320,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-//        reajustaEstoque();
         this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
@@ -373,9 +366,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 if (Integer.parseInt(txtQntd.getText()) <= item.getQntdEstoque()) {
                     venda.addItem(item);
 
-                    //id do produto.
-//                    Integer ia = item.getIdProd();
-//                    venda.ajusteEstoque(ia);
                     //aparecer na tabela do compra
                     Object[] row = new Object[6];
                     row[0] = item.getIdProd();
@@ -394,11 +384,15 @@ public class FormVenda extends javax.swing.JInternalFrame {
                         //altera a label total
                         lblTotal.setText("Total: R$ " + valorFormat.format(total));
                     }
+                    DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
+
+                    //limpa a tabela
+                    modelPesquisaProd.setRowCount(0);
                 } else if (item.getQntdEstoque() == 0) {
                     JOptionPane.showMessageDialog(rootPane, "O estoque do produto está vazio");
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Só existe " + item.getQntdEstoque()
-                            + " quantidade(s) desse produto em estoque");
+                    JOptionPane.showMessageDialog(rootPane, "Temos somente " + item.getQntdEstoque()
+                            + " desse produto em estoque.");
                 }
 
             } else {
@@ -415,11 +409,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
                     "Falha ao adicionar", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        DefaultTableModel modelPesquisaProd = (DefaultTableModel) tablePesquisaProd.getModel();
-
-        //limpa a tabela
-        modelPesquisaProd.setRowCount(0);
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -444,34 +433,72 @@ public class FormVenda extends javax.swing.JInternalFrame {
             venda.setData();
             venda.setValorTotal(total);
 
+            int aux = 0;
+            boolean verifica = false;
+
             for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
                 int qntd = (int) tableCarrinho.getValueAt(i, 3);
                 int idProd = (int) tableCarrinho.getValueAt(i, 0);
 
-                Produto prodSelecionado = ServicoProduto.obterProduto(idProd);
-                ItemVenda item = new ItemVenda(prodSelecionado, qntd);
+                Produto produto = ServicoProduto.obterProduto(idProd);
+
+                ItemVenda item = new ItemVenda(produto, qntd);
+
                 item.ajustarEstq();
-                ServicoProduto.atualizarProduto(prodSelecionado);
+
+                if (item.getQntdEstoque() < 0) {
+                    //pega o indice, p/ percorrer novamente a tabela e "cancelar" o ajuste de estoque
+                    aux = i;
+                    verifica = true;
+                    break;
+                }
+            }
+
+            if (!verifica) {
+                //Chama o serviço para cadastro da venda (valida a venda e o list de itens
+                ServicoVenda.cadastrarVenda(venda);
+
+                //percorre a tabela novamente, para atualizar o estoque
+                for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
+                    int idProd = (int) tableCarrinho.getValueAt(i, 0);
+                    Produto produto = ServicoProduto.obterProduto(idProd);
+                    ServicoProduto.atualizarProduto(produto);
+                }
+                
+                //exibe a mensagem da conclusão da venda
+                JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
+                        "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                
+            } else {
+                for (int i = 0; i <= aux; i++) {
+                    int qntd = (int) tableCarrinho.getValueAt(i, 3);
+                    int idProd = (int) tableCarrinho.getValueAt(i, 0);
+
+                    Produto produto = ServicoProduto.obterProduto(idProd);
+
+                    ItemVenda item = new ItemVenda(produto, qntd);
+
+                    item.ajustarEstqCancel();
+                }
+
             }
 
             //Chama o serviço para cadastro da venda (valida a venda e o list de itens
-            //ServicoVenda.cadastrarVenda(venda);
-            ServicoVenda.cadastrarVenda(venda);
-
+//            ServicoVenda.cadastrarVenda(venda);                       
             //percorre a tabela novamente, pra ajustar o estoque
-            for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
-                int qntd = (int) tableCarrinho.getValueAt(i, 3);
-                int idProd = (int) tableCarrinho.getValueAt(i, 0);
-
-                Produto prodSelecionado = ServicoProduto.obterProduto(idProd);
-                ItemVenda item = new ItemVenda(prodSelecionado, qntd);
-                item.ajustarEstq();
-                ServicoProduto.atualizarProduto(prodSelecionado);
-            }
-
-            JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
-                    "Finalizado", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+//            for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
+//                int qntd = (int) tableCarrinho.getValueAt(i, 3);
+//                int idProd = (int) tableCarrinho.getValueAt(i, 0);
+//
+//                Produto produto = ServicoProduto.obterProduto(idProd);
+//                ItemVenda item = new ItemVenda(produto, qntd);
+//                item.ajustarEstq();
+//                ServicoProduto.atualizarProduto(produto);
+//            }
+//            JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
+//                    "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+//            this.dispose();
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -561,9 +588,18 @@ public class FormVenda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
-    private void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_internalFrameClosing
-//        reajustaEstoque();
-    }//GEN-LAST:event_internalFrameClosing
+    private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
+
+        boolean resultSearch = false;
+
+        try {
+            resultSearch = buscaProduto();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_buttonPesquisarActionPerformed
 
     //realiza a busca para achar o cliente que corresponde ao cpf informado
     public boolean buscaCliente() throws ClientesException, Exception {
@@ -631,6 +667,7 @@ public class FormVenda extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonFinalizar;
+    private javax.swing.JButton buttonPesquisar;
     private javax.swing.JFormattedTextField fTxtCPF;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

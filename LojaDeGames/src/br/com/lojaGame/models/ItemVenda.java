@@ -20,9 +20,10 @@ public class ItemVenda {
         produto.setQtdEstoque(produto.getQtdEstoque() - qntdCompra);
     }
 
-//    public void ajustarEstqCancel() {
-//        produto.setQtdEstoque(produto.getQtdEstoque() + qntdCompra);
-//    }
+    public void ajustarEstqCancel() {
+        produto.setQtdEstoque(produto.getQtdEstoque() + qntdCompra);
+    }
+    
     public float getPrecoUnit() {
         return produto.getPreco();
     }

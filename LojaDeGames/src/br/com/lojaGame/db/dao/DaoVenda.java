@@ -19,7 +19,7 @@ public class DaoVenda {
 
     public static void inserir(Venda venda) throws SQLException, Exception {
         //Monta a String de 'INSERT' no DB;
-        String sql = "INSERT INTO venda (idCliente, dataCompra) VALUES (?,?)";
+        String sql = "INSERT INTO venda (idCliente, dataCompra, valorVenda) VALUES (?,?,?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -31,6 +31,7 @@ public class DaoVenda {
             preparedStatement.setInt(1, venda.getIdCliente());
             Timestamp dataCom = new Timestamp(venda.getData().getTime());
             preparedStatement.setTimestamp(2, dataCom);
+            preparedStatement.setFloat(3,venda.getValorTotal());
 
             //Executa o comando no banco de dados;
             preparedStatement.execute();
@@ -38,7 +39,6 @@ public class DaoVenda {
             if (rs.next()) {
                 chaveGerada = rs.getInt(1);
             }
-            System.out.println(chaveGerada);
             inserirItens(venda.getCart());
         } finally {
             //Se o statement ainda estiver aberto, realiza seu fechamento
@@ -91,7 +91,8 @@ public class DaoVenda {
 
     public static List<Relatorio> listarVendas(Date dataInicial, Date dataFinal) throws SQLException, Exception {
         //Monta a String de 'SELECT' de no DB;
-        String sql = "SELECT v.idVenda AS Venda, c.nome AS Cliente, prod.nome AS Jogo, prod.preco AS Preco, plat.descricao AS Plataforma, i.qtdProd AS Qtde, i.valorTotal AS vTotal, v.dataCompra AS dtCompra "
+        String sql = "SELECT v.idVenda AS Venda, c.nome AS Cliente, prod.nome AS Jogo, prod.preco AS Preco, "
+                + "plat.descricao AS Plataforma, i.qtdProd AS Qtde, i.valorTotal AS vTotal, v.valorVenda,v.dataCompra AS dtCompra "
                 + "FROM cliente c INNER JOIN venda v ON c.idCliente = v.idCliente "
                 + "INNER JOIN itensVenda i ON v.idVenda = i.idVenda "
                 + "INNER JOIN produto prod on i.idProduto = prod.idProduto "
@@ -140,6 +141,7 @@ public class DaoVenda {
                 relatorio.setValorCompra(result.getFloat("vTotal"));
                 Date d = new Date(result.getTimestamp("dtCompra").getTime());
                 relatorio.setDataCompra(d);
+                relatorio.setValorVenda(result.getFloat("valorVenda"));
 
                 //Adiciona a instância na lista
                 listaRelatorio.add(relatorio);

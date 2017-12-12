@@ -9,9 +9,6 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
-  <Events>
-    <EventHandler event="internalFrameClosing" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="internalFrameClosing"/>
-  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -55,7 +52,7 @@
                           </Group>
                           <Component id="panelAdicionar" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -77,7 +74,7 @@
               <Component id="panelCarrinho" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" pref="33" max="32767" attributes="0"/>
+              <EmptySpace type="separate" pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonFinalizar" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="buttonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -133,7 +130,9 @@
                                   <Component id="lblProduto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtProduto" min="-2" pref="217" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="buttonPesquisar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
@@ -150,6 +149,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="83" max="-2" attributes="0"/>
@@ -220,6 +220,14 @@
         </Container>
         <Component class="javax.swing.JTextField" name="txtQntd">
         </Component>
+        <Component class="javax.swing.JButton" name="buttonPesquisar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pesquisar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPesquisarActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelCarrinho">
@@ -237,7 +245,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="508" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="514" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="buttonExcluir" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>

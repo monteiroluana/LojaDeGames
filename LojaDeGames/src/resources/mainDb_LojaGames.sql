@@ -41,7 +41,8 @@ FOREIGN KEY(idPlataforma) REFERENCES plataforma(idPlataforma)
 CREATE TABLE venda( 
 idVenda INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), 
 idCliente INT NOT NULL, 
-dataCompra DATE NOT NULL,  
+dataCompra DATE NOT NULL,
+valorVenda FLOAT NOT NULL,  
 FOREIGN KEY(idCliente) REFERENCES cliente(idCliente) 
 );
 
@@ -49,7 +50,7 @@ CREATE TABLE itensVenda(
 IdVenda INT NOT NULL, 
 idProduto  INT NOT NULL, 
 qtdProd INT NOT NULL, 
-valorTotal INT NOT NULL, 
+valorTotal FLOAT NOT NULL, 
 FOREIGN KEY(idVenda) REFERENCES venda(idVenda),
 FOREIGN KEY(idProduto) REFERENCES produto(idProduto) 
 );

@@ -1,16 +1,18 @@
 package br.com.lojaGame.ui.venda;
 
 import br.com.lojaGame.exceptions.VendasException;
-//import br.com.lojaGame.models.ItemVenda;
-//import br.com.lojaGame.models.Venda;
 import br.com.lojaGame.services.ServicoVenda;
 import br.com.lojaGame.models.Relatorio;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormRelatorioVendas extends javax.swing.JInternalFrame {
+
+    // formatar o valor total e exibir somente duas casas decimais
+    private DecimalFormat valorFormat = new DecimalFormat("0.00");
 
     /**
      * Creates new form FormRelatorioVendas
@@ -188,30 +190,50 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
         if (resultado == null || resultado.size() <= 0) {
             return false;
         }
-  float total=0;
+        float total = 0;
+
+        int agrupaVenda = -1;
+
         //Percorre a lista de resultados e os adiciona na tabela
         for (int i = 0; i < resultado.size(); i++) {
             Relatorio relatorio = resultado.get(i);
             if (relatorio != null) {
-                Object[] row = new Object[9];
-                row[0] = relatorio.getIdVenda();
-                row[1] = relatorio.getDataCompra();
-                row[2] = relatorio.getNomeCliente();
-                row[3] = relatorio.getNomeJogo();
-                row[4] = relatorio.getPlataforma();
-                row[5] = relatorio.getQuantidade();
-                row[6] = relatorio.getPreco();
-                row[7] = null;
-                row[8] = relatorio.getValorCompra();
-                model.addRow(row);
+                //agrupar a venda e não mostrar dados repetidos na tabela
+                if (agrupaVenda == relatorio.getIdVenda()) {
+                    Object[] row = new Object[9];
+                    row[0] = relatorio.getIdVenda();
+                    row[1] = null;
+                    row[2] = null;
+                    row[3] = relatorio.getNomeJogo();
+                    row[4] = relatorio.getPlataforma();
+                    row[5] = relatorio.getQuantidade();
+                    row[6] = relatorio.getPreco();
+                    row[7] = relatorio.getValorCompra();
+                    row[8] = relatorio.getValorVenda();
+                    model.addRow(row);
+                } else {
+                    Object[] row = new Object[9];
+                    row[0] = relatorio.getIdVenda();
+                    row[1] = relatorio.getDataCompra();
+                    row[2] = relatorio.getNomeCliente();
+                    row[3] = relatorio.getNomeJogo();
+                    row[4] = relatorio.getPlataforma();
+                    row[5] = relatorio.getQuantidade();
+                    row[6] = relatorio.getPreco();
+                    row[7] = relatorio.getValorCompra();
+                    row[8] = relatorio.getValorVenda();
+                    model.addRow(row);
+
+                    total = total + relatorio.getValorVenda();
+                }
+
+                agrupaVenda = relatorio.getIdVenda();
             }
-            total = total + relatorio.getValorCompra();
+
         }
 
-      
-
         lblTotal.setText(
-                "Total: R$ " + total);
+                "Total: R$ " + valorFormat.format(total));
 
         //Se chegamos até aqui, a pesquisa teve sucesso, então
         //retornamos "true" para o elemento acionante, indicando
