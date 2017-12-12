@@ -455,6 +455,8 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 ServicoProduto.atualizarProduto(produto);
 
             }
+            
+            ServicoVenda.cadastrarVenda(venda);
 
         } catch (Exception e) {
 
