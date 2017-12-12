@@ -330,6 +330,26 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
             if (tablePesquisaProd.getSelectedRow() >= 0) {
 
+                //pega a linha selecionada
+                final int rowPesquisa = tablePesquisaProd.getSelectedRow();
+
+                //guarda a id do produto da linha selecionado
+                Integer idPesquisa = (Integer) tablePesquisaProd.getValueAt(rowPesquisa, 0);
+
+                //chama o serviço para obter as informações do produto
+                Produto prodSelecionado = ServicoProduto.obterProduto(idPesquisa);
+
+                DefaultTableModel modelCarrinho = (DefaultTableModel) tableCarrinho.getModel();
+
+                //percorre a tabela do carrinho p/ validar produto duplicado
+                for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
+                    Integer idProdCarrinho = (Integer) tableCarrinho.getValueAt(i, 0);
+                    if (idPesquisa == idProdCarrinho) {
+                        JOptionPane.showMessageDialog(rootPane, "Produto já existente no carrinho!");
+                        return;
+                    }
+                }
+
                 try {
                     qntd = Integer.parseInt(txtQntd.getText());
 
@@ -347,17 +367,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
                 //novamente na tabela e somar
                 //somente ao finalizar o pedido, que vai ser enviado o valor total
                 total = 0.00f;
-
-                //pega a linha selecionada
-                final int rowPesquisa = tablePesquisaProd.getSelectedRow();
-
-                //guarda a id do produto da linha selecionado
-                Integer idPesquisa = (Integer) tablePesquisaProd.getValueAt(rowPesquisa, 0);
-
-                //chama o serviço para obter as informações do produto
-                Produto prodSelecionado = ServicoProduto.obterProduto(idPesquisa);
-
-                DefaultTableModel modelCarrinho = (DefaultTableModel) tableCarrinho.getModel();
 
                 //Adicionando item na venda
                 //converte e manda por parâmetro a quantidade inserida no campo
@@ -433,9 +442,6 @@ public class FormVenda extends javax.swing.JInternalFrame {
             venda.setData();
             venda.setValorTotal(total);
 
-            int aux = 0;
-            boolean verifica = false;
-
             for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
                 int qntd = (int) tableCarrinho.getValueAt(i, 3);
                 int idProd = (int) tableCarrinho.getValueAt(i, 0);
@@ -446,59 +452,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
                 item.ajustarEstq();
 
-                if (item.getQntdEstoque() < 0) {
-                    //pega o indice, p/ percorrer novamente a tabela e "cancelar" o ajuste de estoque
-                    aux = i;
-                    verifica = true;
-                    break;
-                }
-            }
-
-            if (!verifica) {
-                //Chama o serviço para cadastro da venda (valida a venda e o list de itens
-                ServicoVenda.cadastrarVenda(venda);
-
-                //percorre a tabela novamente, para atualizar o estoque
-                for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
-                    int idProd = (int) tableCarrinho.getValueAt(i, 0);
-                    Produto produto = ServicoProduto.obterProduto(idProd);
-                    ServicoProduto.atualizarProduto(produto);
-                }
-                
-                //exibe a mensagem da conclusão da venda
-                JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
-                        "Finalizado", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-                
-            } else {
-                for (int i = 0; i <= aux; i++) {
-                    int qntd = (int) tableCarrinho.getValueAt(i, 3);
-                    int idProd = (int) tableCarrinho.getValueAt(i, 0);
-
-                    Produto produto = ServicoProduto.obterProduto(idProd);
-
-                    ItemVenda item = new ItemVenda(produto, qntd);
-
-                    item.ajustarEstqCancel();
-                }
+                ServicoProduto.atualizarProduto(produto);
 
             }
 
-            //Chama o serviço para cadastro da venda (valida a venda e o list de itens
-//            ServicoVenda.cadastrarVenda(venda);                       
-            //percorre a tabela novamente, pra ajustar o estoque
-//            for (int i = 0; i < tableCarrinho.getRowCount(); i++) {
-//                int qntd = (int) tableCarrinho.getValueAt(i, 3);
-//                int idProd = (int) tableCarrinho.getValueAt(i, 0);
-//
-//                Produto produto = ServicoProduto.obterProduto(idProd);
-//                ItemVenda item = new ItemVenda(produto, qntd);
-//                item.ajustarEstq();
-//                ServicoProduto.atualizarProduto(produto);
-//            }
-//            JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
-//                    "Finalizado", JOptionPane.INFORMATION_MESSAGE);
-//            this.dispose();
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(rootPane, e.getMessage(),
@@ -506,6 +463,10 @@ public class FormVenda extends javax.swing.JInternalFrame {
 
         }
 
+        //exibe a mensagem da conclusão da venda
+        JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso.",
+                "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
 
     }//GEN-LAST:event_buttonFinalizarActionPerformed
 
