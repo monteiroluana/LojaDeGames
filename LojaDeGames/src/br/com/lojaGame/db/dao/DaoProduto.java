@@ -188,7 +188,8 @@ public class DaoProduto {
         //Monta a String de 'SELECT' de no DB;
         String sql = "SELECT p.idProduto,p.nome,p.categoria,p.desenv,p.preco,p.codBarra,p.faixaEtaria,"
                 + "p.jogadores,p.qtdEstoque, plat.descricao AS Plataforma FROM produto p "
-                + "INNER JOIN plataforma plat on p.idPlataforma = plat.idPlataforma WHERE (UPPER(nome) LIKE UPPER(?) AND enabled = ?)";
+                + "INNER JOIN plataforma plat on p.idPlataforma = plat.idPlataforma WHERE (UPPER(nome) LIKE UPPER(?) "
+                + "OR UPPER(p.categoria) LIKE UPPER(?) OR UPPER(p.codBarra) LIKE UPPER(?) OR UPPER(plat.descricao) LIKE UPPER(?) AND enabled = ?)";
 //        String sql = "SELECT * FROM produto WHERE (UPPER(nome) LIKE UPPER(?) AND enabled = ?)";
         //Lista de Produtos
         List<Produto> listaProdutos = null;
@@ -205,8 +206,11 @@ public class DaoProduto {
             //Cria um preparedStatement para execução de instruções SQL
             preparedStatement = connection.prepareStatement(sql);
             //Configura os parâmetros do PreparedStatement
-            preparedStatement.setString(1, "%" + search + "%");
-            preparedStatement.setBoolean(2, true);
+             preparedStatement.setString(1, "%" + search + "%");
+            preparedStatement.setString(2, "%" + search + "%");
+            preparedStatement.setString(3, "%" + search + "%");
+            preparedStatement.setString(4, "%" + search + "%");
+            preparedStatement.setBoolean(5, true);
 
             //Executa a consulta SQL no banco de dados
             result = preparedStatement.executeQuery();
