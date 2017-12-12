@@ -1,6 +1,6 @@
 package br.com.lojaGame.ui.venda;
 
-import br.com.lojaGame.exceptions.VendasException;
+import br.com.lojaGame.exceptions.RelatorioException;
 import br.com.lojaGame.services.ServicoVenda;
 import br.com.lojaGame.models.Relatorio;
 import java.text.DecimalFormat;
@@ -179,7 +179,7 @@ public class FormRelatorioVendas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_buttonGerarRelatActionPerformed
 
-    public boolean refreshList() throws VendasException, Exception {
+    public boolean refreshList() throws RelatorioException, Exception {
 
         List<Relatorio> resultado = ServicoVenda.procurarVenda((Date) fTxtDataInicial.getValue(), (Date) fTxtDataFinal.getValue());
 
