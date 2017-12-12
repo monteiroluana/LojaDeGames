@@ -22,7 +22,7 @@ public class ValidadorProduto {
         if (produto.getCategoria() == null || "Selecione...".equals(produto.getCategoria())) {
             throw new ProdutosException("É necessário informar a categoria do jogo");
         }
-        if (produto.getPlataforma() == null) {
+        if (produto.getPlataforma() == null || produto.getPlataforma() == 0) {
             throw new ProdutosException("É necessário informar a plataforma do jogo");
         }
         if (produto.getFaixaEtaria() == null || "Selecione".equals(produto.getFaixaEtaria())) {
