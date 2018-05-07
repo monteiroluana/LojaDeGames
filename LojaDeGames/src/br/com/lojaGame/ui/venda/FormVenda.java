@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class FormVenda extends javax.swing.JInternalFrame {
 
     private Venda venda = new Venda();
-    private Object cli;
+    private Cliente cli;
     private float total;
     // formatar o valor total e exibir somente duas casas decimais
     private DecimalFormat valorFormat = new DecimalFormat("0.00");
